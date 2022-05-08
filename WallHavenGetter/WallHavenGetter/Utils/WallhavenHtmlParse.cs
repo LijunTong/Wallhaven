@@ -13,7 +13,7 @@ namespace WallHavenGetter.Utils
     {
         public static List<string> GetSmallImgUrl(Uri uri)
         {
-            string html = HttpHelper.HttpGet(uri.ToString());
+            string html = HttpHelper.HttpGet(uri.ToString(), 2);
             return GetSmallImgUrl(html);
         }
 
@@ -76,7 +76,7 @@ namespace WallHavenGetter.Utils
 
         public static string GetFullImgUrl(string detialUrl)
         {
-            string dHtml = HttpHelper.HttpGet(detialUrl);
+            string dHtml = HttpHelper.HttpGet(detialUrl, 2);
             HtmlAgilityPack.HtmlDocument document = new HtmlAgilityPack.HtmlDocument();
             document.LoadHtml(dHtml);
             HtmlNode node = document.DocumentNode;

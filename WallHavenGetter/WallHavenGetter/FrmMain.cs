@@ -156,19 +156,23 @@ namespace WallHavenGetter
                                     }
                                 }
                                 ImageListViewItem image = new ImageListViewItem(path);
+                                Console.WriteLine(item.DetialsUrl);
+                                string url = WallhavenHtmlParse.GetFullImgUrl(item.DetialsUrl);
                                 lock (_locker)
                                 {
                                     this.imageListView1.Items.Add(image);
+                                    item.FullUrl = url;
                                 }
-                                item.FullUrl = WallhavenHtmlParse.GetFullImgUrl(item.DetialsUrl);
+                                Console.WriteLine(index+":"+ url);
                                 Interlocked.Increment(ref barVal);
                                 SetPBar(barVal);
+                                Thread.Sleep(20);
                             }
                         },
                         () =>
                         {
                             DisPBar();
-                            _imgInfos = _imgInfos.OrderBy(x => this.imageListView1.Items.ToList().IndexOf(this.imageListView1.Items.FirstOrDefault(o => o.Text == x.ImageName + "." + x.Extension))).ToList();
+                            _imgInfos = _imgInfos.OrderBy(x => this.imageListView1.Items.ToList().IndexOf(this.imageListView1.Items.FirstOrDefault(o => o.Text.StartsWith(x.ImageName)))).ToList();
                             toolStripToolBar.Enabled = true;
                         });
                 }
@@ -268,9 +272,11 @@ namespace WallHavenGetter
                     {
                         continue;
                     }
+                    Console.WriteLine(index); 
                     var item = listViewItems[index];
                     
-                    var wallhaven = _imgInfos.FirstOrDefault(x => x.ImageName + "." + x.Extension == item.Text);
+                    var wallhaven = _imgInfos.FirstOrDefault(x => item.Text.StartsWith( x.ImageName));
+                    Console.WriteLine(item.Text + "=====" + wallhaven?.FullUrl);
                     if (wallhaven != null && !string.IsNullOrEmpty(wallhaven.FullUrl))
                     {
                         string path = Path.Combine(dir, wallhaven.ImageName + "." + wallhaven.Extension);
