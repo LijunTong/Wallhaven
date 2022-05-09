@@ -64,15 +64,13 @@ namespace WallHavenGetter
                     Application.DoEvents();
 
                     var image = _wallhavenImgInfos[index];
-                    if (string.IsNullOrEmpty(image.FullUrl))
-                    {
-                        image.FullUrl = WallhavenHtmlParse.GetFullImgUrl(image.DetialsUrl);
-                    }
-                    this.tbUrl.Text = image.FullUrl;
                     string dir = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "images", "full", image.ImageType);
-                    string path = Path.Combine(dir, image.ImageName + "." + image.Extension);
-                    _stream = HttpHelper.HttpDownload(image.FullUrl);
-                    this.pictureBox1.Image = new Bitmap(_stream);
+                    string path = WallhavenHtmlParse.DownloadFullImage(image, dir);
+                    if (string.IsNullOrEmpty(path))
+                    {
+                        return;
+                    }
+                    this.pictureBox1.Image = new Bitmap(path);
                 }
                 catch (Exception ex)
                 {
