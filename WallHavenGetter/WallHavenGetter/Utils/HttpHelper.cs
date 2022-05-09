@@ -42,7 +42,7 @@ namespace WallHavenGetter.Utils
                     //Console.WriteLine(url + ":" + "reaponse is null");
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 //Console.WriteLine(url + ":" + ex.ToString());
             }
@@ -74,7 +74,7 @@ namespace WallHavenGetter.Utils
                     //Console.WriteLine(url + ":" + "reaponse is null");
                 }
             }
-            catch (Exception ex)
+            catch (Exception )
             {
                 //Console.WriteLine(url + ":" + ex.ToString());
             }
