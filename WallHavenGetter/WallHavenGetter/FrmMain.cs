@@ -46,24 +46,18 @@ namespace WallHavenGetter
             KeyVal keyVal = toolStripComboBoxType.SelectedItem as KeyVal;
             _serachParam.BaseUrl = Constant.WallhavenBaseUrl;
             _serachParam.Type = keyVal.Value;
-            _serachParam.Page = int.Parse(this.toolStripTextBoxPage.Text);
+            int.TryParse(this.toolStripTextBoxPage.Text,out int page);
+            if(page == 0)
+            {
+                page = 1;
+            }
+           else if (page > 100) 
+            { page = 100; }
+            _serachParam.Page = page;
             this.toolStripTextBoxUrl.Text = _serachParam.Url;
             return _serachParam.Url;
         }
 
-        private void InitList(int page, int pageSize)
-        {
-            _imgInfos.Clear();
-            _imageListViewItems.Clear();
-            this.imageListView1.Items.Clear();
-            int length = page * pageSize; 
-            for (int i = 0; i < length; i++)
-            {
-                _imgInfos.Add(new WallhavenImgInfo());
-                _imageListViewItems.Add(new ImageListViewItem());
-            }
-            this.imageListView1.Items.AddRange(_imageListViewItems.ToArray());
-        }
 
         private List<WallhavenImgInfo> GetList()
         {
@@ -101,16 +95,6 @@ namespace WallHavenGetter
             return imgList;
         }
 
-        private void AddImgs(List<WallhavenImgInfo> imgs)
-        {
-            foreach (WallhavenImgInfo im in imgs)
-            {
-                if (!_imgInfos.Any(x => x.ImageName == im.ImageName))
-                {
-                    _imgInfos.Add(im);
-                }
-            }
-        }
 
         private void Get()
         {
@@ -133,47 +117,11 @@ namespace WallHavenGetter
                     TaskRun(_threadCnt,
                         () =>
                         {
-                            while (_index < _imgInfos.Count)
-                            {
-                                Interlocked.Increment(ref _index);
-                                int index = _index;
-                                if (index >= _imgInfos.Count)
-                                {
-                                    continue;
-                                }
-                                var item = _imgInfos[index];
-                                item.ImageType = this.toolStripComboBoxType.Text;
-                                string path = Path.Combine(dir, item.ImageName + "." + item.Extension);
-                                if (!File.Exists(path))
-                                {
-                                    Stream stream = HttpHelper.HttpDownload(item.SmallUrl);
-                                    if (stream != null)
-                                    {
-                                        lock (_lockerSaveAs)
-                                        {
-                                            stream.SaveAs(path);
-                                        }
-                                    }
-                                }
-                                ImageListViewItem image = new ImageListViewItem(path);
-                                Console.WriteLine(item.DetialsUrl);
-                                string url = WallhavenHtmlParse.GetFullImgUrl(item.DetialsUrl);
-                                lock (_locker)
-                                {
-                                    this.imageListView1.Items.Add(image);
-                                    item.FullUrl = url;
-                                }
-                                Console.WriteLine(index+":"+ url);
-                                Interlocked.Increment(ref barVal);
-                                SetPBar(barVal);
-                                Thread.Sleep(20);
-                            }
+                            GetSmallImage(barVal, dir);
                         },
                         () =>
                         {
-                            DisPBar();
-                            _imgInfos = _imgInfos.OrderBy(x => this.imageListView1.Items.ToList().IndexOf(this.imageListView1.Items.FirstOrDefault(o => o.Text.StartsWith(x.ImageName)))).ToList();
-                            toolStripToolBar.Enabled = true;
+                            GetCallBack();
                         });
                 }
             });
@@ -206,6 +154,87 @@ namespace WallHavenGetter
             this.tsPBarLoadStatus.Value = 0;
         }
 
+        private void GetSmallImage(int barVal,string dir)
+        {
+            while (_index < _imgInfos.Count)
+            {
+                Interlocked.Increment(ref _index);
+                int index = _index;
+                if (index >= _imgInfos.Count)
+                {
+                    continue;
+                }
+                var item = _imgInfos[index];
+                item.ImageType = this.toolStripComboBoxType.Text;
+                string path = Path.Combine(dir, item.ImageName + "." + item.Extension);
+                if (!File.Exists(path))
+                {
+                    Stream stream = HttpHelper.HttpDownload(item.SmallUrl);
+                    if (stream != null)
+                    {
+                        lock (_lockerSaveAs)
+                        {
+                            stream.SaveAs(path);
+                        }
+                    }
+                }
+                ImageListViewItem image = new ImageListViewItem(path);
+                lock (_locker)
+                {
+                    this.imageListView1.Items.Add(image);
+                }
+                Interlocked.Increment(ref barVal);
+                SetPBar(barVal);
+            }
+        }
+        private void GetCallBack()
+        {
+            DisPBar();
+            _imgInfos = _imgInfos.OrderBy(x => this.imageListView1.Items.ToList().IndexOf(this.imageListView1.Items.FirstOrDefault(o => o.Text.StartsWith(x.ImageName)))).ToList();
+            toolStripToolBar.Enabled = true;
+        }
+
+        private void Downlad(ImageListViewSelectedItemCollection listViewItems)
+        {
+            string dir = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "images", "full", this.toolStripComboBoxType.Text);
+            if (!Directory.Exists(dir))
+            {
+                Directory.CreateDirectory(dir);
+            }
+            SetStatus($"正在下载：{listViewItems.Count}", Color.Red);
+            InitPBar(listViewItems.Count);
+            int mIndex = -1;
+            int bVal = 0;
+            TaskRun(_threadCnt, () =>
+            {
+                while (mIndex < listViewItems.Count)
+                {
+                    int index = Interlocked.Increment(ref mIndex);
+                    if (index >= listViewItems.Count)
+                    {
+                        continue;
+                    }
+                    var item = listViewItems[index];
+
+                    var wallhaven = _imgInfos.FirstOrDefault(x => item.Text.StartsWith(x.ImageName));
+                    if (wallhaven != null)
+                    {
+                        WallhavenHtmlParse.DownloadFullImage(wallhaven, dir);
+                    }
+                    Interlocked.Increment(ref bVal);
+                    SetPBar(bVal);
+                }
+            }, () =>
+            {
+                DisPBar();
+                SetStatus("下载完成", Color.Green);
+            });
+
+
+
+
+        }
+
         #endregion
 
 
@@ -215,15 +244,12 @@ namespace WallHavenGetter
             {
                 e.Handled = true;
             }
+            
         }
 
         private void toolStripTextBoxPage_MouseLeave(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(this.toolStripTextBoxPage.Text))
-            {
-                this.toolStripTextBoxPage.Text = "1";
-            }
-            SetUrlTb();
+            
         }
 
         private void toolStripButtonGet_Click(object sender, EventArgs e)
@@ -252,56 +278,7 @@ namespace WallHavenGetter
            
         }
 
-        private void Downlad(ImageListViewSelectedItemCollection listViewItems)
-        {
-            string dir = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "images", "full", this.toolStripComboBoxType.Text);
-            if (!Directory.Exists(dir))
-            {
-                Directory.CreateDirectory(dir);
-            }
-            SetStatus($"正在下载：{listViewItems.Count}", Color.Red);
-            InitPBar(listViewItems.Count);
-            int mIndex = -1;
-            int bVal = 0;
-            TaskRun(_threadCnt, () => 
-            {
-                while(mIndex< listViewItems.Count)
-                {
-                    int index = Interlocked.Increment(ref mIndex);
-                    if (index >= listViewItems.Count)
-                    {
-                        continue;
-                    }
-                    Console.WriteLine(index); 
-                    var item = listViewItems[index];
-                    
-                    var wallhaven = _imgInfos.FirstOrDefault(x => item.Text.StartsWith( x.ImageName));
-                    Console.WriteLine(item.Text + "=====" + wallhaven?.FullUrl);
-                    if (wallhaven != null && !string.IsNullOrEmpty(wallhaven.FullUrl))
-                    {
-                        string path = Path.Combine(dir, wallhaven.ImageName + "." + wallhaven.Extension);
-                        var stream = HttpHelper.HttpDownload(wallhaven.FullUrl);
-                        if (stream != null)
-                        {
-                            lock (_lockerSaveAs)
-                            {
-                                stream.SaveAs(path);
-                            }
-                        }
-                    }
-                    Interlocked.Increment(ref bVal);
-                    SetPBar(bVal);
-                }
-            }, () => 
-            {
-                DisPBar();
-                SetStatus("下载完成", Color.Green);
-            });
-
-
-            
-            
-        }
+        
 
         private void TaskRun(int threadCnt, Action action, Action callback)
         {
@@ -332,6 +309,15 @@ namespace WallHavenGetter
             System.Diagnostics.ProcessStartInfo psi = new System.Diagnostics.ProcessStartInfo("Explorer.exe");
             psi.Arguments = "/e,/select," + dir;
             System.Diagnostics.Process.Start(psi);
+        }
+
+        private void toolStripTextBoxPage_TextChanged(object sender, EventArgs e)
+        {
+            if (string.IsNullOrEmpty(this.toolStripTextBoxPage.Text))
+            {
+                this.toolStripTextBoxPage.Text = "1";
+            }
+            SetUrlTb();
         }
     }
 }

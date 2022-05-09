@@ -12,7 +12,8 @@ namespace WallHavenGetter.Models
         public string ImageType { get; set; }
         public string Extension { get; set; }
         public string SmallUrl { get; set; }
-        public string FullUrl { get; set; }
+        public string JpgFullUrl { get; set; }
+        public string PngFullUrl { get; set; }
         public string DetialsUrl { get; set; }
     }
 }

@@ -42,7 +42,7 @@ namespace WallHavenGetter.Utils
                 }
             };
 
-        public const string WallhavenImgBaseUrlFormat = "https://w.wallhaven.cc/full/$1/wallhaven-$2.$3";
+        public const string WallhavenImgBaseUrlFormat = "https://w.wallhaven.cc/full/$1/wallhaven-$2";
         public const string WallhavenImgDetialsUrlFormat = "https://wallhaven.cc/w/$2";
         public const string WallhavenSmallImgUrlRegex = "^https://th.wallhaven.cc/small/([0-9a-z]*)/([0-9a-z]{6}).([a-z]{3,4})$";
     }

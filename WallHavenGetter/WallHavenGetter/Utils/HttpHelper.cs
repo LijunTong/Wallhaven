@@ -14,10 +14,9 @@ namespace WallHavenGetter.Utils
        
         public static string HttpGet(string url,int cnt)
         {
-            Console.WriteLine(url +":"+ cnt);
             if (cnt == 0)
             {
-                Console.WriteLine(url + ":" + "reaponse is fail");
+                //Console.WriteLine(url + ":" + "reaponse is fail");
                 return "";
             }
             try
@@ -40,12 +39,12 @@ namespace WallHavenGetter.Utils
                 }
                 else
                 {
-                    Console.WriteLine(url + ":" + "reaponse is null");
+                    //Console.WriteLine(url + ":" + "reaponse is null");
                 }
             }
             catch (Exception ex)
             {
-                Console.WriteLine(url + ":" + ex.ToString());
+                //Console.WriteLine(url + ":" + ex.ToString());
             }
             return String.Empty;
         }
@@ -67,17 +66,17 @@ namespace WallHavenGetter.Utils
                     }
                     else
                     {
-                        Console.WriteLine(url + ":" + "reaponse is fail");
+                        //Console.WriteLine(url + ":" + "reaponse is fail");
                     }
                 }
                 else
                 {
-                    Console.WriteLine(url + ":" + "reaponse is null");
+                    //Console.WriteLine(url + ":" + "reaponse is null");
                 }
             }
             catch (Exception ex)
             {
-                Console.WriteLine(url + ":" + ex.ToString());
+                //Console.WriteLine(url + ":" + ex.ToString());
             }
             return null;
         }
