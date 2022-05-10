@@ -85,7 +85,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 19F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1392, 788);
+            this.ClientSize = new System.Drawing.Size(1392, 781);
             this.Controls.Add(this.tbUrl);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btnNext);
@@ -94,6 +94,7 @@
             this.MaximizeBox = false;
             this.MaximumSize = new System.Drawing.Size(1408, 827);
             this.Name = "FrmImageShow";
+            this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Load += new System.EventHandler(this.FrmImageShow_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();

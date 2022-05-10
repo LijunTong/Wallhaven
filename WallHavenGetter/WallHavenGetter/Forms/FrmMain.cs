@@ -1,5 +1,9 @@
 using Manina.Windows.Forms;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Logging;
+using System.Diagnostics;
 using System.IO;
+using WallHavenGetter.Forms;
 using WallHavenGetter.Models;
 using WallHavenGetter.Utils;
 using static Manina.Windows.Forms.ImageListView;
@@ -15,16 +19,27 @@ namespace WallHavenGetter
         private int _index = -1;
         private object _lockerSaveAs = new object();
         private object _locker = new object();
+        private readonly IConfiguration configuration;
+        private readonly ILogger<FrmMain> logger;
+        private readonly FrmImageShowParams frmImageShowParams;
 
-        
-        public FrmMain()
+        public FrmMain(IConfiguration configuration,
+            ILogger<FrmMain> logger,
+            FrmImageShowParams frmImageShowParams)
         {
-            Control.CheckForIllegalCrossThreadCalls = false;
+            CheckForIllegalCrossThreadCalls = false;
             InitializeComponent();
+            this.configuration = configuration;
+            this.logger = logger;
+            this.frmImageShowParams = frmImageShowParams;
+            logger.LogInformation(Thread.CurrentThread.ManagedThreadId.ToString());
         }
+
+
 
         private void FrmMain_Load(object sender, EventArgs e)
         {
+            logger.LogInformation("程序启动");
             Init();
         }
 
@@ -39,6 +54,7 @@ namespace WallHavenGetter
         {
             this.toolStripComboBoxType.Items.AddRange(Constant.SerachType.ToArray());
             this.toolStripComboBoxType.SelectedIndex = 0;
+            this.tsPBarLoadStatus.Visible = false;
         }
 
         private string SetUrlTb()
@@ -64,11 +80,15 @@ namespace WallHavenGetter
             List<WallhavenImgInfo> imgList = new List<WallhavenImgInfo>();
             try
             {
+                toolStripToolBar.Enabled = false;
                 this.Cursor = Cursors.WaitCursor;
                 var urls = _serachParam.PageUrls();
+                InitPBar(urls.Count);
                 foreach (var url in urls)
                 {
+                    SetPBar(urls.IndexOf(url) + 1);
                     SetStatus($"正在加载：{urls.IndexOf(url) + 1}/{urls.Count}页", Color.Red);
+                    
                     if (string.IsNullOrEmpty(url))
                     {
                         continue;
@@ -76,25 +96,23 @@ namespace WallHavenGetter
                     Uri uri = new Uri(url);
                     var smallUrls = WallhavenHtmlParse.GetSmallImgUrl(uri);
                     var imgs = WallhavenHtmlParse.ParseImgUrl(smallUrls);
-                    InitPBar(imgs.Count);
                     imgList.AddRange(imgs);
                 }
-                SetStatus($"合计：{imgList.Count}", Color.Green);
             }
             catch (Exception ex)
             {
+                logger.LogError(message: ex.ToString());
                 MessageBox.Show("获取失败", "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 SetStatus($"获取失败", Color.Red);
 
             }
             finally
             {
+                toolStripToolBar.Enabled = true;
                 this.Cursor = Cursors.Default;
-
             }
             return imgList;
         }
-
 
         private void Get()
         {
@@ -108,20 +126,20 @@ namespace WallHavenGetter
             _index = -1;
             Task.Run(() =>
             {
-                toolStripToolBar.Enabled = false;
                 _imgInfos = GetList();
                 if (_imgInfos.Count > 0)
                 {
+                    toolStripToolBar.Enabled = false;
                     InitPBar(_imgInfos.Count);
                     int barVal = 0;
                     TaskRun(_threadCnt,
                         () =>
                         {
-                            GetSmallImage(barVal, dir);
+                            GetSmallImage(_imgInfos.Count,ref barVal, dir);
                         },
                         () =>
                         {
-                            GetCallBack();
+                            GetCallBack(_imgInfos.Count);
                         });
                 }
             });
@@ -135,8 +153,8 @@ namespace WallHavenGetter
 
         private void InitPBar(int maxVal)
         {
-            this.tsPBarLoadStatus.Maximum = maxVal;
             this.tsPBarLoadStatus.Visible = true;
+            this.tsPBarLoadStatus.Maximum = maxVal;
         }
 
         private void SetPBar(int val)
@@ -154,7 +172,7 @@ namespace WallHavenGetter
             this.tsPBarLoadStatus.Value = 0;
         }
 
-        private void GetSmallImage(int barVal,string dir)
+        private void GetSmallImage(int total,ref int barVal,string dir)
         {
             while (_index < _imgInfos.Count)
             {
@@ -185,17 +203,23 @@ namespace WallHavenGetter
                 }
                 Interlocked.Increment(ref barVal);
                 SetPBar(barVal);
+                SetStatus($"正在加载：{barVal}/{total}", Color.Red);
+                
+                Application.DoEvents();
             }
         }
-        private void GetCallBack()
+        private void GetCallBack(int total)
         {
             DisPBar();
             _imgInfos = _imgInfos.OrderBy(x => this.imageListView1.Items.ToList().IndexOf(this.imageListView1.Items.FirstOrDefault(o => o.Text.StartsWith(x.ImageName)))).ToList();
             toolStripToolBar.Enabled = true;
+            SetStatus($"加载完成：{total}", Color.Red);
         }
 
         private void Downlad(ImageListViewSelectedItemCollection listViewItems)
         {
+            this.toolStripToolBar.Enabled = false;
+            this.imageListView1.Enabled = false;
             string dir = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "images", "full", this.toolStripComboBoxType.Text);
             if (!Directory.Exists(dir))
             {
@@ -223,9 +247,13 @@ namespace WallHavenGetter
                     }
                     Interlocked.Increment(ref bVal);
                     SetPBar(bVal);
+                    SetStatus($"正在下载：{bVal}/{listViewItems.Count}", Color.Red);
+                    Application.DoEvents();
                 }
             }, () =>
             {
+                this.toolStripToolBar.Enabled = true;
+                this.imageListView1.Enabled = true;
                 DisPBar();
                 SetStatus("下载完成", Color.Green);
             });
@@ -260,7 +288,9 @@ namespace WallHavenGetter
         private void imageListView1_ItemDoubleClick(object sender, ItemClickEventArgs e)
         {
             ImageListViewItem image = e.Item;
-            FrmImageShow frmImageShow = new FrmImageShow(_imgInfos, image.Text);
+            frmImageShowParams.WallhavenImgInfos = _imgInfos;
+            frmImageShowParams.Name = image.Text;
+            var frmImageShow = AppContext.GetService<FrmImageShow>();
             frmImageShow.ShowDialog();
         }
 
@@ -318,6 +348,24 @@ namespace WallHavenGetter
                 this.toolStripTextBoxPage.Text = "1";
             }
             SetUrlTb();
+        }
+
+        private void FrmMain_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            logger.LogInformation("程序退出");
+        }
+
+
+        private void toolItemSet_Click(object sender, EventArgs e)
+        {
+            var frm = AppContext.GetService<FrmOptions>();
+            frm.ShowDialog();
+        }
+
+        private void toolItemCache_Click(object sender, EventArgs e)
+        {
+            var frm = AppContext.GetService<FrmCache>();
+            frm.ShowDialog();
         }
     }
 }
