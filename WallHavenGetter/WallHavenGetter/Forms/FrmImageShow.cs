@@ -19,16 +19,19 @@ namespace WallHavenGetter
         private readonly ILogger<FrmImageShow> _logger;
         private int _index = 0;
         private WhHtmlParseService _whHtmlParseService;
-
+        private readonly OptionsService optionsService;
+        private AppOptions _appOptions;
         public FrmImageShow(FrmImageShowParams frmImageShowParams,
                             ILogger<FrmImageShow> logger,
-                            WhHtmlParseService whHtmlParseService)
+                            WhHtmlParseService whHtmlParseService, OptionsService optionsService)
         {
             InitializeComponent();
             this._wallhavenImgInfos = frmImageShowParams.WallhavenImgInfos;
             _index = this._wallhavenImgInfos.IndexOf(this._wallhavenImgInfos.FirstOrDefault(x => x.ImageName + "." + x.Extension == frmImageShowParams.Name));
             this._logger = logger;
             _whHtmlParseService = whHtmlParseService;
+            _appOptions = optionsService.GetAppOptions();
+            this.optionsService = optionsService;
         }
 
         private void FrmImageShow_Load(object sender, EventArgs e)
@@ -71,7 +74,11 @@ namespace WallHavenGetter
                     Application.DoEvents();
 
                     var image = _wallhavenImgInfos[index];
-                    string dir = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "images", "full", image.ImageType);
+                    string dir = Path.Combine(_appOptions.FullImageDir, image.ImageType);
+                    if (!Directory.Exists(dir))
+                    {
+                        Directory.CreateDirectory(dir);
+                    }
                     string path = _whHtmlParseService.DownloadFullImage(image, dir);
                     if (string.IsNullOrEmpty(path))
                     {
@@ -88,8 +95,9 @@ namespace WallHavenGetter
                     this.Text = image.ImageName;
                     this.pictureBox1.Image = new Bitmap(path);
                 }
-                catch (Exception )
+                catch (Exception ex)
                 {
+                    _logger.LogError(ex.Message);
                     MessageBox.Show("获取失败", "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
                 finally

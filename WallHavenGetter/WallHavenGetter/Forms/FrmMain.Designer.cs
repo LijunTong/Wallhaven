@@ -32,6 +32,7 @@
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.toolItemSet = new System.Windows.Forms.ToolStripMenuItem();
             this.toolItemCache = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolItemAbout = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.tsLoadStatus = new System.Windows.Forms.ToolStripStatusLabel();
             this.tsPBarLoadStatus = new System.Windows.Forms.ToolStripProgressBar();
@@ -42,6 +43,14 @@
             this.toolStripLabel2 = new System.Windows.Forms.ToolStripLabel();
             this.toolStripComboBoxType = new System.Windows.Forms.ToolStripComboBox();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.tsLblKey = new System.Windows.Forms.ToolStripLabel();
+            this.toolStripTextBoxInput = new System.Windows.Forms.ToolStripTextBox();
+            this.toolStripDropDownOption = new System.Windows.Forms.ToolStripDropDownButton();
+            this.toolItemGeneral = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolItemAnime = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolitemPeople = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripLabelSort = new System.Windows.Forms.ToolStripLabel();
+            this.toolStripComboBoxSort = new System.Windows.Forms.ToolStripComboBox();
             this.toolStripLabel4 = new System.Windows.Forms.ToolStripLabel();
             this.toolStripTextBoxPage = new System.Windows.Forms.ToolStripTextBox();
             this.toolStripLabel3 = new System.Windows.Forms.ToolStripLabel();
@@ -64,7 +73,8 @@
             this.menuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolItemSet,
-            this.toolItemCache});
+            this.toolItemCache,
+            this.toolItemAbout});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(1100, 27);
@@ -84,6 +94,13 @@
             this.toolItemCache.Size = new System.Drawing.Size(47, 23);
             this.toolItemCache.Text = "缓存";
             this.toolItemCache.Click += new System.EventHandler(this.toolItemCache_Click);
+            // 
+            // toolItemAbout
+            // 
+            this.toolItemAbout.Name = "toolItemAbout";
+            this.toolItemAbout.Size = new System.Drawing.Size(47, 23);
+            this.toolItemAbout.Text = "关于";
+            this.toolItemAbout.Click += new System.EventHandler(this.toolItemAbout_Click);
             // 
             // statusStrip1
             // 
@@ -125,13 +142,14 @@
             // toolStripLabel1
             // 
             this.toolStripLabel1.Name = "toolStripLabel1";
-            this.toolStripLabel1.Size = new System.Drawing.Size(48, 21);
-            this.toolStripLabel1.Text = "地址：";
+            this.toolStripLabel1.Size = new System.Drawing.Size(35, 21);
+            this.toolStripLabel1.Text = "网址";
             // 
             // toolStripTextBoxUrl
             // 
             this.toolStripTextBoxUrl.Name = "toolStripTextBoxUrl";
-            this.toolStripTextBoxUrl.Size = new System.Drawing.Size(400, 24);
+            this.toolStripTextBoxUrl.ReadOnly = true;
+            this.toolStripTextBoxUrl.Size = new System.Drawing.Size(900, 24);
             // 
             // toolStripToolBar
             // 
@@ -141,6 +159,11 @@
             this.toolStripLabel2,
             this.toolStripComboBoxType,
             this.toolStripSeparator2,
+            this.tsLblKey,
+            this.toolStripTextBoxInput,
+            this.toolStripDropDownOption,
+            this.toolStripLabelSort,
+            this.toolStripComboBoxSort,
             this.toolStripLabel4,
             this.toolStripTextBoxPage,
             this.toolStripLabel3,
@@ -175,6 +198,67 @@
             this.toolStripSeparator2.Name = "toolStripSeparator2";
             this.toolStripSeparator2.Size = new System.Drawing.Size(6, 27);
             // 
+            // tsLblKey
+            // 
+            this.tsLblKey.Name = "tsLblKey";
+            this.tsLblKey.Size = new System.Drawing.Size(61, 24);
+            this.tsLblKey.Text = "关键词：";
+            // 
+            // toolStripTextBoxInput
+            // 
+            this.toolStripTextBoxInput.Name = "toolStripTextBoxInput";
+            this.toolStripTextBoxInput.Size = new System.Drawing.Size(150, 27);
+            this.toolStripTextBoxInput.TextChanged += new System.EventHandler(this.toolStripTextBoxInput_TextChanged);
+            // 
+            // toolStripDropDownOption
+            // 
+            this.toolStripDropDownOption.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.toolStripDropDownOption.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolItemGeneral,
+            this.toolItemAnime,
+            this.toolitemPeople});
+            this.toolStripDropDownOption.Image = ((System.Drawing.Image)(resources.GetObject("toolStripDropDownOption.Image")));
+            this.toolStripDropDownOption.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripDropDownOption.Name = "toolStripDropDownOption";
+            this.toolStripDropDownOption.Size = new System.Drawing.Size(48, 24);
+            this.toolStripDropDownOption.Text = "选项";
+            // 
+            // toolItemGeneral
+            // 
+            this.toolItemGeneral.CheckOnClick = true;
+            this.toolItemGeneral.Name = "toolItemGeneral";
+            this.toolItemGeneral.Size = new System.Drawing.Size(180, 24);
+            this.toolItemGeneral.Text = "常规";
+            this.toolItemGeneral.CheckedChanged += new System.EventHandler(this.toolItemGeneral_CheckedChanged);
+            // 
+            // toolItemAnime
+            // 
+            this.toolItemAnime.CheckOnClick = true;
+            this.toolItemAnime.Name = "toolItemAnime";
+            this.toolItemAnime.Size = new System.Drawing.Size(180, 24);
+            this.toolItemAnime.Text = "动漫";
+            this.toolItemAnime.CheckedChanged += new System.EventHandler(this.toolItemGeneral_CheckedChanged);
+            // 
+            // toolitemPeople
+            // 
+            this.toolitemPeople.CheckOnClick = true;
+            this.toolitemPeople.Name = "toolitemPeople";
+            this.toolitemPeople.Size = new System.Drawing.Size(180, 24);
+            this.toolitemPeople.Text = "人";
+            this.toolitemPeople.CheckedChanged += new System.EventHandler(this.toolItemGeneral_CheckedChanged);
+            // 
+            // toolStripLabelSort
+            // 
+            this.toolStripLabelSort.Name = "toolStripLabelSort";
+            this.toolStripLabelSort.Size = new System.Drawing.Size(35, 24);
+            this.toolStripLabelSort.Text = "排序";
+            // 
+            // toolStripComboBoxSort
+            // 
+            this.toolStripComboBoxSort.Name = "toolStripComboBoxSort";
+            this.toolStripComboBoxSort.Size = new System.Drawing.Size(121, 27);
+            this.toolStripComboBoxSort.SelectedIndexChanged += new System.EventHandler(this.toolStripComboBoxSort_SelectedIndexChanged);
+            // 
             // toolStripLabel4
             // 
             this.toolStripLabel4.Name = "toolStripLabel4";
@@ -185,7 +269,7 @@
             // 
             this.toolStripTextBoxPage.Name = "toolStripTextBoxPage";
             this.toolStripTextBoxPage.Size = new System.Drawing.Size(30, 27);
-            this.toolStripTextBoxPage.Text = "10";
+            this.toolStripTextBoxPage.Text = "1";
             this.toolStripTextBoxPage.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.toolStripTextBoxPage_KeyPress);
             this.toolStripTextBoxPage.MouseLeave += new System.EventHandler(this.toolStripTextBoxPage_MouseLeave);
             this.toolStripTextBoxPage.TextChanged += new System.EventHandler(this.toolStripTextBoxPage_TextChanged);
@@ -258,7 +342,7 @@
             this.imageListView1.PersistentCacheDirectory = "";
             this.imageListView1.PersistentCacheSize = ((long)(100));
             this.imageListView1.Size = new System.Drawing.Size(1100, 466);
-            this.imageListView1.TabIndex = 0;
+            this.imageListView1.TabIndex = 4;
             this.imageListView1.UseWIC = true;
             this.imageListView1.ItemDoubleClick += new Manina.Windows.Forms.ItemDoubleClickEventHandler(this.imageListView1_ItemDoubleClick);
             // 
@@ -302,8 +386,6 @@
         private ToolStripLabel toolStripLabel1;
         private ToolStripTextBox toolStripTextBoxUrl;
         private ToolStrip toolStripToolBar;
-        private ToolStripLabel toolStripLabel2;
-        private ToolStripComboBox toolStripComboBoxType;
         private ToolStripSeparator toolStripSeparator2;
         private ToolStripLabel toolStripLabel4;
         private ToolStripTextBox toolStripTextBoxPage;
@@ -311,7 +393,6 @@
         private ToolStripSeparator toolStripSeparator1;
         private ToolStripButton toolStripButtonGet;
         private Panel panel1;
-        private Manina.Windows.Forms.ImageListView imageListView1;
         private ToolStripStatusLabel tsLoadStatus;
         private ToolStripProgressBar tsPBarLoadStatus;
         private ToolStripButton toolStripButtonDownload;
@@ -319,5 +400,17 @@
         private ToolStripButton toolStripButton2;
         private ToolStripMenuItem toolItemSet;
         private ToolStripMenuItem toolItemCache;
+        private ToolStripMenuItem toolItemAbout;
+        private ToolStripTextBox toolStripTextBoxInput;
+        private ToolStripLabel tsLblKey;
+        private Manina.Windows.Forms.ImageListView imageListView1;
+        private ToolStripDropDownButton toolStripDropDownOption;
+        private ToolStripMenuItem toolItemGeneral;
+        private ToolStripMenuItem toolItemAnime;
+        private ToolStripMenuItem toolitemPeople;
+        private ToolStripLabel toolStripLabel2;
+        private ToolStripComboBox toolStripComboBoxType;
+        private ToolStripComboBox toolStripComboBoxSort;
+        private ToolStripLabel toolStripLabelSort;
     }
 }

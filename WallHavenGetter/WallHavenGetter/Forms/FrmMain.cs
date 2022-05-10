@@ -14,7 +14,6 @@ namespace WallHavenGetter
     public partial class FrmMain : Form
     {
         List<WallhavenImgInfo> _imgInfos = new List<WallhavenImgInfo>();
-        SerachParam _serachParam = new SerachParam();
         private int _threadCnt = 4;
         private int _index = -1;
         private object _lockerSaveAs = new object();
@@ -49,44 +48,85 @@ namespace WallHavenGetter
 
         private void toolStripComboBoxType_SelectedIndexChanged(object sender, EventArgs e)
         {
-            SetUrlTb();
+            KeyVal keyVal = this.toolStripComboBoxType.SelectedItem as KeyVal;
+            if (keyVal.Value == "input")
+            {
+                this.tsLblKey.Visible = true;
+                this.toolStripTextBoxInput.Visible = true;
+                this.toolStripDropDownOption.Visible = true;
+                this.toolStripLabelSort.Visible = true;
+                this.toolStripComboBoxSort.Visible = true;
+                this.toolStripTextBoxInput.Text = String.Empty;
+            }
+            else
+            {
+                this.tsLblKey.Visible = false;
+                this.toolStripTextBoxInput.Visible = false;
+                this.toolStripDropDownOption.Visible = false;
+                this.toolStripLabelSort.Visible = false;
+                this.toolStripComboBoxSort.Visible = false;
+                this.toolStripTextBoxInput.Text = String.Empty;
+            }
+            SetUrl();
         }
 
         #region 方法
 
         private void Init()
         {
+            this.toolStripComboBoxSort.Items.AddRange(Constant.SortType.ToArray());
+            this.toolStripComboBoxSort.SelectedIndex = 0;
+
             this.toolStripComboBoxType.Items.AddRange(Constant.SerachType.ToArray());
-            this.toolStripComboBoxType.SelectedIndex = 0;
+            this.toolStripComboBoxType.SelectedIndex = 4;
+
+
             this.tsPBarLoadStatus.Visible = false;
         }
 
-        private string SetUrlTb()
+        private SerachParam GetSerachParam()
         {
-            KeyVal keyVal = toolStripComboBoxType.SelectedItem as KeyVal;
-            _serachParam.BaseUrl = _appOptions.WallhavenBaseUrl;
-            _serachParam.Type = keyVal.Value;
+            SerachParam serachParam = new SerachParam();
+            serachParam.BaseUrl = _appOptions.WallhavenBaseUrl;
+            KeyVal keyValType = toolStripComboBoxType.SelectedItem as KeyVal;
+
+            if (keyValType != null)
+            {
+                serachParam.Type = keyValType.Value;
+            }
+            
             int.TryParse(this.toolStripTextBoxPage.Text,out int page);
-            if(page == 0)
+            if (page == 0)
             {
                 page = 1;
             }
-           else if (page > 100) 
-            { page = 100; }
-            _serachParam.Page = page;
-            this.toolStripTextBoxUrl.Text = _serachParam.Url;
-            return _serachParam.Url;
+            else if (page > 100)
+            {
+                page = 100;
+            }
+            serachParam.Page = page;
+            serachParam.Q = this.toolStripTextBoxInput.Text;
+            string general = this.toolItemGeneral.Checked ? "1" : "0";
+            string anime = this.toolItemAnime.Checked ? "1" : "0";
+            string people = this.toolitemPeople.Checked ? "1" : "0";
+            serachParam.Categories = $"{general}{anime}{people}";
+            KeyVal keyValSort = toolStripComboBoxSort.SelectedItem as KeyVal;
+            if (keyValSort != null)
+            {
+                serachParam.Sorting = keyValSort.Value;
+
+            }
+            return serachParam;
         }
 
-
-        private List<WallhavenImgInfo> GetList()
+        private List<WallhavenImgInfo> GetList(SerachParam serachParam)
         {
             List<WallhavenImgInfo> imgList = new List<WallhavenImgInfo>();
             try
             {
                 toolStripToolBar.Enabled = false;
                 this.Cursor = Cursors.WaitCursor;
-                var urls = _serachParam.PageUrls();
+                var urls = serachParam.PageUrls();
                 InitPBar(urls.Count);
                 foreach (var url in urls)
                 {
@@ -118,7 +158,7 @@ namespace WallHavenGetter
             return imgList;
         }
 
-        private void Get()
+        private void Get(SerachParam serachParam)
         {
             string dir = Path.Combine(_appOptions.SmallImageDir, this.toolStripComboBoxType.Text);
             if (!Directory.Exists(dir))
@@ -130,7 +170,7 @@ namespace WallHavenGetter
             _index = -1;
             Task.Run(() =>
             {
-                _imgInfos = GetList();
+                _imgInfos = GetList(serachParam);
                 if (_imgInfos.Count > 0)
                 {
                     toolStripToolBar.Enabled = false;
@@ -145,6 +185,11 @@ namespace WallHavenGetter
                         {
                             GetCallBack(_imgInfos.Count);
                         });
+                }
+                else
+                {
+                    SetStatus("无匹配结果，尝试使用英文关键字",Color.Red);
+                    DisPBar();
                 }
             });
         }
@@ -286,10 +331,20 @@ namespace WallHavenGetter
 
         private void toolStripButtonGet_Click(object sender, EventArgs e)
         {
-            Get();
+            SerachParam serachParam = GetSerachParam();
+            Get(serachParam);
+            //if (serachParam != null)
+            //{
+            //    if (serachParam.Type == "input" && string.IsNullOrWhiteSpace(serachParam.Q))
+            //    {
+            //        MessageBox.Show("请输入关键词", "提示", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            //        return;
+            //    }
+                
+            //}
         }
 
-        private void imageListView1_ItemDoubleClick(object sender, ItemClickEventArgs e)
+            private void imageListView1_ItemDoubleClick(object sender, ItemClickEventArgs e)
         {
             ImageListViewItem image = e.Item;
             frmImageShowParams.WallhavenImgInfos = _imgInfos;
@@ -351,7 +406,6 @@ namespace WallHavenGetter
             {
                 this.toolStripTextBoxPage.Text = "1";
             }
-            SetUrlTb();
         }
 
         private void FrmMain_FormClosed(object sender, FormClosedEventArgs e)
@@ -365,7 +419,6 @@ namespace WallHavenGetter
             if (frm.ShowDialog() == DialogResult.OK)
             {
                 _appOptions = _optionsService.GetAppOptions();
-                SetUrlTb();
             }
         }
 
@@ -373,6 +426,38 @@ namespace WallHavenGetter
         {
             var frm = AppContext.GetService<FrmCache>();
             frm.ShowDialog();
+        }
+
+        private void toolItemAbout_Click(object sender, EventArgs e)
+        {
+            var frm = AppContext.GetService<FrmAbout>();
+            frm.ShowDialog();
+        }
+
+        private void toolStripComboBoxType_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void toolStripTextBoxInput_TextChanged(object sender, EventArgs e)
+        {
+            SetUrl();
+        }
+
+        private void toolStripComboBoxSort_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            SetUrl();
+        }
+
+        private void SetUrl()
+        {
+            var serachParam = GetSerachParam();
+            this.toolStripTextBoxUrl.Text = serachParam.Url;
+        }
+
+        private void toolItemGeneral_CheckedChanged(object sender, EventArgs e)
+        {
+            SetUrl();
         }
     }
 }

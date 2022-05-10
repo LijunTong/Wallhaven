@@ -15,8 +15,6 @@ namespace WallHavenGetter.Utils
         /// <param name="dirSize">文件夹大小</param>
         public static void GetDirSizeByPath(string dir, ref long dirSize)
         {
-            try
-            {
                 DirectoryInfo dirInfo = new DirectoryInfo(dir);
 
                 DirectoryInfo[] dirs = dirInfo.GetDirectories();
@@ -31,12 +29,29 @@ namespace WallHavenGetter.Utils
                 {
                     dirSize += item.Length;
                 }
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine("获取文件大小失败" + ex.Message);
-            }
 
+        }
+
+        /// <summary>
+        /// 删除一个文件夹下所有的文件
+        /// </summary>
+        /// <param name="srcPath"></param>
+        public static void DelectDirectorys(string srcPath)
+        {
+            DirectoryInfo dir = new DirectoryInfo(srcPath);
+            FileSystemInfo[] fileinfo = dir.GetFileSystemInfos();  //返回目录中所有文件和子目录
+            foreach (FileSystemInfo i in fileinfo)
+            {
+                if (i is DirectoryInfo)//判断是否文件夹
+                {
+                    DirectoryInfo subdir = new DirectoryInfo(i.FullName);
+                    subdir.Delete(true); //删除子目录和文件
+                }
+                else
+                {
+                    File.Delete(i.FullName); //删除指定文件
+                }
+            }
         }
 
     }

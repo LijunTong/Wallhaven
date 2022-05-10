@@ -51,15 +51,43 @@ namespace WallHavenGetter.Forms
             }
             else if (size >= 1024 && size < 1024 * 1024)
             {
-                return $"{size / 1024}Kb";
+                return $"{(double)size / 1024:f1}Kb";
             }
             else if (size >= 1024 * 1024 && size < 1024 * 1024 * 1024)
             {
-                return $"{size / (1024 * 1024)}Mb";
+                return $"{(double)size / (1024 * 1024):f1}Mb";
             }
             else
             {
-                return $"{size / (1024 * 1024 * 1024)}G";
+                return $"{(double)size / (1024 * 1024 * 1024):f1}G";
+            }
+        }
+
+        private void btnCleanSmallImg_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                FileHelper.DelectDirectorys(_appOptions.SmallImageDir);
+                this.lblSmallImg.Text = GetDirSize(_appOptions.SmallImageDir);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex.Message);
+                MessageBox.Show("清除失败", "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void btnCleanFullImg_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                FileHelper.DelectDirectorys(_appOptions.FullImageDir);
+                this.lblFullimg.Text = GetDirSize(_appOptions.FullImageDir);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex.Message);
+                MessageBox.Show("清除失败", "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
     }

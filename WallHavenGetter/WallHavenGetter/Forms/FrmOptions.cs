@@ -84,6 +84,7 @@ namespace WallHavenGetter.Forms
         private void button1_Click(object sender, EventArgs e)
         {
             FolderBrowserDialog folderBrowserDialog = new FolderBrowserDialog();
+            folderBrowserDialog.SelectedPath = this.tbSmallImgPath.Text;
             var result = folderBrowserDialog.ShowDialog();
             if (result == DialogResult.OK)
             {
@@ -95,6 +96,7 @@ namespace WallHavenGetter.Forms
         private void button2_Click(object sender, EventArgs e)
         {
             FolderBrowserDialog folderBrowserDialog = new FolderBrowserDialog();
+            folderBrowserDialog.SelectedPath = this.tbFullImgPath.Text;
             var result = folderBrowserDialog.ShowDialog();
             if (result == DialogResult.OK)
             {

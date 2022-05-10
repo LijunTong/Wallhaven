@@ -34,7 +34,54 @@ namespace WallHavenGetter.Utils
                 {
                     Display = "随机",
                     Value = "random",
+                },
+                new KeyVal
+                {
+                    Display = "自定义",
+                    Value = "input",
                 }
+
+            };
+
+        public static List<KeyVal> SortType =>
+            new List<KeyVal>()
+            {
+                new KeyVal
+                {
+                    Display = "relevance",
+                    Value = "relevance",
+                },
+                new KeyVal
+                {
+                    Display = "random",
+                    Value = "random",
+                },
+                new KeyVal
+                {
+                    Display = "date_added",
+                    Value = "date_added",
+                },
+                new KeyVal
+                {
+                    Display = "views",
+                    Value = "views",
+                },
+                new KeyVal
+                {
+                    Display = "favorites",
+                    Value = "favorites",
+                },
+                new KeyVal
+                {
+                    Display = "toplist",
+                    Value = "toplist",
+                },
+                new KeyVal
+                {
+                    Display = "hot",
+                    Value = "hot",
+                }
+
             };
     }
 }
