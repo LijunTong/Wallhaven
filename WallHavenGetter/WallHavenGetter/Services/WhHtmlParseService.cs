@@ -6,14 +6,24 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using WallHavenGetter.Models;
+using WallHavenGetter.Services;
+using WallHavenGetter.Utils;
 
-namespace WallHavenGetter.Utils
+namespace WallHavenGetter.Services
 {
-    public class WallhavenHtmlParse
+    public class WhHtmlParseService
     {
-        private static object _lockerSaveAs = new object();
+        private object _lockerSaveAs = new object();
+        private AppOptions _appOptions;
+        private OptionsService _optionsService;
 
-        public static List<string> GetSmallImgUrl(Uri uri)
+        public WhHtmlParseService(OptionsService optionsService)
+        {
+            _optionsService = optionsService;
+            _appOptions = _optionsService.GetAppOptions();
+        }
+
+        public List<string> GetSmallImgUrl(Uri uri)
         {
             string html = HttpHelper.HttpGet(uri.ToString(), 2);
             return GetSmallImgUrl(html);
@@ -23,7 +33,7 @@ namespace WallHavenGetter.Utils
         /// 获取缩略图地址
         /// </summary>
         /// <returns></returns>
-        public static List<string> GetSmallImgUrl(string html)
+        public List<string> GetSmallImgUrl(string html)
         {
             List<string> smallImgUrls = new List<string>();
             if (string.IsNullOrEmpty(html))
@@ -52,17 +62,17 @@ namespace WallHavenGetter.Utils
         /// 获取图地址
         /// </summary>
         /// <returns></returns>
-        public static List<WallhavenImgInfo> ParseImgUrl(List<string> smallUrls)
+        public List<WallhavenImgInfo> ParseImgUrl(List<string> smallUrls)
         {
             List<WallhavenImgInfo> imgs = new List<WallhavenImgInfo>();
-            Regex regexSmallImg = new Regex(Constant.WallhavenSmallImgUrlRegex);
+            Regex regexSmallImg = new Regex(_appOptions.WallhavenSmallImgUrlRegex);
             foreach (var item in smallUrls)
             {
                 if (regexSmallImg.IsMatch(item))
                 {
                     var grroups = regexSmallImg.Match(item).Groups;
-                    string url = regexSmallImg.Replace(item, Constant.WallhavenImgBaseUrlFormat);
-                    string detialsUrl = regexSmallImg.Replace(item, Constant.WallhavenImgDetialsUrlFormat);
+                    string url = regexSmallImg.Replace(item, _appOptions.WallhavenImgBaseUrlFormat);
+                    string detialsUrl = regexSmallImg.Replace(item, _appOptions.WallhavenImgDetialsUrlFormat);
                     WallhavenImgInfo imgInfo = new WallhavenImgInfo()
                     {
                         ImageName = grroups[2].Value,
@@ -78,7 +88,7 @@ namespace WallHavenGetter.Utils
             return imgs;
         }
 
-        public static string GetFullImgUrl(string detialUrl)
+        public string GetFullImgUrl(string detialUrl)
         {
             string dHtml = HttpHelper.HttpGet(detialUrl, 2);
             if (!string.IsNullOrEmpty(dHtml))
@@ -96,7 +106,7 @@ namespace WallHavenGetter.Utils
             return string.Empty;
         }
 
-        public static string DownloadFullImage(WallhavenImgInfo imgInfo, string dir)
+        public string DownloadFullImage(WallhavenImgInfo imgInfo, string dir)
         {
             string path1 = Path.Combine(dir, imgInfo.ImageName + ".jpg");
             string path2 = Path.Combine(dir, imgInfo.ImageName + ".png");

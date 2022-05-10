@@ -5,6 +5,7 @@ using System.Diagnostics;
 using System.IO;
 using WallHavenGetter.Forms;
 using WallHavenGetter.Models;
+using WallHavenGetter.Services;
 using WallHavenGetter.Utils;
 using static Manina.Windows.Forms.ImageListView;
 
@@ -14,25 +15,28 @@ namespace WallHavenGetter
     {
         List<WallhavenImgInfo> _imgInfos = new List<WallhavenImgInfo>();
         SerachParam _serachParam = new SerachParam();
-        List<ImageListViewItem> _imageListViewItems = new List<ImageListViewItem>();
         private int _threadCnt = 4;
         private int _index = -1;
         private object _lockerSaveAs = new object();
         private object _locker = new object();
-        private readonly IConfiguration configuration;
         private readonly ILogger<FrmMain> logger;
         private readonly FrmImageShowParams frmImageShowParams;
+        private AppOptions _appOptions;
+        private readonly OptionsService _optionsService;
+        private readonly WhHtmlParseService _whHtmlParseService;
 
-        public FrmMain(IConfiguration configuration,
-            ILogger<FrmMain> logger,
-            FrmImageShowParams frmImageShowParams)
+        public FrmMain(ILogger<FrmMain> logger,
+                       FrmImageShowParams frmImageShowParams,
+                       OptionsService optionsService,
+                       WhHtmlParseService whHtmlParseService)
         {
             CheckForIllegalCrossThreadCalls = false;
             InitializeComponent();
-            this.configuration = configuration;
             this.logger = logger;
             this.frmImageShowParams = frmImageShowParams;
-            logger.LogInformation(Thread.CurrentThread.ManagedThreadId.ToString());
+            _optionsService = optionsService;
+            _appOptions = _optionsService.GetAppOptions();
+            _whHtmlParseService = whHtmlParseService;
         }
 
 
@@ -60,7 +64,7 @@ namespace WallHavenGetter
         private string SetUrlTb()
         {
             KeyVal keyVal = toolStripComboBoxType.SelectedItem as KeyVal;
-            _serachParam.BaseUrl = Constant.WallhavenBaseUrl;
+            _serachParam.BaseUrl = _appOptions.WallhavenBaseUrl;
             _serachParam.Type = keyVal.Value;
             int.TryParse(this.toolStripTextBoxPage.Text,out int page);
             if(page == 0)
@@ -94,8 +98,8 @@ namespace WallHavenGetter
                         continue;
                     }
                     Uri uri = new Uri(url);
-                    var smallUrls = WallhavenHtmlParse.GetSmallImgUrl(uri);
-                    var imgs = WallhavenHtmlParse.ParseImgUrl(smallUrls);
+                    var smallUrls = _whHtmlParseService.GetSmallImgUrl(uri);
+                    var imgs = _whHtmlParseService.ParseImgUrl(smallUrls);
                     imgList.AddRange(imgs);
                 }
             }
@@ -116,7 +120,7 @@ namespace WallHavenGetter
 
         private void Get()
         {
-            string dir = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "images", "samll", this.toolStripComboBoxType.Text);
+            string dir = Path.Combine(_appOptions.SmallImageDir, this.toolStripComboBoxType.Text);
             if (!Directory.Exists(dir))
             {
                 Directory.CreateDirectory(dir);
@@ -220,7 +224,7 @@ namespace WallHavenGetter
         {
             this.toolStripToolBar.Enabled = false;
             this.imageListView1.Enabled = false;
-            string dir = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "images", "full", this.toolStripComboBoxType.Text);
+            string dir = Path.Combine(_appOptions.FullImageDir, this.toolStripComboBoxType.Text);
             if (!Directory.Exists(dir))
             {
                 Directory.CreateDirectory(dir);
@@ -243,7 +247,7 @@ namespace WallHavenGetter
                     var wallhaven = _imgInfos.FirstOrDefault(x => item.Text.StartsWith(x.ImageName));
                     if (wallhaven != null)
                     {
-                        WallhavenHtmlParse.DownloadFullImage(wallhaven, dir);
+                        _whHtmlParseService.DownloadFullImage(wallhaven, dir);
                     }
                     Interlocked.Increment(ref bVal);
                     SetPBar(bVal);
@@ -335,7 +339,7 @@ namespace WallHavenGetter
 
         private void toolStripButton2_Click(object sender, EventArgs e)
         {
-            string dir = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "images", "full", this.toolStripComboBoxType.Text);
+            string dir = Path.Combine(_appOptions.FullImageDir);
             System.Diagnostics.ProcessStartInfo psi = new System.Diagnostics.ProcessStartInfo("Explorer.exe");
             psi.Arguments = "/e,/select," + dir;
             System.Diagnostics.Process.Start(psi);
@@ -355,11 +359,14 @@ namespace WallHavenGetter
             logger.LogInformation("³ÌÐòÍË³ö");
         }
 
-
         private void toolItemSet_Click(object sender, EventArgs e)
         {
             var frm = AppContext.GetService<FrmOptions>();
-            frm.ShowDialog();
+            if (frm.ShowDialog() == DialogResult.OK)
+            {
+                _appOptions = _optionsService.GetAppOptions();
+                SetUrlTb();
+            }
         }
 
         private void toolItemCache_Click(object sender, EventArgs e)

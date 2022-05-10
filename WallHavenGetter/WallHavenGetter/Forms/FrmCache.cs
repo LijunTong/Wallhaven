@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Extensions.Logging;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -7,14 +8,59 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using WallHavenGetter.Models;
+using WallHavenGetter.Services;
+using WallHavenGetter.Utils;
 
 namespace WallHavenGetter.Forms
 {
     public partial class FrmCache : Form
     {
-        public FrmCache()
+        private OptionsService _optionsService;
+        private AppOptions _appOptions;
+        private ILogger<FrmCache> _logger;
+        public FrmCache(OptionsService optionsService, ILogger<FrmCache> logger)
         {
+            _optionsService = optionsService;
+            _appOptions = optionsService.GetAppOptions();
             InitializeComponent();
+            _logger = logger;
+        }
+
+        private void FrmCache_Load(object sender, EventArgs e)
+        {
+            try
+            {
+                this.lblSmallImg.Text = GetDirSize(_appOptions.SmallImageDir);
+                this.lblFullimg.Text = GetDirSize(_appOptions.FullImageDir);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex.Message);
+                MessageBox.Show("加载失败", "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        public string GetDirSize(string dir)
+        {
+            long size = 0;
+            FileHelper.GetDirSizeByPath(dir,ref  size);
+            if (size >= 0 && size < 1024)
+            {
+                return $"{size}B";
+            }
+            else if (size >= 1024 && size < 1024 * 1024)
+            {
+                return $"{size / 1024}Kb";
+            }
+            else if (size >= 1024 * 1024 && size < 1024 * 1024 * 1024)
+            {
+                return $"{size / (1024 * 1024)}Mb";
+            }
+            else
+            {
+                return $"{size / (1024 * 1024 * 1024)}G";
+            }
         }
     }
 }

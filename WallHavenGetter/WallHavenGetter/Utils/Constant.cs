@@ -10,11 +10,6 @@ namespace WallHavenGetter.Utils
     public static class Constant
     {
         /// <summary>
-        /// Wallhaven搜索地址
-        /// </summary>
-        public const string WallhavenBaseUrl = "https://wallhaven.cc/";
-
-        /// <summary>
         /// 搜索类型latest、hot、toplist、random
         /// </summary>
         public static List<KeyVal> SerachType =>
@@ -41,9 +36,5 @@ namespace WallHavenGetter.Utils
                     Value = "random",
                 }
             };
-
-        public const string WallhavenImgBaseUrlFormat = "https://w.wallhaven.cc/full/$1/wallhaven-$2";
-        public const string WallhavenImgDetialsUrlFormat = "https://wallhaven.cc/w/$2";
-        public const string WallhavenSmallImgUrlRegex = "^https://th.wallhaven.cc/small/([0-9a-z]*)/([0-9a-z]{6}).([a-z]{3,4})$";
     }
 }
