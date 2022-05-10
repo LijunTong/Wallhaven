@@ -9,7 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using WallHavenGetter.Models;
-using WallHavenGetter.Utils;
+using WallHavenGetter.Services;
 
 namespace WallHavenGetter
 {
@@ -18,13 +18,17 @@ namespace WallHavenGetter
         private readonly List<WallhavenImgInfo> _wallhavenImgInfos;
         private readonly ILogger<FrmImageShow> _logger;
         private int _index = 0;
+        private WhHtmlParseService _whHtmlParseService;
 
-        public FrmImageShow(FrmImageShowParams frmImageShowParams,ILogger<FrmImageShow> logger)
+        public FrmImageShow(FrmImageShowParams frmImageShowParams,
+                            ILogger<FrmImageShow> logger,
+                            WhHtmlParseService whHtmlParseService)
         {
             InitializeComponent();
             this._wallhavenImgInfos = frmImageShowParams.WallhavenImgInfos;
-            _index = this._wallhavenImgInfos.IndexOf(this._wallhavenImgInfos.FirstOrDefault(x => x.ImageName+"."+x.Extension == frmImageShowParams.Name));
+            _index = this._wallhavenImgInfos.IndexOf(this._wallhavenImgInfos.FirstOrDefault(x => x.ImageName + "." + x.Extension == frmImageShowParams.Name));
             this._logger = logger;
+            _whHtmlParseService = whHtmlParseService;
         }
 
         private void FrmImageShow_Load(object sender, EventArgs e)
@@ -68,7 +72,7 @@ namespace WallHavenGetter
 
                     var image = _wallhavenImgInfos[index];
                     string dir = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "images", "full", image.ImageType);
-                    string path = WallhavenHtmlParse.DownloadFullImage(image, dir);
+                    string path = _whHtmlParseService.DownloadFullImage(image, dir);
                     if (string.IsNullOrEmpty(path))
                     {
                         return;
