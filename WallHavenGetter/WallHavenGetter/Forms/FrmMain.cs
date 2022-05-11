@@ -22,12 +22,12 @@ namespace WallHavenGetter
         private readonly FrmImageShowParams frmImageShowParams;
         private AppOptions _appOptions;
         private readonly OptionsService _optionsService;
-        private readonly WhHtmlParseService _whHtmlParseService;
-
+        private readonly WallhavenService _whHtmlParseService;
+        
         public FrmMain(ILogger<FrmMain> logger,
                        FrmImageShowParams frmImageShowParams,
                        OptionsService optionsService,
-                       WhHtmlParseService whHtmlParseService)
+                       WallhavenService whHtmlParseService)
         {
             CheckForIllegalCrossThreadCalls = false;
             InitializeComponent();
@@ -236,7 +236,7 @@ namespace WallHavenGetter
                 string path = Path.Combine(dir, item.ImageName + "." + item.Extension);
                 if (!File.Exists(path))
                 {
-                    Stream stream = HttpHelper.HttpDownload(item.SmallUrl);
+                    Stream stream = _whHtmlParseService.DownSmallImg(item.SmallUrl);
                     if (stream != null)
                     {
                         lock (_lockerSaveAs)
@@ -278,6 +278,7 @@ namespace WallHavenGetter
             InitPBar(listViewItems.Count);
             int mIndex = -1;
             int bVal = 0;
+            int downloadOkCnt = 0;
             TaskRun(_threadCnt, () =>
             {
                 while (mIndex < listViewItems.Count)
@@ -292,7 +293,11 @@ namespace WallHavenGetter
                     var wallhaven = _imgInfos.FirstOrDefault(x => item.Text.StartsWith(x.ImageName));
                     if (wallhaven != null)
                     {
-                        _whHtmlParseService.DownloadFullImage(wallhaven, dir);
+                        string path = _whHtmlParseService.DownloadFullImage(wallhaven, dir);
+                        if (!string.IsNullOrEmpty(path))
+                        {
+                            Interlocked.Increment(ref downloadOkCnt);
+                        }
                     }
                     Interlocked.Increment(ref bVal);
                     SetPBar(bVal);
@@ -304,7 +309,7 @@ namespace WallHavenGetter
                 this.toolStripToolBar.Enabled = true;
                 this.imageListView1.Enabled = true;
                 DisPBar();
-                SetStatus("下载完成", Color.Green);
+                SetStatus($"下载成功：{downloadOkCnt}/{listViewItems.Count}", Color.Green);
             });
 
 
@@ -430,8 +435,8 @@ namespace WallHavenGetter
 
         private void toolItemAbout_Click(object sender, EventArgs e)
         {
-            var frm = AppContext.GetService<FrmAbout>();
-            frm.ShowDialog();
+            //var frm = AppContext.GetService<FrmAbout>();
+            //frm.ShowDialog();
         }
 
         private void toolStripComboBoxType_Click(object sender, EventArgs e)

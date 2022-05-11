@@ -67,6 +67,7 @@ namespace WallHavenGetter.Forms
         {
             try
             {
+                this.Cursor = Cursors.WaitCursor;
                 FileHelper.DelectDirectorys(_appOptions.SmallImageDir);
                 this.lblSmallImg.Text = GetDirSize(_appOptions.SmallImageDir);
             }
@@ -75,12 +76,17 @@ namespace WallHavenGetter.Forms
                 _logger.LogError(ex.Message);
                 MessageBox.Show("清除失败", "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+            finally
+            {
+                this.Cursor = Cursors.Default;
+            }
         }
 
         private void btnCleanFullImg_Click(object sender, EventArgs e)
         {
             try
             {
+                this.Cursor = Cursors.WaitCursor;
                 FileHelper.DelectDirectorys(_appOptions.FullImageDir);
                 this.lblFullimg.Text = GetDirSize(_appOptions.FullImageDir);
             }
@@ -88,6 +94,10 @@ namespace WallHavenGetter.Forms
             {
                 _logger.LogError(ex.Message);
                 MessageBox.Show("清除失败", "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally
+            {
+                this.Cursor = Cursors.Default;
             }
         }
     }
