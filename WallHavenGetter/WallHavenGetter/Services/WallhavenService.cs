@@ -11,21 +11,23 @@ using WallHavenGetter.Utils;
 
 namespace WallHavenGetter.Services
 {
-    public class WhHtmlParseService
+    public class WallhavenService
     {
         private object _lockerSaveAs = new object();
         private AppOptions _appOptions;
         private OptionsService _optionsService;
+        private HttpHelper _httpHelper;
 
-        public WhHtmlParseService(OptionsService optionsService)
+        public WallhavenService(OptionsService optionsService, HttpHelper httpHelper)
         {
             _optionsService = optionsService;
             _appOptions = _optionsService.GetAppOptions();
+            _httpHelper = httpHelper;
         }
 
         public List<string> GetSmallImgUrl(Uri uri)
         {
-            string html = HttpHelper.HttpGet(uri.ToString(), 2);
+            string html = _httpHelper.HttpGet(uri.ToString(), 2);
             return GetSmallImgUrl(html);
         }
 
@@ -90,7 +92,7 @@ namespace WallHavenGetter.Services
 
         public string GetFullImgUrl(string detialUrl)
         {
-            string dHtml = HttpHelper.HttpGet(detialUrl, 2);
+            string dHtml = _httpHelper.HttpGet(detialUrl, 2);
             if (!string.IsNullOrEmpty(dHtml))
             {
                 HtmlAgilityPack.HtmlDocument document = new HtmlAgilityPack.HtmlDocument();
@@ -118,7 +120,7 @@ namespace WallHavenGetter.Services
             {
                 return path2;
             }
-            var stream = HttpHelper.HttpDownload(imgInfo.JpgFullUrl);
+            var stream = _httpHelper.HttpDownload(imgInfo.JpgFullUrl);
             if (stream != null)
             {
                 lock (_lockerSaveAs)
@@ -129,7 +131,7 @@ namespace WallHavenGetter.Services
             }
             else
             {
-                stream = HttpHelper.HttpDownload(imgInfo.PngFullUrl);
+                stream = _httpHelper.HttpDownload(imgInfo.PngFullUrl);
                 if (stream != null)
                 {
                     lock (_lockerSaveAs)
@@ -140,6 +142,11 @@ namespace WallHavenGetter.Services
                 }
                 return "";
             }
+        }
+
+        public Stream DownSmallImg(string url)
+        {
+            return _httpHelper.HttpDownload(url);
         }
     }
 }

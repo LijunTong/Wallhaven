@@ -67,12 +67,13 @@ namespace WallHavenGetter
             services.AddTransient<FrmImageShow>();
             services.AddTransient<FrmOptions>();
             services.AddTransient<FrmCache>();
-            services.AddTransient<FrmAbout>();
+            //services.AddTransient<FrmAbout>();
 
             //×¢²áÒµÎñÀà
             services.AddSingleton<FrmImageShowParams>();
             services.AddTransient<OptionsService>();
-            services.AddTransient<WhHtmlParseService>();
+            services.AddTransient<WallhavenService>();
+            services.AddTransient<HttpHelper>();
         }
 
     }

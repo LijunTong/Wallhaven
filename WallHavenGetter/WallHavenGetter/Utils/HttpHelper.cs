@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Extensions.Logging;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
@@ -11,12 +12,17 @@ namespace WallHavenGetter.Utils
     public class HttpHelper
     {
         private const string EdgeUserAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/101.0.4951.54 Safari/537.36 Edg/101.0.1210.39";
-       
-        public static string HttpGet(string url,int cnt)
+        private ILogger<HttpHelper> _logger;
+
+        public HttpHelper(ILogger<HttpHelper> logger)
+        {
+            _logger = logger;
+        }
+
+        public string HttpGet(string url,int cnt)
         {
             if (cnt == 0)
             {
-                //Console.WriteLine(url + ":" + "reaponse is fail");
                 return "";
             }
             try
@@ -34,22 +40,23 @@ namespace WallHavenGetter.Utils
                     }
                     else
                     {
+                        _logger.LogError(url + ":" + reaponse.StatusCode);
                         return HttpGet(url, --cnt);
                     }
                 }
                 else
                 {
-                    //Console.WriteLine(url + ":" + "reaponse is null");
+                    _logger.LogError(url + ":reaponse is null");
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                //Console.WriteLine(url + ":" + ex.ToString());
+                _logger.LogError(url + ":" + ex.Message);
             }
             return String.Empty;
         }
 
-        public static Stream HttpDownload(string url)
+        public Stream HttpDownload(string url)
         {
             try
             {
@@ -66,17 +73,17 @@ namespace WallHavenGetter.Utils
                     }
                     else
                     {
-                        //Console.WriteLine(url + ":" + "reaponse is fail");
+                        _logger.LogError(url + ":" + reaponse.StatusCode);
                     }
                 }
                 else
                 {
-                    //Console.WriteLine(url + ":" + "reaponse is null");
+                    _logger.LogError(url + ":reaponse is null");
                 }
             }
-            catch (Exception )
+            catch (Exception ex)
             {
-                //Console.WriteLine(url + ":" + ex.ToString());
+                _logger.LogError(url + ":" + ex.Message);
             }
             return null;
         }

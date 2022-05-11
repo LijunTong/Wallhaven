@@ -18,12 +18,12 @@ namespace WallHavenGetter
         private readonly List<WallhavenImgInfo> _wallhavenImgInfos;
         private readonly ILogger<FrmImageShow> _logger;
         private int _index = 0;
-        private WhHtmlParseService _whHtmlParseService;
+        private WallhavenService _whHtmlParseService;
         private readonly OptionsService optionsService;
         private AppOptions _appOptions;
         public FrmImageShow(FrmImageShowParams frmImageShowParams,
                             ILogger<FrmImageShow> logger,
-                            WhHtmlParseService whHtmlParseService, OptionsService optionsService)
+                            WallhavenService whHtmlParseService, OptionsService optionsService)
         {
             InitializeComponent();
             this._wallhavenImgInfos = frmImageShowParams.WallhavenImgInfos;
@@ -82,6 +82,9 @@ namespace WallHavenGetter
                     string path = _whHtmlParseService.DownloadFullImage(image, dir);
                     if (string.IsNullOrEmpty(path))
                     {
+                        this.tbUrl.Text = "";
+                        this.pictureBox1.Image = null;
+                        this.Text = "获取失败";
                         return;
                     }
                     if (path.EndsWith("jpg"))
