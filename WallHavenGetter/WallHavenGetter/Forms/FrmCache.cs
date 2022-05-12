@@ -31,8 +31,22 @@ namespace WallHavenGetter.Forms
         {
             try
             {
-                this.lblSmallImg.Text = GetDirSize(_appOptions.SmallImageDir);
-                this.lblFullimg.Text = GetDirSize(_appOptions.FullImageDir);
+                if (Directory.Exists(_appOptions.SmallImageDir))
+                {
+                    this.lblSmallImg.Text = GetDirSize(_appOptions.SmallImageDir);
+                }
+                else
+                {
+                    this.lblSmallImg.Text = "0Mb";
+                }
+                if (Directory.Exists(_appOptions.FullImageDir))
+                {
+                    this.lblFullimg.Text = GetDirSize(_appOptions.FullImageDir);
+                }
+                else
+                {
+                    this.lblFullimg.Text = "0Mb";
+                }
             }
             catch (Exception ex)
             {
