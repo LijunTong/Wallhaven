@@ -435,14 +435,10 @@ namespace WallHavenGetter
 
         private void toolItemAbout_Click(object sender, EventArgs e)
         {
-            //var frm = AppContext.GetService<FrmAbout>();
-            //frm.ShowDialog();
+            var frm = AppContext.GetService<FrmAbout>();
+            frm.ShowDialog();
         }
 
-        private void toolStripComboBoxType_Click(object sender, EventArgs e)
-        {
-
-        }
 
         private void toolStripTextBoxInput_TextChanged(object sender, EventArgs e)
         {
