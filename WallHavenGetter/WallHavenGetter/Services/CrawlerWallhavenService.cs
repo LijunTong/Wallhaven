@@ -129,6 +129,8 @@ namespace WallHavenGetter.Services
                 lock (_lockerSaveAs)
                 {
                     stream.SaveAs(path1);
+                    stream.Close();
+                    stream.Dispose();
                 }
                 return path1;
             }
@@ -140,6 +142,8 @@ namespace WallHavenGetter.Services
                     lock (_lockerSaveAs)
                     {
                         stream.SaveAs(path2);
+                        stream.Close();
+                        stream.Dispose();
                     }
                     return path2;
                 }
@@ -160,6 +164,8 @@ namespace WallHavenGetter.Services
                 lock (_lockerSaveAs)
                 {
                     stream.SaveAs(path);
+                    stream.Close();
+                    stream.Dispose();
                 }
                 return path;
             }

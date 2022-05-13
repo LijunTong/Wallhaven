@@ -39,6 +39,8 @@ namespace WallHavenGetter.Services
                 lock (_lockerSaveAs)
                 {
                     stream.SaveAs(path);
+                    stream.Close();
+                    stream.Dispose();
                 }
                 return path;
             }
@@ -58,6 +60,8 @@ namespace WallHavenGetter.Services
                 lock (_lockerSaveAs)
                 {
                     stream.SaveAs(path);
+                    stream.Close();
+                    stream.Dispose();
                 }
                 return path;
             }
@@ -80,15 +84,16 @@ namespace WallHavenGetter.Services
                     for (int i = 0; i < result.Data.Length; i++)
                     {
                         var img = result.Data[i];
-                        if (!string.IsNullOrEmpty(img.Path))
+                        if (!string.IsNullOrEmpty(img.Path)|| !img.Path.Contains("."))
                         {
+                            string [] pathSplits = img.Path.Split('.');
                             wallhavenImgs.Add(new WallhavenImgInfo
                             {
                                 ImageName = img.Id,
                                 SmallUrl = img.Thumbs.Original,
                                 DetialsUrl = img.Url,
                                 JpgFullUrl = img.Path,
-                                Extension = img.Path.Split('.')[1],
+                                Extension = pathSplits[pathSplits.Length-1],
                             });
                         }
                     }

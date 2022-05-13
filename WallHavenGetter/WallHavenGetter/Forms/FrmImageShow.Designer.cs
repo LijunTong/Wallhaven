@@ -96,6 +96,7 @@
             this.Name = "FrmImageShow";
             this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FrmImageShow_FormClosed);
             this.Load += new System.EventHandler(this.FrmImageShow_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);

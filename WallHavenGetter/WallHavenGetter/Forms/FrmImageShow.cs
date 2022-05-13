@@ -18,20 +18,20 @@ namespace WallHavenGetter
         private readonly List<WallhavenImgInfo> _wallhavenImgInfos;
         private readonly ILogger<FrmImageShow> _logger;
         private int _index = 0;
-        private CrawlerWallhavenService _whHtmlParseService;
+        private IWallhavenService wallhavenService;
         private readonly OptionsService optionsService;
         private AppOptions _appOptions;
         public FrmImageShow(FrmImageShowParams frmImageShowParams,
-                            ILogger<FrmImageShow> logger,
-                            CrawlerWallhavenService whHtmlParseService, OptionsService optionsService)
+                            ILogger<FrmImageShow> logger, OptionsService optionsService)
         {
             InitializeComponent();
             this._wallhavenImgInfos = frmImageShowParams.WallhavenImgInfos;
             _index = this._wallhavenImgInfos.IndexOf(this._wallhavenImgInfos.FirstOrDefault(x => x.ImageName + "." + x.Extension == frmImageShowParams.Name));
             this._logger = logger;
-            _whHtmlParseService = whHtmlParseService;
             _appOptions = optionsService.GetAppOptions();
             this.optionsService = optionsService;
+            WallServiceFactory wallServiceFactory = AppContext.GetService<WallServiceFactory>();
+            wallhavenService = wallServiceFactory.Get();
         }
 
         private void FrmImageShow_Load(object sender, EventArgs e)
@@ -79,7 +79,7 @@ namespace WallHavenGetter
                     {
                         Directory.CreateDirectory(dir);
                     }
-                    string path = _whHtmlParseService.DownloadFullImage(image, dir);
+                    string path = wallhavenService.DownloadFullImage(image, dir);
                     if (string.IsNullOrEmpty(path))
                     {
                         this.tbUrl.Text = "";
@@ -96,7 +96,12 @@ namespace WallHavenGetter
                         this.tbUrl.Text = image.PngFullUrl;
                     }
                     this.Text = image.ImageName;
+                    if (this.pictureBox1.Image != null)
+                    {
+                        this.pictureBox1.Image.Dispose();
+                    }
                     this.pictureBox1.Image = new Bitmap(path);
+
                 }
                 catch (Exception ex)
                 {
@@ -108,6 +113,14 @@ namespace WallHavenGetter
                     this.Cursor = Cursors.Default;
                 }
             });
+        }
+
+        private void FrmImageShow_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            if (this.pictureBox1.Image != null)
+            {
+                this.pictureBox1.Image.Dispose();
+            }
         }
     }
 }

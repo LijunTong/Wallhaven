@@ -14,7 +14,6 @@ namespace WallHavenGetter
     public partial class FrmMain : Form
     {
         List<WallhavenImgInfo> _imgInfos = new List<WallhavenImgInfo>();
-        private int _threadCnt = 4;
         private int _index = -1;
         private object _locker = new object();
         private readonly ILogger<FrmMain> logger;
@@ -182,7 +181,7 @@ namespace WallHavenGetter
                     toolStripToolBar.Enabled = false;
                     InitPBar(_imgInfos.Count);
                     int barVal = 0;
-                    TaskRun(_threadCnt,
+                    TaskRun(_appOptions.ThreadCount,
                         () =>
                         {
                             GetSmallImage(_imgInfos.Count,ref barVal, dir);
@@ -275,7 +274,7 @@ namespace WallHavenGetter
             int mIndex = -1;
             int bVal = 0;
             int downloadOkCnt = 0;
-            TaskRun(_threadCnt, () =>
+            TaskRun(_appOptions.ThreadCount, () =>
             {
                 while (mIndex < listViewItems.Count)
                 {
@@ -285,15 +284,16 @@ namespace WallHavenGetter
                         continue;
                     }
                     var item = listViewItems[index];
-
                     var wallhaven = _imgInfos.FirstOrDefault(x => item.Text.StartsWith(x.ImageName));
                     if (wallhaven != null)
                     {
+                        logger.LogInformation($"{wallhaven.JpgFullUrl}:start");
                         string path = wallhavenService.DownloadFullImage(wallhaven, dir);
                         if (!string.IsNullOrEmpty(path))
                         {
                             Interlocked.Increment(ref downloadOkCnt);
                         }
+                        logger.LogInformation($"{wallhaven.JpgFullUrl}:end");
                     }
                     Interlocked.Increment(ref bVal);
                     SetPBar(bVal);
