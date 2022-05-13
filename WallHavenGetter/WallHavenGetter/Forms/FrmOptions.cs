@@ -32,48 +32,11 @@ namespace WallHavenGetter.Forms
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            AppOptions appOptions = this.bindingSource1.DataSource as AppOptions;
-            if (string.IsNullOrEmpty(appOptions.WallhavenBaseUrl))
+            if (Apply())
             {
-                MessageBox.Show("Wallhaven地址不能为空", "提示", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
+                MessageBox.Show("保存成功", "提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                this.DialogResult = DialogResult.OK;
             }
-            if (string.IsNullOrEmpty(appOptions.WallhavenSmallImgUrlRegex))
-            {
-                MessageBox.Show("缩略图地址正则不能为空", "提示", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
-            if (string.IsNullOrEmpty(appOptions.WallhavenImgDetialsUrlFormat))
-            {
-                MessageBox.Show("详情地址格式不能为空", "提示", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
-            if (string.IsNullOrEmpty(appOptions.WallhavenImgBaseUrlFormat))
-            {
-                MessageBox.Show("高清图地址格式不能为空", "提示", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
-            if (string.IsNullOrEmpty(appOptions.SmallImageDir))
-            {
-                MessageBox.Show("缩略图目录不能为空", "提示", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
-            if (!Directory.Exists(appOptions.SmallImageDir))
-            {
-                Directory.CreateDirectory(appOptions.SmallImageDir);
-            }
-            if (string.IsNullOrEmpty(appOptions.FullImageDir))
-            {
-                MessageBox.Show("下载目录不能为空", "提示", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
-            if (!Directory.Exists(appOptions.FullImageDir))
-            {
-                Directory.CreateDirectory(appOptions.FullImageDir);
-            }
-            optionsService.SetAppOptions(appOptions);
-            MessageBox.Show("保存成功", "提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            this.DialogResult = DialogResult.OK;
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
@@ -102,6 +65,68 @@ namespace WallHavenGetter.Forms
             {
                 this.tbFullImgPath.Text = folderBrowserDialog.SelectedPath;
                 this.bindingSource1.EndEdit();
+            }
+        }
+
+        private void btnApply_Click(object sender, EventArgs e)
+        {
+            Apply();
+        }
+
+        private bool Apply()
+        {
+            AppOptions appOptions = this.bindingSource1.DataSource as AppOptions;
+            if (string.IsNullOrEmpty(appOptions.WallhavenBaseUrl))
+            {
+                MessageBox.Show("Wallhaven地址不能为空", "提示", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
+            if (string.IsNullOrEmpty(appOptions.WallhavenSmallImgUrlRegex))
+            {
+                MessageBox.Show("缩略图地址正则不能为空", "提示", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
+            if (string.IsNullOrEmpty(appOptions.WallhavenImgDetialsUrlFormat))
+            {
+                MessageBox.Show("详情地址格式不能为空", "提示", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
+            if (string.IsNullOrEmpty(appOptions.WallhavenImgBaseUrlFormat))
+            {
+                MessageBox.Show("高清图地址格式不能为空", "提示", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
+            if (string.IsNullOrEmpty(appOptions.SmallImageDir))
+            {
+                MessageBox.Show("缩略图目录不能为空", "提示", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
+            if (!Directory.Exists(appOptions.SmallImageDir))
+            {
+                Directory.CreateDirectory(appOptions.SmallImageDir);
+            }
+            if (string.IsNullOrEmpty(appOptions.FullImageDir))
+            {
+                MessageBox.Show("下载目录不能为空", "提示", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
+            if (!Directory.Exists(appOptions.FullImageDir))
+            {
+                Directory.CreateDirectory(appOptions.FullImageDir);
+            }
+            optionsService.SetAppOptions(appOptions);
+            return true;
+        }
+
+        private void cmbMode_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (this.cmbMode.SelectedItem.ToString() == "爬虫")
+            {
+                this.tabControl1.SelectedIndex = 1;
+            }
+            else
+            {
+                this.tabControl1.SelectedIndex = 2;
             }
         }
     }

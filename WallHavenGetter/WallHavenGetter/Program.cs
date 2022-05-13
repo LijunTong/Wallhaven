@@ -72,8 +72,11 @@ namespace WallHavenGetter
             //×¢²áÒµÎñÀà
             services.AddSingleton<FrmImageShowParams>();
             services.AddTransient<OptionsService>();
-            services.AddTransient<WallhavenService>();
             services.AddTransient<HttpHelper>();
+            services.AddTransient<JsonHelper>();
+            services.AddTransient<ApiWallhavenService>();
+            services.AddTransient<CrawlerWallhavenService>();
+            services.AddTransient<WallServiceFactory>();
         }
 
     }

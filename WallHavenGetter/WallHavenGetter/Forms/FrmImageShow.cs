@@ -18,12 +18,12 @@ namespace WallHavenGetter
         private readonly List<WallhavenImgInfo> _wallhavenImgInfos;
         private readonly ILogger<FrmImageShow> _logger;
         private int _index = 0;
-        private WallhavenService _whHtmlParseService;
+        private CrawlerWallhavenService _whHtmlParseService;
         private readonly OptionsService optionsService;
         private AppOptions _appOptions;
         public FrmImageShow(FrmImageShowParams frmImageShowParams,
                             ILogger<FrmImageShow> logger,
-                            WallhavenService whHtmlParseService, OptionsService optionsService)
+                            CrawlerWallhavenService whHtmlParseService, OptionsService optionsService)
         {
             InitializeComponent();
             this._wallhavenImgInfos = frmImageShowParams.WallhavenImgInfos;

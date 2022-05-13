@@ -11,21 +11,21 @@ using WallHavenGetter.Utils;
 
 namespace WallHavenGetter.Services
 {
-    public class WallhavenService
+    public class CrawlerWallhavenService: IWallhavenService
     {
         private object _lockerSaveAs = new object();
         private AppOptions _appOptions;
         private OptionsService _optionsService;
         private HttpHelper _httpHelper;
 
-        public WallhavenService(OptionsService optionsService, HttpHelper httpHelper)
+        public CrawlerWallhavenService(OptionsService optionsService, HttpHelper httpHelper)
         {
             _optionsService = optionsService;
             _appOptions = _optionsService.GetAppOptions();
             _httpHelper = httpHelper;
         }
 
-        public List<string> GetSmallImgUrl(Uri uri)
+        public List<WallhavenImgInfo> GetSmallImgUrl(Uri uri)
         {
             string html = _httpHelper.HttpGet(uri.ToString(), 2);
             return GetSmallImgUrl(html);
@@ -35,9 +35,9 @@ namespace WallHavenGetter.Services
         /// 获取缩略图地址
         /// </summary>
         /// <returns></returns>
-        public List<string> GetSmallImgUrl(string html)
+        public List<WallhavenImgInfo> GetSmallImgUrl(string html)
         {
-            List<string> smallImgUrls = new List<string>();
+            List<WallhavenImgInfo> smallImgUrls = new List<WallhavenImgInfo>();
             if (string.IsNullOrEmpty(html))
             {
                 return smallImgUrls;
@@ -53,7 +53,10 @@ namespace WallHavenGetter.Services
                     string smallUrl = item.GetAttributeValue("data-src", "");
                     if (smallUrl != null)
                     {
-                        smallImgUrls.Add(smallUrl);
+                        smallImgUrls.Add(new WallhavenImgInfo
+                        {
+                            SmallUrl = smallUrl,
+                        });
                     }
                 }
             }
@@ -64,22 +67,22 @@ namespace WallHavenGetter.Services
         /// 获取图地址
         /// </summary>
         /// <returns></returns>
-        public List<WallhavenImgInfo> ParseImgUrl(List<string> smallUrls)
+        public List<WallhavenImgInfo> ParseImgUrl(List<WallhavenImgInfo> smallUrls)
         {
             List<WallhavenImgInfo> imgs = new List<WallhavenImgInfo>();
             Regex regexSmallImg = new Regex(_appOptions.WallhavenSmallImgUrlRegex);
             foreach (var item in smallUrls)
             {
-                if (regexSmallImg.IsMatch(item))
+                if (regexSmallImg.IsMatch(item.SmallUrl))
                 {
-                    var grroups = regexSmallImg.Match(item).Groups;
-                    string url = regexSmallImg.Replace(item, _appOptions.WallhavenImgBaseUrlFormat);
-                    string detialsUrl = regexSmallImg.Replace(item, _appOptions.WallhavenImgDetialsUrlFormat);
+                    var grroups = regexSmallImg.Match(item.SmallUrl).Groups;
+                    string url = regexSmallImg.Replace(item.SmallUrl, _appOptions.WallhavenImgBaseUrlFormat);
+                    string detialsUrl = regexSmallImg.Replace(item.SmallUrl, _appOptions.WallhavenImgDetialsUrlFormat);
                     WallhavenImgInfo imgInfo = new WallhavenImgInfo()
                     {
                         ImageName = grroups[2].Value,
                         Extension = grroups[3].Value,
-                        SmallUrl = item,
+                        SmallUrl = item.SmallUrl,
                         DetialsUrl = detialsUrl,
                         JpgFullUrl = url + ".jpg",
                         PngFullUrl = url + ".png"
@@ -144,9 +147,23 @@ namespace WallHavenGetter.Services
             }
         }
 
-        public Stream DownSmallImg(string url)
+        public string DownloadSmallImg(WallhavenImgInfo imgInfo, string dir)
         {
-            return _httpHelper.HttpDownload(url);
+            string path = Path.Combine(dir, imgInfo.ImageName + "." + imgInfo.Extension);
+            if (File.Exists(path))
+            {
+                return path;
+            }
+            Stream stream = _httpHelper.HttpDownload(imgInfo.SmallUrl);
+            if (stream != null)
+            {
+                lock (_lockerSaveAs)
+                {
+                    stream.SaveAs(path);
+                }
+                return path;
+            }
+            return "";
         }
     }
 }

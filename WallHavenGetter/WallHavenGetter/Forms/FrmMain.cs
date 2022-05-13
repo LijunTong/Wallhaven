@@ -16,18 +16,16 @@ namespace WallHavenGetter
         List<WallhavenImgInfo> _imgInfos = new List<WallhavenImgInfo>();
         private int _threadCnt = 4;
         private int _index = -1;
-        private object _lockerSaveAs = new object();
         private object _locker = new object();
         private readonly ILogger<FrmMain> logger;
         private readonly FrmImageShowParams frmImageShowParams;
         private AppOptions _appOptions;
         private readonly OptionsService _optionsService;
-        private readonly WallhavenService _whHtmlParseService;
-        
+        private IWallhavenService wallhavenService;
+
         public FrmMain(ILogger<FrmMain> logger,
                        FrmImageShowParams frmImageShowParams,
-                       OptionsService optionsService,
-                       WallhavenService whHtmlParseService)
+                       OptionsService optionsService)
         {
             CheckForIllegalCrossThreadCalls = false;
             InitializeComponent();
@@ -35,7 +33,6 @@ namespace WallHavenGetter
             this.frmImageShowParams = frmImageShowParams;
             _optionsService = optionsService;
             _appOptions = _optionsService.GetAppOptions();
-            _whHtmlParseService = whHtmlParseService;
         }
 
 
@@ -53,7 +50,7 @@ namespace WallHavenGetter
             {
                 this.tsLblKey.Visible = true;
                 this.toolStripTextBoxInput.Visible = true;
-                this.toolStripDropDownOption.Visible = true;
+                this.toolStripDropDownCategories.Visible = true;
                 this.toolStripLabelSort.Visible = true;
                 this.toolStripComboBoxSort.Visible = true;
                 this.toolStripTextBoxInput.Text = String.Empty;
@@ -62,7 +59,7 @@ namespace WallHavenGetter
             {
                 this.tsLblKey.Visible = false;
                 this.toolStripTextBoxInput.Visible = false;
-                this.toolStripDropDownOption.Visible = false;
+                this.toolStripDropDownCategories.Visible = false;
                 this.toolStripLabelSort.Visible = false;
                 this.toolStripComboBoxSort.Visible = false;
                 this.toolStripTextBoxInput.Text = String.Empty;
@@ -80,6 +77,11 @@ namespace WallHavenGetter
             this.toolStripComboBoxType.Items.AddRange(Constant.SerachType.ToArray());
             this.toolStripComboBoxType.SelectedIndex = 4;
 
+            if (_appOptions.Mode != "≈¿≥Ê")
+            {
+                this.toolStripComboBoxType.SelectedIndex = 4;
+                this.toolStripComboBoxType.Enabled = false;
+            }
 
             this.tsPBarLoadStatus.Visible = false;
         }
@@ -87,7 +89,7 @@ namespace WallHavenGetter
         private SerachParam GetSerachParam()
         {
             SerachParam serachParam = new SerachParam();
-            serachParam.BaseUrl = _appOptions.WallhavenBaseUrl;
+            serachParam.BaseUrl = _appOptions.Url;
             KeyVal keyValType = toolStripComboBoxType.SelectedItem as KeyVal;
 
             if (keyValType != null)
@@ -110,6 +112,10 @@ namespace WallHavenGetter
             string anime = this.toolItemAnime.Checked ? "1" : "0";
             string people = this.toolitemPeople.Checked ? "1" : "0";
             serachParam.Categories = $"{general}{anime}{people}";
+            string SFW = this.sFWToolStripMenuItem.Checked ? "1" : "0";
+            string Sketchy = this.sketToolStripMenuItem.Checked ? "1" : "0";
+            string NSFW = this.nSFWToolStripMenuItem.Checked ? "1" : "0";
+            serachParam.Purity = $"{SFW}{Sketchy}{NSFW}";
             KeyVal keyValSort = toolStripComboBoxSort.SelectedItem as KeyVal;
             if (keyValSort != null)
             {
@@ -138,8 +144,8 @@ namespace WallHavenGetter
                         continue;
                     }
                     Uri uri = new Uri(url);
-                    var smallUrls = _whHtmlParseService.GetSmallImgUrl(uri);
-                    var imgs = _whHtmlParseService.ParseImgUrl(smallUrls);
+                    var smallUrls = wallhavenService.GetSmallImgUrl(uri);
+                    var imgs = wallhavenService.ParseImgUrl(smallUrls);
                     imgList.AddRange(imgs);
                 }
             }
@@ -233,18 +239,8 @@ namespace WallHavenGetter
                 }
                 var item = _imgInfos[index];
                 item.ImageType = this.toolStripComboBoxType.Text;
-                string path = Path.Combine(dir, item.ImageName + "." + item.Extension);
-                if (!File.Exists(path))
-                {
-                    Stream stream = _whHtmlParseService.DownSmallImg(item.SmallUrl);
-                    if (stream != null)
-                    {
-                        lock (_lockerSaveAs)
-                        {
-                            stream.SaveAs(path);
-                        }
-                    }
-                }
+
+                string path = wallhavenService.DownloadSmallImg(item, dir);
                 ImageListViewItem image = new ImageListViewItem(path);
                 lock (_locker)
                 {
@@ -293,7 +289,7 @@ namespace WallHavenGetter
                     var wallhaven = _imgInfos.FirstOrDefault(x => item.Text.StartsWith(x.ImageName));
                     if (wallhaven != null)
                     {
-                        string path = _whHtmlParseService.DownloadFullImage(wallhaven, dir);
+                        string path = wallhavenService.DownloadFullImage(wallhaven, dir);
                         if (!string.IsNullOrEmpty(path))
                         {
                             Interlocked.Increment(ref downloadOkCnt);
@@ -337,6 +333,8 @@ namespace WallHavenGetter
         private void toolStripButtonGet_Click(object sender, EventArgs e)
         {
             SerachParam serachParam = GetSerachParam();
+            WallServiceFactory wallServiceFactory = AppContext.GetService<WallServiceFactory>();
+            wallhavenService = wallServiceFactory.Get();
             Get(serachParam);
             //if (serachParam != null)
             //{
@@ -421,10 +419,18 @@ namespace WallHavenGetter
         private void toolItemSet_Click(object sender, EventArgs e)
         {
             var frm = AppContext.GetService<FrmOptions>();
-            if (frm.ShowDialog() == DialogResult.OK)
+            frm.ShowDialog();
+            _appOptions = _optionsService.GetAppOptions();
+            if (_appOptions.Mode != "≈¿≥Ê")
             {
-                _appOptions = _optionsService.GetAppOptions();
+                this.toolStripComboBoxType.SelectedIndex = 4;
+                this.toolStripComboBoxType.Enabled = false;
             }
+            else
+            {
+                this.toolStripComboBoxType.Enabled = true;
+            }
+            SetUrl();
         }
 
         private void toolItemCache_Click(object sender, EventArgs e)
@@ -457,6 +463,11 @@ namespace WallHavenGetter
         }
 
         private void toolItemGeneral_CheckedChanged(object sender, EventArgs e)
+        {
+            SetUrl();
+        }
+
+        private void sFWToolStripMenuItem_CheckedChanged(object sender, EventArgs e)
         {
             SetUrl();
         }

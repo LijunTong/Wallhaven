@@ -19,7 +19,7 @@ namespace WallHavenGetter.Utils
             _logger = logger;
         }
 
-        public string HttpGet(string url,int cnt)
+        public string HttpGet(string url,int cnt = 1)
         {
             if (cnt == 0)
             {

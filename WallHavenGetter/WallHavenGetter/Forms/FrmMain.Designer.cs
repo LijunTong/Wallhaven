@@ -45,10 +45,14 @@
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.tsLblKey = new System.Windows.Forms.ToolStripLabel();
             this.toolStripTextBoxInput = new System.Windows.Forms.ToolStripTextBox();
-            this.toolStripDropDownOption = new System.Windows.Forms.ToolStripDropDownButton();
+            this.toolStripDropDownCategories = new System.Windows.Forms.ToolStripDropDownButton();
             this.toolItemGeneral = new System.Windows.Forms.ToolStripMenuItem();
             this.toolItemAnime = new System.Windows.Forms.ToolStripMenuItem();
             this.toolitemPeople = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripDropDownButton1 = new System.Windows.Forms.ToolStripDropDownButton();
+            this.sFWToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.sketToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.nSFWToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripLabelSort = new System.Windows.Forms.ToolStripLabel();
             this.toolStripComboBoxSort = new System.Windows.Forms.ToolStripComboBox();
             this.toolStripLabel4 = new System.Windows.Forms.ToolStripLabel();
@@ -163,7 +167,8 @@
             this.toolStripSeparator2,
             this.tsLblKey,
             this.toolStripTextBoxInput,
-            this.toolStripDropDownOption,
+            this.toolStripDropDownCategories,
+            this.toolStripDropDownButton1,
             this.toolStripLabelSort,
             this.toolStripComboBoxSort,
             this.toolStripLabel4,
@@ -212,22 +217,24 @@
             this.toolStripTextBoxInput.Size = new System.Drawing.Size(168, 28);
             this.toolStripTextBoxInput.TextChanged += new System.EventHandler(this.toolStripTextBoxInput_TextChanged);
             // 
-            // toolStripDropDownOption
+            // toolStripDropDownCategories
             // 
-            this.toolStripDropDownOption.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.toolStripDropDownOption.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripDropDownCategories.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.toolStripDropDownCategories.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolItemGeneral,
             this.toolItemAnime,
             this.toolitemPeople});
-            this.toolStripDropDownOption.Image = ((System.Drawing.Image)(resources.GetObject("toolStripDropDownOption.Image")));
-            this.toolStripDropDownOption.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripDropDownOption.Name = "toolStripDropDownOption";
-            this.toolStripDropDownOption.Size = new System.Drawing.Size(53, 25);
-            this.toolStripDropDownOption.Text = "选项";
+            this.toolStripDropDownCategories.Image = ((System.Drawing.Image)(resources.GetObject("toolStripDropDownCategories.Image")));
+            this.toolStripDropDownCategories.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripDropDownCategories.Name = "toolStripDropDownCategories";
+            this.toolStripDropDownCategories.Size = new System.Drawing.Size(53, 25);
+            this.toolStripDropDownCategories.Text = "类别";
             // 
             // toolItemGeneral
             // 
+            this.toolItemGeneral.Checked = true;
             this.toolItemGeneral.CheckOnClick = true;
+            this.toolItemGeneral.CheckState = System.Windows.Forms.CheckState.Checked;
             this.toolItemGeneral.Name = "toolItemGeneral";
             this.toolItemGeneral.Size = new System.Drawing.Size(122, 26);
             this.toolItemGeneral.Text = "常规";
@@ -235,7 +242,9 @@
             // 
             // toolItemAnime
             // 
+            this.toolItemAnime.Checked = true;
             this.toolItemAnime.CheckOnClick = true;
+            this.toolItemAnime.CheckState = System.Windows.Forms.CheckState.Checked;
             this.toolItemAnime.Name = "toolItemAnime";
             this.toolItemAnime.Size = new System.Drawing.Size(122, 26);
             this.toolItemAnime.Text = "动漫";
@@ -243,11 +252,57 @@
             // 
             // toolitemPeople
             // 
+            this.toolitemPeople.Checked = true;
             this.toolitemPeople.CheckOnClick = true;
+            this.toolitemPeople.CheckState = System.Windows.Forms.CheckState.Checked;
             this.toolitemPeople.Name = "toolitemPeople";
             this.toolitemPeople.Size = new System.Drawing.Size(122, 26);
             this.toolitemPeople.Text = "人";
             this.toolitemPeople.CheckedChanged += new System.EventHandler(this.toolItemGeneral_CheckedChanged);
+            // 
+            // toolStripDropDownButton1
+            // 
+            this.toolStripDropDownButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.toolStripDropDownButton1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.sFWToolStripMenuItem,
+            this.sketToolStripMenuItem,
+            this.nSFWToolStripMenuItem});
+            this.toolStripDropDownButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripDropDownButton1.Image")));
+            this.toolStripDropDownButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripDropDownButton1.Name = "toolStripDropDownButton1";
+            this.toolStripDropDownButton1.Size = new System.Drawing.Size(83, 25);
+            this.toolStripDropDownButton1.Text = "安全程度";
+            // 
+            // sFWToolStripMenuItem
+            // 
+            this.sFWToolStripMenuItem.Checked = true;
+            this.sFWToolStripMenuItem.CheckOnClick = true;
+            this.sFWToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.sFWToolStripMenuItem.Name = "sFWToolStripMenuItem";
+            this.sFWToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.sFWToolStripMenuItem.Text = "SFW";
+            this.sFWToolStripMenuItem.ToolTipText = "\"Safe for work\" wallpapers grandma approves";
+            this.sFWToolStripMenuItem.CheckedChanged += new System.EventHandler(this.sFWToolStripMenuItem_CheckedChanged);
+            // 
+            // sketToolStripMenuItem
+            // 
+            this.sketToolStripMenuItem.Checked = true;
+            this.sketToolStripMenuItem.CheckOnClick = true;
+            this.sketToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.sketToolStripMenuItem.Name = "sketToolStripMenuItem";
+            this.sketToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.sketToolStripMenuItem.Text = "Sketchy";
+            this.sketToolStripMenuItem.ToolTipText = "Not quite SFW not quite NSFW. Grandma might be uncomfortable";
+            this.sketToolStripMenuItem.CheckedChanged += new System.EventHandler(this.sFWToolStripMenuItem_CheckedChanged);
+            // 
+            // nSFWToolStripMenuItem
+            // 
+            this.nSFWToolStripMenuItem.CheckOnClick = true;
+            this.nSFWToolStripMenuItem.Name = "nSFWToolStripMenuItem";
+            this.nSFWToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.nSFWToolStripMenuItem.Text = "NSFW";
+            this.nSFWToolStripMenuItem.ToolTipText = "\"Not safe for work\" Grandma isn\'t sure who you are anymore";
+            this.nSFWToolStripMenuItem.CheckedChanged += new System.EventHandler(this.sFWToolStripMenuItem_CheckedChanged);
             // 
             // toolStripLabelSort
             // 
@@ -406,7 +461,7 @@
         private ToolStripTextBox toolStripTextBoxInput;
         private ToolStripLabel tsLblKey;
         private Manina.Windows.Forms.ImageListView imageListView1;
-        private ToolStripDropDownButton toolStripDropDownOption;
+        private ToolStripDropDownButton toolStripDropDownCategories;
         private ToolStripMenuItem toolItemGeneral;
         private ToolStripMenuItem toolItemAnime;
         private ToolStripMenuItem toolitemPeople;
@@ -414,5 +469,9 @@
         private ToolStripComboBox toolStripComboBoxType;
         private ToolStripComboBox toolStripComboBoxSort;
         private ToolStripLabel toolStripLabelSort;
+        private ToolStripDropDownButton toolStripDropDownButton1;
+        private ToolStripMenuItem sFWToolStripMenuItem;
+        private ToolStripMenuItem sketToolStripMenuItem;
+        private ToolStripMenuItem nSFWToolStripMenuItem;
     }
 }
