@@ -60,6 +60,8 @@
             this.label2 = new System.Windows.Forms.Label();
             this.tbApi = new System.Windows.Forms.TextBox();
             this.btnApply = new System.Windows.Forms.Button();
+            this.label10 = new System.Windows.Forms.Label();
+            this.tbApiKey = new System.Windows.Forms.TextBox();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).BeginInit();
             this.tabControl1.SuspendLayout();
@@ -402,10 +404,13 @@
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 40F));
             this.tableLayoutPanel3.Controls.Add(this.label2, 0, 0);
             this.tableLayoutPanel3.Controls.Add(this.tbApi, 1, 0);
+            this.tableLayoutPanel3.Controls.Add(this.label10, 0, 1);
+            this.tableLayoutPanel3.Controls.Add(this.tbApiKey, 1, 1);
             this.tableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel3.Location = new System.Drawing.Point(3, 3);
             this.tableLayoutPanel3.Name = "tableLayoutPanel3";
-            this.tableLayoutPanel3.RowCount = 2;
+            this.tableLayoutPanel3.RowCount = 3;
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 35F));
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 35F));
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel3.Size = new System.Drawing.Size(768, 304);
@@ -441,6 +446,26 @@
             this.btnApply.Text = "应用";
             this.btnApply.UseVisualStyleBackColor = true;
             this.btnApply.Click += new System.EventHandler(this.btnApply_Click);
+            // 
+            // label10
+            // 
+            this.label10.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(78, 42);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(64, 20);
+            this.label10.TabIndex = 9;
+            this.label10.Text = "API Key";
+            this.label10.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // tbApiKey
+            // 
+            this.tbApiKey.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.tbApiKey.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bindingSource1, "ApiUrl", true));
+            this.tbApiKey.Location = new System.Drawing.Point(148, 39);
+            this.tbApiKey.Name = "tbApiKey";
+            this.tbApiKey.Size = new System.Drawing.Size(576, 27);
+            this.tbApiKey.TabIndex = 10;
             // 
             // FrmOptions
             // 
@@ -506,5 +531,7 @@
         private TextBox tbFullImgPath;
         private Button button1;
         private Button button2;
+        private Label label10;
+        private TextBox tbApiKey;
     }
 }

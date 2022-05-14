@@ -30,6 +30,7 @@ namespace WallHavenGetter.Services
             appOptions.SmallImageDir = _iniFileHelper.GetIniString("AppOptions", "SmallImageDir", Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "images", "small"));
             appOptions.Mode = _iniFileHelper.GetIniString("AppOptions", "Mode", "爬虫");
             appOptions.ApiUrl = _iniFileHelper.GetIniString("AppOptions", "ApiUrl", "https://wallhaven.cc/api/v1/");
+            appOptions.ApiKey = _iniFileHelper.GetIniString("AppOptions", "ApiKey", "j8at6nkXu2f04dRXUScyxrgmgKMPVBkg");
             return appOptions;
         }
 
@@ -44,6 +45,7 @@ namespace WallHavenGetter.Services
             _iniFileHelper.WriteIniString("AppOptions", "SmallImageDir", appOptions.SmallImageDir);
             _iniFileHelper.WriteIniString("AppOptions", "Mode", appOptions.Mode);
             _iniFileHelper.WriteIniString("AppOptions", "ApiUrl", appOptions.ApiUrl);
+            _iniFileHelper.WriteIniString("AppOptions", "ApiKey", appOptions.ApiKey);
         }
     }
 }
