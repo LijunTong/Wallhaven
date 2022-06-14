@@ -129,5 +129,23 @@ namespace WallHavenGetter.Forms
                 this.tabControl1.SelectedIndex = 2;
             }
         }
+
+        private void btnSelectCachePath_Click(object sender, EventArgs e)
+        {
+            FolderBrowserDialog folderBrowserDialog = new FolderBrowserDialog();
+            if (folderBrowserDialog.ShowDialog() == DialogResult.OK)
+            {
+                this.tbSmallImgPath.Text = folderBrowserDialog.SelectedPath;
+            }
+        }
+
+        private void btnSelectDownPath_Click(object sender, EventArgs e)
+        {
+            FolderBrowserDialog folderBrowserDialog = new FolderBrowserDialog();
+            if (folderBrowserDialog.ShowDialog() == DialogResult.OK)
+            {
+                this.tbFullImgPath.Text = folderBrowserDialog.SelectedPath;
+            }
+        }
     }
 }
