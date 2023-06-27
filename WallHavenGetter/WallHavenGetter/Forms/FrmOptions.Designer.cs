@@ -28,474 +28,492 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
-            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.tbWallhavenImgBaseUrlFormat = new System.Windows.Forms.TextBox();
-            this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
-            this.tbWallhavenImgDetialsUrlFormat = new System.Windows.Forms.TextBox();
-            this.tbWallhavenSmallImgUrlRegex = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.tbWallhavenBaseUrl = new System.Windows.Forms.TextBox();
-            this.btnCancel = new System.Windows.Forms.Button();
-            this.btnSave = new System.Windows.Forms.Button();
-            this.tabControl1 = new System.Windows.Forms.TabControl();
-            this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
-            this.label8 = new System.Windows.Forms.Label();
-            this.label9 = new System.Windows.Forms.Label();
-            this.numericUpDownThreadCnt = new System.Windows.Forms.NumericUpDown();
-            this.cmbMode = new System.Windows.Forms.ComboBox();
-            this.label6 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
-            this.tbSmallImgPath = new System.Windows.Forms.TextBox();
-            this.tbFullImgPath = new System.Windows.Forms.TextBox();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.tabPage3 = new System.Windows.Forms.TabPage();
-            this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
-            this.label2 = new System.Windows.Forms.Label();
-            this.tbApi = new System.Windows.Forms.TextBox();
-            this.btnApply = new System.Windows.Forms.Button();
-            this.label10 = new System.Windows.Forms.Label();
-            this.tbApiKey = new System.Windows.Forms.TextBox();
-            this.tableLayoutPanel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).BeginInit();
-            this.tabControl1.SuspendLayout();
-            this.tabPage1.SuspendLayout();
-            this.tableLayoutPanel2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownThreadCnt)).BeginInit();
-            this.tabPage2.SuspendLayout();
-            this.tabPage3.SuspendLayout();
-            this.tableLayoutPanel3.SuspendLayout();
-            this.SuspendLayout();
+            components = new System.ComponentModel.Container();
+            tableLayoutPanel1 = new TableLayoutPanel();
+            tbWallhavenImgBaseUrlFormat = new TextBox();
+            bindingSource1 = new BindingSource(components);
+            tbWallhavenImgDetialsUrlFormat = new TextBox();
+            tbWallhavenSmallImgUrlRegex = new TextBox();
+            label1 = new Label();
+            label3 = new Label();
+            label4 = new Label();
+            label5 = new Label();
+            tbWallhavenBaseUrl = new TextBox();
+            btnCancel = new Button();
+            btnSave = new Button();
+            tabControl1 = new TabControl();
+            tabPage1 = new TabPage();
+            tableLayoutPanel2 = new TableLayoutPanel();
+            label8 = new Label();
+            label9 = new Label();
+            numericUpDownThreadCnt = new NumericUpDown();
+            cmbMode = new ComboBox();
+            label6 = new Label();
+            label7 = new Label();
+            tbSmallImgPath = new TextBox();
+            tbFullImgPath = new TextBox();
+            button1 = new Button();
+            button2 = new Button();
+            tabPage2 = new TabPage();
+            tabPage3 = new TabPage();
+            tableLayoutPanel3 = new TableLayoutPanel();
+            label2 = new Label();
+            tbApi = new TextBox();
+            label10 = new Label();
+            tbApiKey = new TextBox();
+            btnApply = new Button();
+            tableLayoutPanel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)bindingSource1).BeginInit();
+            tabControl1.SuspendLayout();
+            tabPage1.SuspendLayout();
+            tableLayoutPanel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)numericUpDownThreadCnt).BeginInit();
+            tabPage2.SuspendLayout();
+            tabPage3.SuspendLayout();
+            tableLayoutPanel3.SuspendLayout();
+            SuspendLayout();
             // 
             // tableLayoutPanel1
             // 
-            this.tableLayoutPanel1.ColumnCount = 3;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 80F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 40F));
-            this.tableLayoutPanel1.Controls.Add(this.tbWallhavenImgBaseUrlFormat, 1, 3);
-            this.tableLayoutPanel1.Controls.Add(this.tbWallhavenImgDetialsUrlFormat, 1, 2);
-            this.tableLayoutPanel1.Controls.Add(this.tbWallhavenSmallImgUrlRegex, 1, 1);
-            this.tableLayoutPanel1.Controls.Add(this.label1, 0, 0);
-            this.tableLayoutPanel1.Controls.Add(this.label3, 0, 1);
-            this.tableLayoutPanel1.Controls.Add(this.label4, 0, 2);
-            this.tableLayoutPanel1.Controls.Add(this.label5, 0, 3);
-            this.tableLayoutPanel1.Controls.Add(this.tbWallhavenBaseUrl, 1, 0);
-            this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(3, 3);
-            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 5;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 35F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 35F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 35F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 35F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(768, 304);
-            this.tableLayoutPanel1.TabIndex = 0;
+            tableLayoutPanel1.ColumnCount = 3;
+            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 20F));
+            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 80F));
+            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 32F));
+            tableLayoutPanel1.Controls.Add(tbWallhavenImgBaseUrlFormat, 1, 3);
+            tableLayoutPanel1.Controls.Add(tbWallhavenImgDetialsUrlFormat, 1, 2);
+            tableLayoutPanel1.Controls.Add(tbWallhavenSmallImgUrlRegex, 1, 1);
+            tableLayoutPanel1.Controls.Add(label1, 0, 0);
+            tableLayoutPanel1.Controls.Add(label3, 0, 1);
+            tableLayoutPanel1.Controls.Add(label4, 0, 2);
+            tableLayoutPanel1.Controls.Add(label5, 0, 3);
+            tableLayoutPanel1.Controls.Add(tbWallhavenBaseUrl, 1, 0);
+            tableLayoutPanel1.Dock = DockStyle.Fill;
+            tableLayoutPanel1.Location = new Point(2, 3);
+            tableLayoutPanel1.Margin = new Padding(2, 3, 2, 3);
+            tableLayoutPanel1.Name = "tableLayoutPanel1";
+            tableLayoutPanel1.RowCount = 5;
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 30F));
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 30F));
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 30F));
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 30F));
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 17F));
+            tableLayoutPanel1.Size = new Size(596, 256);
+            tableLayoutPanel1.TabIndex = 0;
             // 
             // tbWallhavenImgBaseUrlFormat
             // 
-            this.tbWallhavenImgBaseUrlFormat.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.tbWallhavenImgBaseUrlFormat.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bindingSource1, "WallhavenSmallImgUrlRegex", true));
-            this.tbWallhavenImgBaseUrlFormat.Location = new System.Drawing.Point(148, 109);
-            this.tbWallhavenImgBaseUrlFormat.Name = "tbWallhavenImgBaseUrlFormat";
-            this.tbWallhavenImgBaseUrlFormat.Size = new System.Drawing.Size(576, 27);
-            this.tbWallhavenImgBaseUrlFormat.TabIndex = 11;
+            tbWallhavenImgBaseUrlFormat.Anchor = AnchorStyles.Left;
+            tbWallhavenImgBaseUrlFormat.DataBindings.Add(new Binding("Text", bindingSource1, "WallhavenSmallImgUrlRegex", true));
+            tbWallhavenImgBaseUrlFormat.Location = new Point(114, 93);
+            tbWallhavenImgBaseUrlFormat.Margin = new Padding(2, 3, 2, 3);
+            tbWallhavenImgBaseUrlFormat.Name = "tbWallhavenImgBaseUrlFormat";
+            tbWallhavenImgBaseUrlFormat.Size = new Size(447, 23);
+            tbWallhavenImgBaseUrlFormat.TabIndex = 11;
             // 
             // bindingSource1
             // 
-            this.bindingSource1.DataSource = typeof(WallHavenGetter.Models.AppOptions);
+            bindingSource1.DataSource = typeof(Models.AppOptions);
             // 
             // tbWallhavenImgDetialsUrlFormat
             // 
-            this.tbWallhavenImgDetialsUrlFormat.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.tbWallhavenImgDetialsUrlFormat.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bindingSource1, "WallhavenImgDetialsUrlFormat", true));
-            this.tbWallhavenImgDetialsUrlFormat.Location = new System.Drawing.Point(148, 74);
-            this.tbWallhavenImgDetialsUrlFormat.Name = "tbWallhavenImgDetialsUrlFormat";
-            this.tbWallhavenImgDetialsUrlFormat.Size = new System.Drawing.Size(576, 27);
-            this.tbWallhavenImgDetialsUrlFormat.TabIndex = 10;
+            tbWallhavenImgDetialsUrlFormat.Anchor = AnchorStyles.Left;
+            tbWallhavenImgDetialsUrlFormat.DataBindings.Add(new Binding("Text", bindingSource1, "WallhavenImgDetialsUrlFormat", true));
+            tbWallhavenImgDetialsUrlFormat.Location = new Point(114, 63);
+            tbWallhavenImgDetialsUrlFormat.Margin = new Padding(2, 3, 2, 3);
+            tbWallhavenImgDetialsUrlFormat.Name = "tbWallhavenImgDetialsUrlFormat";
+            tbWallhavenImgDetialsUrlFormat.Size = new Size(447, 23);
+            tbWallhavenImgDetialsUrlFormat.TabIndex = 10;
             // 
             // tbWallhavenSmallImgUrlRegex
             // 
-            this.tbWallhavenSmallImgUrlRegex.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.tbWallhavenSmallImgUrlRegex.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bindingSource1, "WallhavenSmallImgUrlRegex", true));
-            this.tbWallhavenSmallImgUrlRegex.Location = new System.Drawing.Point(148, 39);
-            this.tbWallhavenSmallImgUrlRegex.Name = "tbWallhavenSmallImgUrlRegex";
-            this.tbWallhavenSmallImgUrlRegex.Size = new System.Drawing.Size(576, 27);
-            this.tbWallhavenSmallImgUrlRegex.TabIndex = 9;
+            tbWallhavenSmallImgUrlRegex.Anchor = AnchorStyles.Left;
+            tbWallhavenSmallImgUrlRegex.DataBindings.Add(new Binding("Text", bindingSource1, "WallhavenSmallImgUrlRegex", true));
+            tbWallhavenSmallImgUrlRegex.Location = new Point(114, 33);
+            tbWallhavenSmallImgUrlRegex.Margin = new Padding(2, 3, 2, 3);
+            tbWallhavenSmallImgUrlRegex.Name = "tbWallhavenSmallImgUrlRegex";
+            tbWallhavenSmallImgUrlRegex.Size = new Size(447, 23);
+            tbWallhavenSmallImgUrlRegex.TabIndex = 9;
             // 
             // label1
             // 
-            this.label1.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(29, 7);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(113, 20);
-            this.label1.TabIndex = 4;
-            this.label1.Text = "Wallhaven地址";
-            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            label1.Anchor = AnchorStyles.Right;
+            label1.AutoSize = true;
+            label1.Location = new Point(19, 6);
+            label1.Margin = new Padding(2, 0, 2, 0);
+            label1.Name = "label1";
+            label1.Size = new Size(91, 17);
+            label1.TabIndex = 4;
+            label1.Text = "Wallhaven地址";
+            label1.TextAlign = ContentAlignment.MiddleRight;
             // 
             // label3
             // 
-            this.label3.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(28, 42);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(114, 20);
-            this.label3.TabIndex = 5;
-            this.label3.Text = "缩略图地址正则";
-            this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            label3.Anchor = AnchorStyles.Right;
+            label3.AutoSize = true;
+            label3.Location = new Point(18, 36);
+            label3.Margin = new Padding(2, 0, 2, 0);
+            label3.Name = "label3";
+            label3.Size = new Size(92, 17);
+            label3.TabIndex = 5;
+            label3.Text = "缩略图地址正则";
+            label3.TextAlign = ContentAlignment.MiddleRight;
             // 
             // label4
             // 
-            this.label4.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(43, 77);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(99, 20);
-            this.label4.TabIndex = 6;
-            this.label4.Text = "详情地址格式";
-            this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            label4.Anchor = AnchorStyles.Right;
+            label4.AutoSize = true;
+            label4.Location = new Point(30, 66);
+            label4.Margin = new Padding(2, 0, 2, 0);
+            label4.Name = "label4";
+            label4.Size = new Size(80, 17);
+            label4.TabIndex = 6;
+            label4.Text = "详情地址格式";
+            label4.TextAlign = ContentAlignment.MiddleRight;
             // 
             // label5
             // 
-            this.label5.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(28, 112);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(114, 20);
-            this.label5.TabIndex = 7;
-            this.label5.Text = "高清图地址格式";
-            this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            label5.Anchor = AnchorStyles.Right;
+            label5.AutoSize = true;
+            label5.Location = new Point(18, 96);
+            label5.Margin = new Padding(2, 0, 2, 0);
+            label5.Name = "label5";
+            label5.Size = new Size(92, 17);
+            label5.TabIndex = 7;
+            label5.Text = "高清图地址格式";
+            label5.TextAlign = ContentAlignment.MiddleRight;
             // 
             // tbWallhavenBaseUrl
             // 
-            this.tbWallhavenBaseUrl.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.tbWallhavenBaseUrl.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bindingSource1, "WallhavenBaseUrl", true));
-            this.tbWallhavenBaseUrl.Location = new System.Drawing.Point(148, 4);
-            this.tbWallhavenBaseUrl.Name = "tbWallhavenBaseUrl";
-            this.tbWallhavenBaseUrl.Size = new System.Drawing.Size(576, 27);
-            this.tbWallhavenBaseUrl.TabIndex = 8;
+            tbWallhavenBaseUrl.Anchor = AnchorStyles.Left;
+            tbWallhavenBaseUrl.DataBindings.Add(new Binding("Text", bindingSource1, "WallhavenBaseUrl", true));
+            tbWallhavenBaseUrl.Location = new Point(114, 3);
+            tbWallhavenBaseUrl.Margin = new Padding(2, 3, 2, 3);
+            tbWallhavenBaseUrl.Name = "tbWallhavenBaseUrl";
+            tbWallhavenBaseUrl.Size = new Size(447, 23);
+            tbWallhavenBaseUrl.TabIndex = 8;
             // 
             // btnCancel
             // 
-            this.btnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnCancel.Location = new System.Drawing.Point(327, 349);
-            this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(94, 29);
-            this.btnCancel.TabIndex = 1;
-            this.btnCancel.Text = "取消";
-            this.btnCancel.UseVisualStyleBackColor = true;
-            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
+            btnCancel.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+            btnCancel.Location = new Point(254, 297);
+            btnCancel.Margin = new Padding(2, 3, 2, 3);
+            btnCancel.Name = "btnCancel";
+            btnCancel.Size = new Size(73, 25);
+            btnCancel.TabIndex = 1;
+            btnCancel.Text = "取消";
+            btnCancel.UseVisualStyleBackColor = true;
+            btnCancel.Click += btnCancel_Click;
             // 
             // btnSave
             // 
-            this.btnSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnSave.Location = new System.Drawing.Point(227, 349);
-            this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(94, 29);
-            this.btnSave.TabIndex = 0;
-            this.btnSave.Text = "保存";
-            this.btnSave.UseVisualStyleBackColor = true;
-            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
+            btnSave.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+            btnSave.Location = new Point(177, 297);
+            btnSave.Margin = new Padding(2, 3, 2, 3);
+            btnSave.Name = "btnSave";
+            btnSave.Size = new Size(73, 25);
+            btnSave.TabIndex = 0;
+            btnSave.Text = "保存";
+            btnSave.UseVisualStyleBackColor = true;
+            btnSave.Click += btnSave_Click;
             // 
             // tabControl1
             // 
-            this.tabControl1.Controls.Add(this.tabPage1);
-            this.tabControl1.Controls.Add(this.tabPage2);
-            this.tabControl1.Controls.Add(this.tabPage3);
-            this.tabControl1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.tabControl1.Location = new System.Drawing.Point(0, 0);
-            this.tabControl1.Name = "tabControl1";
-            this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(782, 343);
-            this.tabControl1.TabIndex = 1;
+            tabControl1.Controls.Add(tabPage1);
+            tabControl1.Controls.Add(tabPage2);
+            tabControl1.Controls.Add(tabPage3);
+            tabControl1.Dock = DockStyle.Top;
+            tabControl1.Location = new Point(0, 0);
+            tabControl1.Margin = new Padding(2, 3, 2, 3);
+            tabControl1.Name = "tabControl1";
+            tabControl1.SelectedIndex = 0;
+            tabControl1.Size = new Size(608, 292);
+            tabControl1.TabIndex = 1;
             // 
             // tabPage1
             // 
-            this.tabPage1.Controls.Add(this.tableLayoutPanel2);
-            this.tabPage1.Location = new System.Drawing.Point(4, 29);
-            this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(774, 310);
-            this.tabPage1.TabIndex = 0;
-            this.tabPage1.Text = "系统";
-            this.tabPage1.UseVisualStyleBackColor = true;
+            tabPage1.Controls.Add(tableLayoutPanel2);
+            tabPage1.Location = new Point(4, 26);
+            tabPage1.Margin = new Padding(2, 3, 2, 3);
+            tabPage1.Name = "tabPage1";
+            tabPage1.Padding = new Padding(2, 3, 2, 3);
+            tabPage1.Size = new Size(600, 262);
+            tabPage1.TabIndex = 0;
+            tabPage1.Text = "系统";
+            tabPage1.UseVisualStyleBackColor = true;
             // 
             // tableLayoutPanel2
             // 
-            this.tableLayoutPanel2.ColumnCount = 3;
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 80F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 40F));
-            this.tableLayoutPanel2.Controls.Add(this.label8, 0, 0);
-            this.tableLayoutPanel2.Controls.Add(this.label9, 0, 1);
-            this.tableLayoutPanel2.Controls.Add(this.numericUpDownThreadCnt, 1, 0);
-            this.tableLayoutPanel2.Controls.Add(this.cmbMode, 1, 1);
-            this.tableLayoutPanel2.Controls.Add(this.label6, 0, 2);
-            this.tableLayoutPanel2.Controls.Add(this.label7, 0, 3);
-            this.tableLayoutPanel2.Controls.Add(this.tbSmallImgPath, 1, 2);
-            this.tableLayoutPanel2.Controls.Add(this.tbFullImgPath, 1, 3);
-            this.tableLayoutPanel2.Controls.Add(this.button1, 2, 2);
-            this.tableLayoutPanel2.Controls.Add(this.button2, 2, 3);
-            this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel2.Location = new System.Drawing.Point(3, 3);
-            this.tableLayoutPanel2.Name = "tableLayoutPanel2";
-            this.tableLayoutPanel2.RowCount = 5;
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 35F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 35F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 35F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 35F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(768, 304);
-            this.tableLayoutPanel2.TabIndex = 1;
+            tableLayoutPanel2.ColumnCount = 3;
+            tableLayoutPanel2.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 20F));
+            tableLayoutPanel2.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 80F));
+            tableLayoutPanel2.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 32F));
+            tableLayoutPanel2.Controls.Add(label8, 0, 0);
+            tableLayoutPanel2.Controls.Add(label9, 0, 1);
+            tableLayoutPanel2.Controls.Add(numericUpDownThreadCnt, 1, 0);
+            tableLayoutPanel2.Controls.Add(cmbMode, 1, 1);
+            tableLayoutPanel2.Controls.Add(label6, 0, 2);
+            tableLayoutPanel2.Controls.Add(label7, 0, 3);
+            tableLayoutPanel2.Controls.Add(tbSmallImgPath, 1, 2);
+            tableLayoutPanel2.Controls.Add(tbFullImgPath, 1, 3);
+            tableLayoutPanel2.Controls.Add(button1, 2, 2);
+            tableLayoutPanel2.Controls.Add(button2, 2, 3);
+            tableLayoutPanel2.Dock = DockStyle.Fill;
+            tableLayoutPanel2.Location = new Point(2, 3);
+            tableLayoutPanel2.Margin = new Padding(2, 3, 2, 3);
+            tableLayoutPanel2.Name = "tableLayoutPanel2";
+            tableLayoutPanel2.RowCount = 5;
+            tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Absolute, 30F));
+            tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Absolute, 30F));
+            tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Absolute, 30F));
+            tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Absolute, 30F));
+            tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Absolute, 17F));
+            tableLayoutPanel2.Size = new Size(596, 256);
+            tableLayoutPanel2.TabIndex = 1;
             // 
             // label8
             // 
-            this.label8.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(58, 7);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(84, 20);
-            this.label8.TabIndex = 2;
-            this.label8.Text = "最大线程数";
-            this.label8.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            label8.Anchor = AnchorStyles.Right;
+            label8.AutoSize = true;
+            label8.Location = new Point(42, 6);
+            label8.Margin = new Padding(2, 0, 2, 0);
+            label8.Name = "label8";
+            label8.Size = new Size(68, 17);
+            label8.TabIndex = 2;
+            label8.Text = "最大线程数";
+            label8.TextAlign = ContentAlignment.MiddleRight;
             // 
             // label9
             // 
-            this.label9.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(73, 42);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(69, 20);
-            this.label9.TabIndex = 4;
-            this.label9.Text = "请求模式";
-            this.label9.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            label9.Anchor = AnchorStyles.Right;
+            label9.AutoSize = true;
+            label9.Location = new Point(54, 36);
+            label9.Margin = new Padding(2, 0, 2, 0);
+            label9.Name = "label9";
+            label9.Size = new Size(56, 17);
+            label9.TabIndex = 4;
+            label9.Text = "请求模式";
+            label9.TextAlign = ContentAlignment.MiddleRight;
             // 
             // numericUpDownThreadCnt
             // 
-            this.numericUpDownThreadCnt.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.numericUpDownThreadCnt.DataBindings.Add(new System.Windows.Forms.Binding("Value", this.bindingSource1, "ThreadCount", true));
-            this.numericUpDownThreadCnt.Location = new System.Drawing.Point(148, 4);
-            this.numericUpDownThreadCnt.Maximum = new decimal(new int[] {
-            8,
-            0,
-            0,
-            0});
-            this.numericUpDownThreadCnt.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.numericUpDownThreadCnt.Name = "numericUpDownThreadCnt";
-            this.numericUpDownThreadCnt.Size = new System.Drawing.Size(112, 27);
-            this.numericUpDownThreadCnt.TabIndex = 5;
-            this.numericUpDownThreadCnt.Value = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
+            numericUpDownThreadCnt.Anchor = AnchorStyles.Left;
+            numericUpDownThreadCnt.DataBindings.Add(new Binding("Value", bindingSource1, "ThreadCount", true));
+            numericUpDownThreadCnt.Location = new Point(114, 3);
+            numericUpDownThreadCnt.Margin = new Padding(2, 3, 2, 3);
+            numericUpDownThreadCnt.Maximum = new decimal(new int[] { 8, 0, 0, 0 });
+            numericUpDownThreadCnt.Minimum = new decimal(new int[] { 1, 0, 0, 0 });
+            numericUpDownThreadCnt.Name = "numericUpDownThreadCnt";
+            numericUpDownThreadCnt.Size = new Size(87, 23);
+            numericUpDownThreadCnt.TabIndex = 5;
+            numericUpDownThreadCnt.Value = new decimal(new int[] { 1, 0, 0, 0 });
             // 
             // cmbMode
             // 
-            this.cmbMode.DataBindings.Add(new System.Windows.Forms.Binding("SelectedItem", this.bindingSource1, "Mode", true));
-            this.cmbMode.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbMode.FormattingEnabled = true;
-            this.cmbMode.Items.AddRange(new object[] {
-            "爬虫",
-            "Api"});
-            this.cmbMode.Location = new System.Drawing.Point(148, 38);
-            this.cmbMode.Name = "cmbMode";
-            this.cmbMode.Size = new System.Drawing.Size(151, 28);
-            this.cmbMode.TabIndex = 6;
-            this.cmbMode.SelectedIndexChanged += new System.EventHandler(this.cmbMode_SelectedIndexChanged);
+            cmbMode.DataBindings.Add(new Binding("SelectedItem", bindingSource1, "Mode", true));
+            cmbMode.DropDownStyle = ComboBoxStyle.DropDownList;
+            cmbMode.FormattingEnabled = true;
+            cmbMode.Items.AddRange(new object[] { "爬虫", "Api" });
+            cmbMode.Location = new Point(114, 33);
+            cmbMode.Margin = new Padding(2, 3, 2, 3);
+            cmbMode.Name = "cmbMode";
+            cmbMode.Size = new Size(118, 25);
+            cmbMode.TabIndex = 6;
+            cmbMode.SelectedIndexChanged += cmbMode_SelectedIndexChanged;
             // 
             // label6
             // 
-            this.label6.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(28, 77);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(114, 20);
-            this.label6.TabIndex = 15;
-            this.label6.Text = "缩略图缓存地址";
-            this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            label6.Anchor = AnchorStyles.Right;
+            label6.AutoSize = true;
+            label6.Location = new Point(18, 66);
+            label6.Margin = new Padding(2, 0, 2, 0);
+            label6.Name = "label6";
+            label6.Size = new Size(92, 17);
+            label6.TabIndex = 15;
+            label6.Text = "缩略图缓存地址";
+            label6.TextAlign = ContentAlignment.MiddleRight;
             // 
             // label7
             // 
-            this.label7.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(73, 112);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(69, 20);
-            this.label7.TabIndex = 16;
-            this.label7.Text = "下载地址";
-            this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            label7.Anchor = AnchorStyles.Right;
+            label7.AutoSize = true;
+            label7.Location = new Point(54, 96);
+            label7.Margin = new Padding(2, 0, 2, 0);
+            label7.Name = "label7";
+            label7.Size = new Size(56, 17);
+            label7.TabIndex = 16;
+            label7.Text = "下载地址";
+            label7.TextAlign = ContentAlignment.MiddleRight;
             // 
             // tbSmallImgPath
             // 
-            this.tbSmallImgPath.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.tbSmallImgPath.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bindingSource1, "SmallImageDir", true));
-            this.tbSmallImgPath.Location = new System.Drawing.Point(148, 74);
-            this.tbSmallImgPath.Name = "tbSmallImgPath";
-            this.tbSmallImgPath.Size = new System.Drawing.Size(576, 27);
-            this.tbSmallImgPath.TabIndex = 17;
+            tbSmallImgPath.Anchor = AnchorStyles.Left;
+            tbSmallImgPath.DataBindings.Add(new Binding("Text", bindingSource1, "SmallImageDir", true));
+            tbSmallImgPath.Location = new Point(114, 63);
+            tbSmallImgPath.Margin = new Padding(2, 3, 2, 3);
+            tbSmallImgPath.Name = "tbSmallImgPath";
+            tbSmallImgPath.Size = new Size(447, 23);
+            tbSmallImgPath.TabIndex = 17;
             // 
             // tbFullImgPath
             // 
-            this.tbFullImgPath.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.tbFullImgPath.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bindingSource1, "FullImageDir", true));
-            this.tbFullImgPath.Location = new System.Drawing.Point(148, 109);
-            this.tbFullImgPath.Name = "tbFullImgPath";
-            this.tbFullImgPath.Size = new System.Drawing.Size(576, 27);
-            this.tbFullImgPath.TabIndex = 18;
+            tbFullImgPath.Anchor = AnchorStyles.Left;
+            tbFullImgPath.DataBindings.Add(new Binding("Text", bindingSource1, "FullImageDir", true));
+            tbFullImgPath.Location = new Point(114, 93);
+            tbFullImgPath.Margin = new Padding(2, 3, 2, 3);
+            tbFullImgPath.Name = "tbFullImgPath";
+            tbFullImgPath.Size = new Size(447, 23);
+            tbFullImgPath.TabIndex = 18;
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(730, 73);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(35, 29);
-            this.button1.TabIndex = 19;
-            this.button1.Text = "...";
-            this.button1.UseVisualStyleBackColor = true;
+            button1.Location = new Point(565, 63);
+            button1.Margin = new Padding(2, 3, 2, 3);
+            button1.Name = "button1";
+            button1.Size = new Size(27, 24);
+            button1.TabIndex = 19;
+            button1.Text = "...";
+            button1.UseVisualStyleBackColor = true;
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(730, 108);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(35, 29);
-            this.button2.TabIndex = 20;
-            this.button2.Text = "...";
-            this.button2.UseVisualStyleBackColor = true;
+            button2.Location = new Point(565, 93);
+            button2.Margin = new Padding(2, 3, 2, 3);
+            button2.Name = "button2";
+            button2.Size = new Size(27, 24);
+            button2.TabIndex = 20;
+            button2.Text = "...";
+            button2.UseVisualStyleBackColor = true;
             // 
             // tabPage2
             // 
-            this.tabPage2.Controls.Add(this.tableLayoutPanel1);
-            this.tabPage2.Location = new System.Drawing.Point(4, 29);
-            this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(774, 310);
-            this.tabPage2.TabIndex = 1;
-            this.tabPage2.Text = "爬虫";
-            this.tabPage2.UseVisualStyleBackColor = true;
+            tabPage2.Controls.Add(tableLayoutPanel1);
+            tabPage2.Location = new Point(4, 26);
+            tabPage2.Margin = new Padding(2, 3, 2, 3);
+            tabPage2.Name = "tabPage2";
+            tabPage2.Padding = new Padding(2, 3, 2, 3);
+            tabPage2.Size = new Size(600, 262);
+            tabPage2.TabIndex = 1;
+            tabPage2.Text = "爬虫";
+            tabPage2.UseVisualStyleBackColor = true;
             // 
             // tabPage3
             // 
-            this.tabPage3.Controls.Add(this.tableLayoutPanel3);
-            this.tabPage3.Location = new System.Drawing.Point(4, 29);
-            this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage3.Size = new System.Drawing.Size(774, 310);
-            this.tabPage3.TabIndex = 2;
-            this.tabPage3.Text = "Api";
-            this.tabPage3.UseVisualStyleBackColor = true;
+            tabPage3.Controls.Add(tableLayoutPanel3);
+            tabPage3.Location = new Point(4, 26);
+            tabPage3.Margin = new Padding(2, 3, 2, 3);
+            tabPage3.Name = "tabPage3";
+            tabPage3.Padding = new Padding(2, 3, 2, 3);
+            tabPage3.Size = new Size(600, 262);
+            tabPage3.TabIndex = 2;
+            tabPage3.Text = "Api";
+            tabPage3.UseVisualStyleBackColor = true;
             // 
             // tableLayoutPanel3
             // 
-            this.tableLayoutPanel3.ColumnCount = 3;
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 80F));
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 40F));
-            this.tableLayoutPanel3.Controls.Add(this.label2, 0, 0);
-            this.tableLayoutPanel3.Controls.Add(this.tbApi, 1, 0);
-            this.tableLayoutPanel3.Controls.Add(this.label10, 0, 1);
-            this.tableLayoutPanel3.Controls.Add(this.tbApiKey, 1, 1);
-            this.tableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel3.Location = new System.Drawing.Point(3, 3);
-            this.tableLayoutPanel3.Name = "tableLayoutPanel3";
-            this.tableLayoutPanel3.RowCount = 3;
-            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 35F));
-            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 35F));
-            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel3.Size = new System.Drawing.Size(768, 304);
-            this.tableLayoutPanel3.TabIndex = 1;
+            tableLayoutPanel3.ColumnCount = 3;
+            tableLayoutPanel3.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 20F));
+            tableLayoutPanel3.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 80F));
+            tableLayoutPanel3.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 32F));
+            tableLayoutPanel3.Controls.Add(label2, 0, 0);
+            tableLayoutPanel3.Controls.Add(tbApi, 1, 0);
+            tableLayoutPanel3.Controls.Add(label10, 0, 1);
+            tableLayoutPanel3.Controls.Add(tbApiKey, 1, 1);
+            tableLayoutPanel3.Dock = DockStyle.Fill;
+            tableLayoutPanel3.Location = new Point(2, 3);
+            tableLayoutPanel3.Margin = new Padding(2, 3, 2, 3);
+            tableLayoutPanel3.Name = "tableLayoutPanel3";
+            tableLayoutPanel3.RowCount = 3;
+            tableLayoutPanel3.RowStyles.Add(new RowStyle(SizeType.Absolute, 30F));
+            tableLayoutPanel3.RowStyles.Add(new RowStyle(SizeType.Absolute, 30F));
+            tableLayoutPanel3.RowStyles.Add(new RowStyle(SizeType.Absolute, 17F));
+            tableLayoutPanel3.Size = new Size(596, 256);
+            tableLayoutPanel3.TabIndex = 1;
             // 
             // label2
             // 
-            this.label2.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(78, 7);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(64, 20);
-            this.label2.TabIndex = 4;
-            this.label2.Text = "Api地址";
-            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            label2.Anchor = AnchorStyles.Right;
+            label2.AutoSize = true;
+            label2.Location = new Point(59, 6);
+            label2.Margin = new Padding(2, 0, 2, 0);
+            label2.Name = "label2";
+            label2.Size = new Size(51, 17);
+            label2.TabIndex = 4;
+            label2.Text = "Api地址";
+            label2.TextAlign = ContentAlignment.MiddleRight;
             // 
             // tbApi
             // 
-            this.tbApi.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.tbApi.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bindingSource1, "ApiUrl", true));
-            this.tbApi.Location = new System.Drawing.Point(148, 4);
-            this.tbApi.Name = "tbApi";
-            this.tbApi.Size = new System.Drawing.Size(576, 27);
-            this.tbApi.TabIndex = 8;
-            // 
-            // btnApply
-            // 
-            this.btnApply.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnApply.Location = new System.Drawing.Point(427, 349);
-            this.btnApply.Name = "btnApply";
-            this.btnApply.Size = new System.Drawing.Size(94, 29);
-            this.btnApply.TabIndex = 2;
-            this.btnApply.Text = "应用";
-            this.btnApply.UseVisualStyleBackColor = true;
-            this.btnApply.Click += new System.EventHandler(this.btnApply_Click);
+            tbApi.Anchor = AnchorStyles.Left;
+            tbApi.DataBindings.Add(new Binding("Text", bindingSource1, "ApiUrl", true));
+            tbApi.Location = new Point(114, 3);
+            tbApi.Margin = new Padding(2, 3, 2, 3);
+            tbApi.Name = "tbApi";
+            tbApi.Size = new Size(447, 23);
+            tbApi.TabIndex = 8;
             // 
             // label10
             // 
-            this.label10.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(78, 42);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(64, 20);
-            this.label10.TabIndex = 9;
-            this.label10.Text = "API Key";
-            this.label10.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            label10.Anchor = AnchorStyles.Right;
+            label10.AutoSize = true;
+            label10.Location = new Point(58, 36);
+            label10.Margin = new Padding(2, 0, 2, 0);
+            label10.Name = "label10";
+            label10.Size = new Size(52, 17);
+            label10.TabIndex = 9;
+            label10.Text = "API Key";
+            label10.TextAlign = ContentAlignment.MiddleRight;
             // 
             // tbApiKey
             // 
-            this.tbApiKey.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.tbApiKey.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bindingSource1, "ApiUrl", true));
-            this.tbApiKey.Location = new System.Drawing.Point(148, 39);
-            this.tbApiKey.Name = "tbApiKey";
-            this.tbApiKey.Size = new System.Drawing.Size(576, 27);
-            this.tbApiKey.TabIndex = 10;
+            tbApiKey.Anchor = AnchorStyles.Left;
+            tbApiKey.DataBindings.Add(new Binding("Text", bindingSource1, "ApiKey", true));
+            tbApiKey.Location = new Point(114, 33);
+            tbApiKey.Margin = new Padding(2, 3, 2, 3);
+            tbApiKey.Name = "tbApiKey";
+            tbApiKey.Size = new Size(447, 23);
+            tbApiKey.TabIndex = 10;
+            // 
+            // btnApply
+            // 
+            btnApply.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+            btnApply.Location = new Point(332, 297);
+            btnApply.Margin = new Padding(2, 3, 2, 3);
+            btnApply.Name = "btnApply";
+            btnApply.Size = new Size(73, 25);
+            btnApply.TabIndex = 2;
+            btnApply.Text = "应用";
+            btnApply.UseVisualStyleBackColor = true;
+            btnApply.Click += btnApply_Click;
             // 
             // FrmOptions
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(782, 380);
-            this.Controls.Add(this.btnApply);
-            this.Controls.Add(this.btnCancel);
-            this.Controls.Add(this.tabControl1);
-            this.Controls.Add(this.btnSave);
-            this.MaximizeBox = false;
-            this.Name = "FrmOptions";
-            this.ShowIcon = false;
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "选项";
-            this.Load += new System.EventHandler(this.FrmOptions_Load);
-            this.tableLayoutPanel1.ResumeLayout(false);
-            this.tableLayoutPanel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).EndInit();
-            this.tabControl1.ResumeLayout(false);
-            this.tabPage1.ResumeLayout(false);
-            this.tableLayoutPanel2.ResumeLayout(false);
-            this.tableLayoutPanel2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownThreadCnt)).EndInit();
-            this.tabPage2.ResumeLayout(false);
-            this.tabPage3.ResumeLayout(false);
-            this.tableLayoutPanel3.ResumeLayout(false);
-            this.tableLayoutPanel3.PerformLayout();
-            this.ResumeLayout(false);
-
+            AutoScaleDimensions = new SizeF(7F, 17F);
+            AutoScaleMode = AutoScaleMode.Font;
+            ClientSize = new Size(608, 323);
+            Controls.Add(btnApply);
+            Controls.Add(btnCancel);
+            Controls.Add(tabControl1);
+            Controls.Add(btnSave);
+            Margin = new Padding(2, 3, 2, 3);
+            MaximizeBox = false;
+            Name = "FrmOptions";
+            ShowIcon = false;
+            StartPosition = FormStartPosition.CenterScreen;
+            Text = "选项";
+            Load += FrmOptions_Load;
+            tableLayoutPanel1.ResumeLayout(false);
+            tableLayoutPanel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)bindingSource1).EndInit();
+            tabControl1.ResumeLayout(false);
+            tabPage1.ResumeLayout(false);
+            tableLayoutPanel2.ResumeLayout(false);
+            tableLayoutPanel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)numericUpDownThreadCnt).EndInit();
+            tabPage2.ResumeLayout(false);
+            tabPage3.ResumeLayout(false);
+            tableLayoutPanel3.ResumeLayout(false);
+            tableLayoutPanel3.PerformLayout();
+            ResumeLayout(false);
         }
 
         #endregion
