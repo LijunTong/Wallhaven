@@ -18,7 +18,7 @@ namespace WallHavenGetter.Forms
     {
         private readonly OptionsService optionsService;
 
-        public FrmOptions(IniFileHelper iniFileHelper, OptionsService optionsService)
+        public FrmOptions(OptionsService optionsService)
         {
             InitializeComponent();
             this.optionsService = optionsService;
@@ -26,8 +26,9 @@ namespace WallHavenGetter.Forms
 
         private void FrmOptions_Load(object sender, EventArgs e)
         {
-            this.bindingSource1.DataSource = optionsService.GetAppOptions();
-            this.bindingSource1.EndEdit();
+            var data = optionsService.GetAppOptions();
+            this.appOptionsBindingSource.DataSource = data;
+            this.appOptionsBindingSource.EndEdit();
         }
 
         private void btnSave_Click(object sender, EventArgs e)
@@ -52,7 +53,7 @@ namespace WallHavenGetter.Forms
             if (result == DialogResult.OK)
             {
                 this.tbSmallImgPath.Text = folderBrowserDialog.SelectedPath;
-                this.bindingSource1.EndEdit();
+                this.appOptionsBindingSource.EndEdit();
             }
         }
 
@@ -64,7 +65,7 @@ namespace WallHavenGetter.Forms
             if (result == DialogResult.OK)
             {
                 this.tbFullImgPath.Text = folderBrowserDialog.SelectedPath;
-                this.bindingSource1.EndEdit();
+                this.appOptionsBindingSource.EndEdit();
             }
         }
 
@@ -75,7 +76,7 @@ namespace WallHavenGetter.Forms
 
         private bool Apply()
         {
-            AppOptions appOptions = this.bindingSource1.DataSource as AppOptions;
+            AppOptions appOptions = this.appOptionsBindingSource.DataSource as AppOptions;
             if (string.IsNullOrEmpty(appOptions.WallhavenBaseUrl))
             {
                 MessageBox.Show("Wallhaven地址不能为空", "提示", MessageBoxButtons.OK, MessageBoxIcon.Warning);

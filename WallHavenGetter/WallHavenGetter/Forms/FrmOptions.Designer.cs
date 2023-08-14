@@ -31,7 +31,7 @@
             components = new System.ComponentModel.Container();
             tableLayoutPanel1 = new TableLayoutPanel();
             tbWallhavenImgBaseUrlFormat = new TextBox();
-            bindingSource1 = new BindingSource(components);
+            appOptionsBindingSource = new BindingSource(components);
             tbWallhavenImgDetialsUrlFormat = new TextBox();
             tbWallhavenSmallImgUrlRegex = new TextBox();
             label1 = new Label();
@@ -52,8 +52,8 @@
             label7 = new Label();
             tbSmallImgPath = new TextBox();
             tbFullImgPath = new TextBox();
-            button1 = new Button();
-            button2 = new Button();
+            btnSelectCachePath = new Button();
+            btnSelectDownPath = new Button();
             tabPage2 = new TabPage();
             tabPage3 = new TabPage();
             tableLayoutPanel3 = new TableLayoutPanel();
@@ -63,7 +63,7 @@
             tbApiKey = new TextBox();
             btnApply = new Button();
             tableLayoutPanel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)bindingSource1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)appOptionsBindingSource).BeginInit();
             tabControl1.SuspendLayout();
             tabPage1.SuspendLayout();
             tableLayoutPanel2.SuspendLayout();
@@ -103,21 +103,21 @@
             // tbWallhavenImgBaseUrlFormat
             // 
             tbWallhavenImgBaseUrlFormat.Anchor = AnchorStyles.Left;
-            tbWallhavenImgBaseUrlFormat.DataBindings.Add(new Binding("Text", bindingSource1, "WallhavenSmallImgUrlRegex", true));
+            tbWallhavenImgBaseUrlFormat.DataBindings.Add(new Binding("Text", appOptionsBindingSource, "WallhavenImgBaseUrlFormat", true));
             tbWallhavenImgBaseUrlFormat.Location = new Point(114, 93);
             tbWallhavenImgBaseUrlFormat.Margin = new Padding(2, 3, 2, 3);
             tbWallhavenImgBaseUrlFormat.Name = "tbWallhavenImgBaseUrlFormat";
             tbWallhavenImgBaseUrlFormat.Size = new Size(447, 23);
             tbWallhavenImgBaseUrlFormat.TabIndex = 11;
             // 
-            // bindingSource1
+            // appOptionsBindingSource
             // 
-            bindingSource1.DataSource = typeof(Models.AppOptions);
+            appOptionsBindingSource.DataSource = typeof(Models.AppOptions);
             // 
             // tbWallhavenImgDetialsUrlFormat
             // 
             tbWallhavenImgDetialsUrlFormat.Anchor = AnchorStyles.Left;
-            tbWallhavenImgDetialsUrlFormat.DataBindings.Add(new Binding("Text", bindingSource1, "WallhavenImgDetialsUrlFormat", true));
+            tbWallhavenImgDetialsUrlFormat.DataBindings.Add(new Binding("Text", appOptionsBindingSource, "WallhavenImgDetialsUrlFormat", true));
             tbWallhavenImgDetialsUrlFormat.Location = new Point(114, 63);
             tbWallhavenImgDetialsUrlFormat.Margin = new Padding(2, 3, 2, 3);
             tbWallhavenImgDetialsUrlFormat.Name = "tbWallhavenImgDetialsUrlFormat";
@@ -127,7 +127,7 @@
             // tbWallhavenSmallImgUrlRegex
             // 
             tbWallhavenSmallImgUrlRegex.Anchor = AnchorStyles.Left;
-            tbWallhavenSmallImgUrlRegex.DataBindings.Add(new Binding("Text", bindingSource1, "WallhavenSmallImgUrlRegex", true));
+            tbWallhavenSmallImgUrlRegex.DataBindings.Add(new Binding("Text", appOptionsBindingSource, "WallhavenSmallImgUrlRegex", true));
             tbWallhavenSmallImgUrlRegex.Location = new Point(114, 33);
             tbWallhavenSmallImgUrlRegex.Margin = new Padding(2, 3, 2, 3);
             tbWallhavenSmallImgUrlRegex.Name = "tbWallhavenSmallImgUrlRegex";
@@ -185,7 +185,7 @@
             // tbWallhavenBaseUrl
             // 
             tbWallhavenBaseUrl.Anchor = AnchorStyles.Left;
-            tbWallhavenBaseUrl.DataBindings.Add(new Binding("Text", bindingSource1, "WallhavenBaseUrl", true));
+            tbWallhavenBaseUrl.DataBindings.Add(new Binding("Text", appOptionsBindingSource, "WallhavenBaseUrl", true));
             tbWallhavenBaseUrl.Location = new Point(114, 3);
             tbWallhavenBaseUrl.Margin = new Padding(2, 3, 2, 3);
             tbWallhavenBaseUrl.Name = "tbWallhavenBaseUrl";
@@ -255,8 +255,8 @@
             tableLayoutPanel2.Controls.Add(label7, 0, 3);
             tableLayoutPanel2.Controls.Add(tbSmallImgPath, 1, 2);
             tableLayoutPanel2.Controls.Add(tbFullImgPath, 1, 3);
-            tableLayoutPanel2.Controls.Add(button1, 2, 2);
-            tableLayoutPanel2.Controls.Add(button2, 2, 3);
+            tableLayoutPanel2.Controls.Add(btnSelectCachePath, 2, 2);
+            tableLayoutPanel2.Controls.Add(btnSelectDownPath, 2, 3);
             tableLayoutPanel2.Dock = DockStyle.Fill;
             tableLayoutPanel2.Location = new Point(2, 3);
             tableLayoutPanel2.Margin = new Padding(2, 3, 2, 3);
@@ -297,7 +297,7 @@
             // numericUpDownThreadCnt
             // 
             numericUpDownThreadCnt.Anchor = AnchorStyles.Left;
-            numericUpDownThreadCnt.DataBindings.Add(new Binding("Value", bindingSource1, "ThreadCount", true));
+            numericUpDownThreadCnt.DataBindings.Add(new Binding("Value", appOptionsBindingSource, "ThreadCount", true));
             numericUpDownThreadCnt.Location = new Point(114, 3);
             numericUpDownThreadCnt.Margin = new Padding(2, 3, 2, 3);
             numericUpDownThreadCnt.Maximum = new decimal(new int[] { 8, 0, 0, 0 });
@@ -309,7 +309,7 @@
             // 
             // cmbMode
             // 
-            cmbMode.DataBindings.Add(new Binding("SelectedItem", bindingSource1, "Mode", true));
+            cmbMode.DataBindings.Add(new Binding("SelectedItem", appOptionsBindingSource, "Mode", true));
             cmbMode.DropDownStyle = ComboBoxStyle.DropDownList;
             cmbMode.FormattingEnabled = true;
             cmbMode.Items.AddRange(new object[] { "爬虫", "Api" });
@@ -347,7 +347,7 @@
             // tbSmallImgPath
             // 
             tbSmallImgPath.Anchor = AnchorStyles.Left;
-            tbSmallImgPath.DataBindings.Add(new Binding("Text", bindingSource1, "SmallImageDir", true));
+            tbSmallImgPath.DataBindings.Add(new Binding("Text", appOptionsBindingSource, "SmallImageDir", true));
             tbSmallImgPath.Location = new Point(114, 63);
             tbSmallImgPath.Margin = new Padding(2, 3, 2, 3);
             tbSmallImgPath.Name = "tbSmallImgPath";
@@ -357,32 +357,34 @@
             // tbFullImgPath
             // 
             tbFullImgPath.Anchor = AnchorStyles.Left;
-            tbFullImgPath.DataBindings.Add(new Binding("Text", bindingSource1, "FullImageDir", true));
+            tbFullImgPath.DataBindings.Add(new Binding("Text", appOptionsBindingSource, "FullImageDir", true));
             tbFullImgPath.Location = new Point(114, 93);
             tbFullImgPath.Margin = new Padding(2, 3, 2, 3);
             tbFullImgPath.Name = "tbFullImgPath";
             tbFullImgPath.Size = new Size(447, 23);
             tbFullImgPath.TabIndex = 18;
             // 
-            // button1
+            // btnSelectCachePath
             // 
-            button1.Location = new Point(565, 63);
-            button1.Margin = new Padding(2, 3, 2, 3);
-            button1.Name = "button1";
-            button1.Size = new Size(27, 24);
-            button1.TabIndex = 19;
-            button1.Text = "...";
-            button1.UseVisualStyleBackColor = true;
+            btnSelectCachePath.Location = new Point(565, 63);
+            btnSelectCachePath.Margin = new Padding(2, 3, 2, 3);
+            btnSelectCachePath.Name = "btnSelectCachePath";
+            btnSelectCachePath.Size = new Size(27, 24);
+            btnSelectCachePath.TabIndex = 19;
+            btnSelectCachePath.Text = "...";
+            btnSelectCachePath.UseVisualStyleBackColor = true;
+            btnSelectCachePath.Click += btnSelectCachePath_Click;
             // 
-            // button2
+            // btnSelectDownPath
             // 
-            button2.Location = new Point(565, 93);
-            button2.Margin = new Padding(2, 3, 2, 3);
-            button2.Name = "button2";
-            button2.Size = new Size(27, 24);
-            button2.TabIndex = 20;
-            button2.Text = "...";
-            button2.UseVisualStyleBackColor = true;
+            btnSelectDownPath.Location = new Point(565, 93);
+            btnSelectDownPath.Margin = new Padding(2, 3, 2, 3);
+            btnSelectDownPath.Name = "btnSelectDownPath";
+            btnSelectDownPath.Size = new Size(27, 24);
+            btnSelectDownPath.TabIndex = 20;
+            btnSelectDownPath.Text = "...";
+            btnSelectDownPath.UseVisualStyleBackColor = true;
+            btnSelectDownPath.Click += btnSelectDownPath_Click;
             // 
             // tabPage2
             // 
@@ -444,7 +446,7 @@
             // tbApi
             // 
             tbApi.Anchor = AnchorStyles.Left;
-            tbApi.DataBindings.Add(new Binding("Text", bindingSource1, "ApiUrl", true));
+            tbApi.DataBindings.Add(new Binding("Text", appOptionsBindingSource, "ApiUrl", true));
             tbApi.Location = new Point(114, 3);
             tbApi.Margin = new Padding(2, 3, 2, 3);
             tbApi.Name = "tbApi";
@@ -466,7 +468,7 @@
             // tbApiKey
             // 
             tbApiKey.Anchor = AnchorStyles.Left;
-            tbApiKey.DataBindings.Add(new Binding("Text", bindingSource1, "ApiKey", true));
+            tbApiKey.DataBindings.Add(new Binding("Text", appOptionsBindingSource, "ApiKey", true));
             tbApiKey.Location = new Point(114, 33);
             tbApiKey.Margin = new Padding(2, 3, 2, 3);
             tbApiKey.Name = "tbApiKey";
@@ -503,7 +505,7 @@
             Load += FrmOptions_Load;
             tableLayoutPanel1.ResumeLayout(false);
             tableLayoutPanel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)bindingSource1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)appOptionsBindingSource).EndInit();
             tabControl1.ResumeLayout(false);
             tabPage1.ResumeLayout(false);
             tableLayoutPanel2.ResumeLayout(false);
@@ -527,7 +529,6 @@
         private TextBox tbWallhavenBaseUrl;
         private TextBox tbWallhavenImgBaseUrlFormat;
         private Label label5;
-        private BindingSource bindingSource1;
         private Button btnCancel;
         private Button btnSave;
         private TabControl tabControl1;
@@ -547,9 +548,10 @@
         private Label label7;
         private TextBox tbSmallImgPath;
         private TextBox tbFullImgPath;
-        private Button button1;
-        private Button button2;
+        private Button btnSelectCachePath;
+        private Button btnSelectDownPath;
         private Label label10;
         private TextBox tbApiKey;
+        private BindingSource appOptionsBindingSource;
     }
 }
