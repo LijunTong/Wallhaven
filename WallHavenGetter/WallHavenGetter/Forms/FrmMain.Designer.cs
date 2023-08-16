@@ -29,409 +29,385 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmMain));
-            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
-            this.toolItemSet = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolItemCache = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolItemAbout = new System.Windows.Forms.ToolStripMenuItem();
-            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
-            this.tsLoadStatus = new System.Windows.Forms.ToolStripStatusLabel();
-            this.tsPBarLoadStatus = new System.Windows.Forms.ToolStripProgressBar();
-            this.toolStrip1 = new System.Windows.Forms.ToolStrip();
-            this.toolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
-            this.toolStripTextBoxUrl = new System.Windows.Forms.ToolStripTextBox();
-            this.toolStripToolBar = new System.Windows.Forms.ToolStrip();
-            this.toolStripLabel2 = new System.Windows.Forms.ToolStripLabel();
-            this.toolStripComboBoxType = new System.Windows.Forms.ToolStripComboBox();
-            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
-            this.tsLblKey = new System.Windows.Forms.ToolStripLabel();
-            this.toolStripTextBoxInput = new System.Windows.Forms.ToolStripTextBox();
-            this.toolStripDropDownCategories = new System.Windows.Forms.ToolStripDropDownButton();
-            this.toolItemGeneral = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolItemAnime = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolitemPeople = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripDropDownButton1 = new System.Windows.Forms.ToolStripDropDownButton();
-            this.sFWToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.sketToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.nSFWToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripLabelSort = new System.Windows.Forms.ToolStripLabel();
-            this.toolStripComboBoxSort = new System.Windows.Forms.ToolStripComboBox();
-            this.toolStripLabel4 = new System.Windows.Forms.ToolStripLabel();
-            this.toolStripTextBoxPage = new System.Windows.Forms.ToolStripTextBox();
-            this.toolStripLabel3 = new System.Windows.Forms.ToolStripLabel();
-            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolStripButtonGet = new System.Windows.Forms.ToolStripButton();
-            this.toolStripButtonDownload = new System.Windows.Forms.ToolStripButton();
-            this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
-            this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.imageListView1 = new Manina.Windows.Forms.ImageListView();
-            this.menuStrip1.SuspendLayout();
-            this.statusStrip1.SuspendLayout();
-            this.toolStrip1.SuspendLayout();
-            this.toolStripToolBar.SuspendLayout();
-            this.panel1.SuspendLayout();
-            this.SuspendLayout();
+            menuStrip1 = new MenuStrip();
+            toolItemSet = new ToolStripMenuItem();
+            toolItemCache = new ToolStripMenuItem();
+            toolStripMenuItemLog = new ToolStripMenuItem();
+            toolItemAbout = new ToolStripMenuItem();
+            statusStrip1 = new StatusStrip();
+            tsLoadStatus = new ToolStripStatusLabel();
+            tsPBarLoadStatus = new ToolStripProgressBar();
+            toolStrip1 = new ToolStrip();
+            toolStripLabel1 = new ToolStripLabel();
+            toolStripTextBoxUrl = new ToolStripTextBox();
+            toolStripToolBar = new ToolStrip();
+            toolStripLabel2 = new ToolStripLabel();
+            toolStripComboBoxType = new ToolStripComboBox();
+            toolStripSeparator2 = new ToolStripSeparator();
+            tsLblKey = new ToolStripLabel();
+            toolStripTextBoxInput = new ToolStripTextBox();
+            toolStripDropDownCategories = new ToolStripDropDownButton();
+            toolItemGeneral = new ToolStripMenuItem();
+            toolItemAnime = new ToolStripMenuItem();
+            toolitemPeople = new ToolStripMenuItem();
+            toolStripDropDownButton1 = new ToolStripDropDownButton();
+            sFWToolStripMenuItem = new ToolStripMenuItem();
+            sketToolStripMenuItem = new ToolStripMenuItem();
+            nSFWToolStripMenuItem = new ToolStripMenuItem();
+            toolStripLabelSort = new ToolStripLabel();
+            toolStripComboBoxSort = new ToolStripComboBox();
+            toolStripLabel4 = new ToolStripLabel();
+            toolStripTextBoxPage = new ToolStripTextBox();
+            toolStripLabel3 = new ToolStripLabel();
+            toolStripSeparator1 = new ToolStripSeparator();
+            toolStripButtonGet = new ToolStripButton();
+            toolStripButtonDownload = new ToolStripSplitButton();
+            toolStripMenuItemCancel = new ToolStripMenuItem();
+            打开下载目录ToolStripMenuItem = new ToolStripMenuItem();
+            panel1 = new Panel();
+            imageListView1 = new Manina.Windows.Forms.ImageListView();
+            menuStrip1.SuspendLayout();
+            statusStrip1.SuspendLayout();
+            toolStrip1.SuspendLayout();
+            toolStripToolBar.SuspendLayout();
+            panel1.SuspendLayout();
+            SuspendLayout();
             // 
             // menuStrip1
             // 
-            this.menuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
-            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolItemSet,
-            this.toolItemCache,
-            this.toolItemAbout});
-            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
-            this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1100, 27);
-            this.menuStrip1.TabIndex = 0;
-            this.menuStrip1.Text = "menuStrip1";
+            menuStrip1.ImageScalingSize = new Size(20, 20);
+            menuStrip1.Items.AddRange(new ToolStripItem[] { toolItemSet, toolItemCache, toolStripMenuItemLog, toolItemAbout });
+            menuStrip1.Location = new Point(0, 0);
+            menuStrip1.Name = "menuStrip1";
+            menuStrip1.Padding = new Padding(5, 2, 0, 2);
+            menuStrip1.Size = new Size(1279, 25);
+            menuStrip1.TabIndex = 0;
+            menuStrip1.Text = "menuStrip1";
             // 
             // toolItemSet
             // 
-            this.toolItemSet.Name = "toolItemSet";
-            this.toolItemSet.Size = new System.Drawing.Size(47, 23);
-            this.toolItemSet.Text = "设置";
-            this.toolItemSet.Click += new System.EventHandler(this.toolItemSet_Click);
+            toolItemSet.Name = "toolItemSet";
+            toolItemSet.Size = new Size(44, 21);
+            toolItemSet.Text = "设置";
+            toolItemSet.Click += toolItemSet_Click;
             // 
             // toolItemCache
             // 
-            this.toolItemCache.Name = "toolItemCache";
-            this.toolItemCache.Size = new System.Drawing.Size(47, 23);
-            this.toolItemCache.Text = "缓存";
-            this.toolItemCache.Click += new System.EventHandler(this.toolItemCache_Click);
+            toolItemCache.Name = "toolItemCache";
+            toolItemCache.Size = new Size(44, 21);
+            toolItemCache.Text = "缓存";
+            toolItemCache.Click += toolItemCache_Click;
+            // 
+            // toolStripMenuItemLog
+            // 
+            toolStripMenuItemLog.Name = "toolStripMenuItemLog";
+            toolStripMenuItemLog.Size = new Size(44, 21);
+            toolStripMenuItemLog.Text = "日志";
+            toolStripMenuItemLog.Click += toolStripMenuItemLog_Click;
             // 
             // toolItemAbout
             // 
-            this.toolItemAbout.Name = "toolItemAbout";
-            this.toolItemAbout.Size = new System.Drawing.Size(47, 23);
-            this.toolItemAbout.Text = "关于";
-            this.toolItemAbout.Click += new System.EventHandler(this.toolItemAbout_Click);
+            toolItemAbout.Name = "toolItemAbout";
+            toolItemAbout.Size = new Size(44, 21);
+            toolItemAbout.Text = "关于";
+            toolItemAbout.Click += toolItemAbout_Click;
             // 
             // statusStrip1
             // 
-            this.statusStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
-            this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.tsLoadStatus,
-            this.tsPBarLoadStatus});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 552);
-            this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(1100, 22);
-            this.statusStrip1.TabIndex = 1;
-            this.statusStrip1.Text = "statusStrip1";
+            statusStrip1.ImageScalingSize = new Size(20, 20);
+            statusStrip1.Items.AddRange(new ToolStripItem[] { tsLoadStatus, tsPBarLoadStatus });
+            statusStrip1.Location = new Point(0, 635);
+            statusStrip1.Name = "statusStrip1";
+            statusStrip1.Padding = new Padding(1, 0, 12, 0);
+            statusStrip1.Size = new Size(1279, 22);
+            statusStrip1.TabIndex = 1;
+            statusStrip1.Text = "statusStrip1";
             // 
             // tsLoadStatus
             // 
-            this.tsLoadStatus.Name = "tsLoadStatus";
-            this.tsLoadStatus.Size = new System.Drawing.Size(0, 17);
+            tsLoadStatus.Name = "tsLoadStatus";
+            tsLoadStatus.Size = new Size(0, 17);
             // 
             // tsPBarLoadStatus
             // 
-            this.tsPBarLoadStatus.Name = "tsPBarLoadStatus";
-            this.tsPBarLoadStatus.Size = new System.Drawing.Size(200, 16);
+            tsPBarLoadStatus.Name = "tsPBarLoadStatus";
+            tsPBarLoadStatus.Size = new Size(175, 16);
             // 
             // toolStrip1
             // 
-            this.toolStrip1.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.toolStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
-            this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripLabel1,
-            this.toolStripTextBoxUrl});
-            this.toolStrip1.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.HorizontalStackWithOverflow;
-            this.toolStrip1.Location = new System.Drawing.Point(0, 27);
-            this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Padding = new System.Windows.Forms.Padding(2);
-            this.toolStrip1.Size = new System.Drawing.Size(1100, 28);
-            this.toolStrip1.TabIndex = 2;
-            this.toolStrip1.Text = "toolStrip1";
+            toolStrip1.BackColor = SystemColors.ControlLight;
+            toolStrip1.ImageScalingSize = new Size(20, 20);
+            toolStrip1.Items.AddRange(new ToolStripItem[] { toolStripLabel1, toolStripTextBoxUrl });
+            toolStrip1.LayoutStyle = ToolStripLayoutStyle.HorizontalStackWithOverflow;
+            toolStrip1.Location = new Point(0, 25);
+            toolStrip1.Name = "toolStrip1";
+            toolStrip1.Padding = new Padding(2);
+            toolStrip1.Size = new Size(1279, 27);
+            toolStrip1.TabIndex = 2;
+            toolStrip1.Text = "toolStrip1";
             // 
             // toolStripLabel1
             // 
-            this.toolStripLabel1.Name = "toolStripLabel1";
-            this.toolStripLabel1.Size = new System.Drawing.Size(35, 21);
-            this.toolStripLabel1.Text = "网址";
+            toolStripLabel1.Name = "toolStripLabel1";
+            toolStripLabel1.Size = new Size(32, 20);
+            toolStripLabel1.Text = "网址";
             // 
             // toolStripTextBoxUrl
             // 
-            this.toolStripTextBoxUrl.Name = "toolStripTextBoxUrl";
-            this.toolStripTextBoxUrl.ReadOnly = true;
-            this.toolStripTextBoxUrl.Size = new System.Drawing.Size(900, 24);
+            toolStripTextBoxUrl.Name = "toolStripTextBoxUrl";
+            toolStripTextBoxUrl.ReadOnly = true;
+            toolStripTextBoxUrl.Size = new Size(788, 23);
             // 
             // toolStripToolBar
             // 
-            this.toolStripToolBar.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.toolStripToolBar.ImageScalingSize = new System.Drawing.Size(20, 20);
-            this.toolStripToolBar.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripLabel2,
-            this.toolStripComboBoxType,
-            this.toolStripSeparator2,
-            this.tsLblKey,
-            this.toolStripTextBoxInput,
-            this.toolStripDropDownCategories,
-            this.toolStripDropDownButton1,
-            this.toolStripLabelSort,
-            this.toolStripComboBoxSort,
-            this.toolStripLabel4,
-            this.toolStripTextBoxPage,
-            this.toolStripLabel3,
-            this.toolStripSeparator1,
-            this.toolStripButtonGet,
-            this.toolStripButtonDownload,
-            this.toolStripButton1,
-            this.toolStripButton2});
-            this.toolStripToolBar.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.HorizontalStackWithOverflow;
-            this.toolStripToolBar.Location = new System.Drawing.Point(0, 55);
-            this.toolStripToolBar.Name = "toolStripToolBar";
-            this.toolStripToolBar.Padding = new System.Windows.Forms.Padding(2);
-            this.toolStripToolBar.Size = new System.Drawing.Size(1100, 31);
-            this.toolStripToolBar.TabIndex = 3;
-            this.toolStripToolBar.Text = "toolStrip2";
+            toolStripToolBar.BackColor = SystemColors.ControlLight;
+            toolStripToolBar.ImageScalingSize = new Size(20, 20);
+            toolStripToolBar.Items.AddRange(new ToolStripItem[] { toolStripLabel2, toolStripComboBoxType, toolStripSeparator2, tsLblKey, toolStripTextBoxInput, toolStripDropDownCategories, toolStripDropDownButton1, toolStripLabelSort, toolStripComboBoxSort, toolStripLabel4, toolStripTextBoxPage, toolStripLabel3, toolStripSeparator1, toolStripButtonGet, toolStripButtonDownload });
+            toolStripToolBar.LayoutStyle = ToolStripLayoutStyle.HorizontalStackWithOverflow;
+            toolStripToolBar.Location = new Point(0, 52);
+            toolStripToolBar.Name = "toolStripToolBar";
+            toolStripToolBar.Padding = new Padding(2);
+            toolStripToolBar.Size = new Size(1279, 29);
+            toolStripToolBar.TabIndex = 3;
+            toolStripToolBar.Text = "toolStrip2";
             // 
             // toolStripLabel2
             // 
-            this.toolStripLabel2.Name = "toolStripLabel2";
-            this.toolStripLabel2.Size = new System.Drawing.Size(48, 24);
-            this.toolStripLabel2.Text = "主题：";
+            toolStripLabel2.Name = "toolStripLabel2";
+            toolStripLabel2.Size = new Size(44, 22);
+            toolStripLabel2.Text = "主题：";
             // 
             // toolStripComboBoxType
             // 
-            this.toolStripComboBoxType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.toolStripComboBoxType.Name = "toolStripComboBoxType";
-            this.toolStripComboBoxType.Size = new System.Drawing.Size(121, 27);
-            this.toolStripComboBoxType.SelectedIndexChanged += new System.EventHandler(this.toolStripComboBoxType_SelectedIndexChanged);
+            toolStripComboBoxType.DropDownStyle = ComboBoxStyle.DropDownList;
+            toolStripComboBoxType.Name = "toolStripComboBoxType";
+            toolStripComboBoxType.Size = new Size(106, 25);
+            toolStripComboBoxType.SelectedIndexChanged += toolStripComboBoxType_SelectedIndexChanged;
             // 
             // toolStripSeparator2
             // 
-            this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 27);
+            toolStripSeparator2.Name = "toolStripSeparator2";
+            toolStripSeparator2.Size = new Size(6, 25);
             // 
             // tsLblKey
             // 
-            this.tsLblKey.Name = "tsLblKey";
-            this.tsLblKey.Size = new System.Drawing.Size(61, 24);
-            this.tsLblKey.Text = "关键词：";
+            tsLblKey.Name = "tsLblKey";
+            tsLblKey.Size = new Size(56, 22);
+            tsLblKey.Text = "关键词：";
             // 
             // toolStripTextBoxInput
             // 
-            this.toolStripTextBoxInput.Name = "toolStripTextBoxInput";
-            this.toolStripTextBoxInput.Size = new System.Drawing.Size(150, 27);
-            this.toolStripTextBoxInput.TextChanged += new System.EventHandler(this.toolStripTextBoxInput_TextChanged);
+            toolStripTextBoxInput.Name = "toolStripTextBoxInput";
+            toolStripTextBoxInput.Size = new Size(132, 25);
+            toolStripTextBoxInput.TextChanged += toolStripTextBoxInput_TextChanged;
             // 
             // toolStripDropDownCategories
             // 
-            this.toolStripDropDownCategories.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.toolStripDropDownCategories.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolItemGeneral,
-            this.toolItemAnime,
-            this.toolitemPeople});
-            this.toolStripDropDownCategories.Image = ((System.Drawing.Image)(resources.GetObject("toolStripDropDownCategories.Image")));
-            this.toolStripDropDownCategories.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripDropDownCategories.Name = "toolStripDropDownCategories";
-            this.toolStripDropDownCategories.Size = new System.Drawing.Size(48, 24);
-            this.toolStripDropDownCategories.Text = "类别";
+            toolStripDropDownCategories.DisplayStyle = ToolStripItemDisplayStyle.Text;
+            toolStripDropDownCategories.DropDownItems.AddRange(new ToolStripItem[] { toolItemGeneral, toolItemAnime, toolitemPeople });
+            toolStripDropDownCategories.Image = (Image)resources.GetObject("toolStripDropDownCategories.Image");
+            toolStripDropDownCategories.ImageTransparentColor = Color.Magenta;
+            toolStripDropDownCategories.Name = "toolStripDropDownCategories";
+            toolStripDropDownCategories.Size = new Size(45, 22);
+            toolStripDropDownCategories.Text = "类别";
             // 
             // toolItemGeneral
             // 
-            this.toolItemGeneral.Checked = true;
-            this.toolItemGeneral.CheckOnClick = true;
-            this.toolItemGeneral.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.toolItemGeneral.Name = "toolItemGeneral";
-            this.toolItemGeneral.Size = new System.Drawing.Size(104, 24);
-            this.toolItemGeneral.Text = "常规";
-            this.toolItemGeneral.CheckedChanged += new System.EventHandler(this.toolItemGeneral_CheckedChanged);
+            toolItemGeneral.Checked = true;
+            toolItemGeneral.CheckOnClick = true;
+            toolItemGeneral.CheckState = CheckState.Checked;
+            toolItemGeneral.Name = "toolItemGeneral";
+            toolItemGeneral.Size = new Size(100, 22);
+            toolItemGeneral.Text = "常规";
+            toolItemGeneral.CheckedChanged += toolItemGeneral_CheckedChanged;
             // 
             // toolItemAnime
             // 
-            this.toolItemAnime.Checked = true;
-            this.toolItemAnime.CheckOnClick = true;
-            this.toolItemAnime.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.toolItemAnime.Name = "toolItemAnime";
-            this.toolItemAnime.Size = new System.Drawing.Size(104, 24);
-            this.toolItemAnime.Text = "动漫";
-            this.toolItemAnime.CheckedChanged += new System.EventHandler(this.toolItemGeneral_CheckedChanged);
+            toolItemAnime.Checked = true;
+            toolItemAnime.CheckOnClick = true;
+            toolItemAnime.CheckState = CheckState.Checked;
+            toolItemAnime.Name = "toolItemAnime";
+            toolItemAnime.Size = new Size(100, 22);
+            toolItemAnime.Text = "动漫";
+            toolItemAnime.CheckedChanged += toolItemGeneral_CheckedChanged;
             // 
             // toolitemPeople
             // 
-            this.toolitemPeople.Checked = true;
-            this.toolitemPeople.CheckOnClick = true;
-            this.toolitemPeople.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.toolitemPeople.Name = "toolitemPeople";
-            this.toolitemPeople.Size = new System.Drawing.Size(104, 24);
-            this.toolitemPeople.Text = "人";
-            this.toolitemPeople.CheckedChanged += new System.EventHandler(this.toolItemGeneral_CheckedChanged);
+            toolitemPeople.Checked = true;
+            toolitemPeople.CheckOnClick = true;
+            toolitemPeople.CheckState = CheckState.Checked;
+            toolitemPeople.Name = "toolitemPeople";
+            toolitemPeople.Size = new Size(100, 22);
+            toolitemPeople.Text = "人";
+            toolitemPeople.CheckedChanged += toolItemGeneral_CheckedChanged;
             // 
             // toolStripDropDownButton1
             // 
-            this.toolStripDropDownButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.toolStripDropDownButton1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.sFWToolStripMenuItem,
-            this.sketToolStripMenuItem,
-            this.nSFWToolStripMenuItem});
-            this.toolStripDropDownButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripDropDownButton1.Image")));
-            this.toolStripDropDownButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripDropDownButton1.Name = "toolStripDropDownButton1";
-            this.toolStripDropDownButton1.Size = new System.Drawing.Size(74, 24);
-            this.toolStripDropDownButton1.Text = "安全程度";
+            toolStripDropDownButton1.DisplayStyle = ToolStripItemDisplayStyle.Text;
+            toolStripDropDownButton1.DropDownItems.AddRange(new ToolStripItem[] { sFWToolStripMenuItem, sketToolStripMenuItem, nSFWToolStripMenuItem });
+            toolStripDropDownButton1.Image = (Image)resources.GetObject("toolStripDropDownButton1.Image");
+            toolStripDropDownButton1.ImageTransparentColor = Color.Magenta;
+            toolStripDropDownButton1.Name = "toolStripDropDownButton1";
+            toolStripDropDownButton1.Size = new Size(69, 22);
+            toolStripDropDownButton1.Text = "安全程度";
             // 
             // sFWToolStripMenuItem
             // 
-            this.sFWToolStripMenuItem.Checked = true;
-            this.sFWToolStripMenuItem.CheckOnClick = true;
-            this.sFWToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.sFWToolStripMenuItem.Name = "sFWToolStripMenuItem";
-            this.sFWToolStripMenuItem.Size = new System.Drawing.Size(127, 24);
-            this.sFWToolStripMenuItem.Text = "SFW";
-            this.sFWToolStripMenuItem.ToolTipText = "\"Safe for work\" wallpapers grandma approves";
-            this.sFWToolStripMenuItem.CheckedChanged += new System.EventHandler(this.sFWToolStripMenuItem_CheckedChanged);
+            sFWToolStripMenuItem.Checked = true;
+            sFWToolStripMenuItem.CheckOnClick = true;
+            sFWToolStripMenuItem.CheckState = CheckState.Checked;
+            sFWToolStripMenuItem.Name = "sFWToolStripMenuItem";
+            sFWToolStripMenuItem.Size = new Size(120, 22);
+            sFWToolStripMenuItem.Text = "SFW";
+            sFWToolStripMenuItem.ToolTipText = "\"Safe for work\" wallpapers grandma approves";
+            sFWToolStripMenuItem.CheckedChanged += sFWToolStripMenuItem_CheckedChanged;
             // 
             // sketToolStripMenuItem
             // 
-            this.sketToolStripMenuItem.Checked = true;
-            this.sketToolStripMenuItem.CheckOnClick = true;
-            this.sketToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.sketToolStripMenuItem.Name = "sketToolStripMenuItem";
-            this.sketToolStripMenuItem.Size = new System.Drawing.Size(127, 24);
-            this.sketToolStripMenuItem.Text = "Sketchy";
-            this.sketToolStripMenuItem.ToolTipText = "Not quite SFW not quite NSFW. Grandma might be uncomfortable";
-            this.sketToolStripMenuItem.CheckedChanged += new System.EventHandler(this.sFWToolStripMenuItem_CheckedChanged);
+            sketToolStripMenuItem.Checked = true;
+            sketToolStripMenuItem.CheckOnClick = true;
+            sketToolStripMenuItem.CheckState = CheckState.Checked;
+            sketToolStripMenuItem.Name = "sketToolStripMenuItem";
+            sketToolStripMenuItem.Size = new Size(120, 22);
+            sketToolStripMenuItem.Text = "Sketchy";
+            sketToolStripMenuItem.ToolTipText = "Not quite SFW not quite NSFW. Grandma might be uncomfortable";
+            sketToolStripMenuItem.CheckedChanged += sFWToolStripMenuItem_CheckedChanged;
             // 
             // nSFWToolStripMenuItem
             // 
-            this.nSFWToolStripMenuItem.CheckOnClick = true;
-            this.nSFWToolStripMenuItem.Name = "nSFWToolStripMenuItem";
-            this.nSFWToolStripMenuItem.Size = new System.Drawing.Size(127, 24);
-            this.nSFWToolStripMenuItem.Text = "NSFW";
-            this.nSFWToolStripMenuItem.ToolTipText = "\"Not safe for work\" Grandma isn\'t sure who you are anymore";
-            this.nSFWToolStripMenuItem.CheckedChanged += new System.EventHandler(this.sFWToolStripMenuItem_CheckedChanged);
+            nSFWToolStripMenuItem.CheckOnClick = true;
+            nSFWToolStripMenuItem.Name = "nSFWToolStripMenuItem";
+            nSFWToolStripMenuItem.Size = new Size(120, 22);
+            nSFWToolStripMenuItem.Text = "NSFW";
+            nSFWToolStripMenuItem.ToolTipText = "\"Not safe for work\" Grandma isn't sure who you are anymore";
+            nSFWToolStripMenuItem.CheckedChanged += sFWToolStripMenuItem_CheckedChanged;
             // 
             // toolStripLabelSort
             // 
-            this.toolStripLabelSort.Name = "toolStripLabelSort";
-            this.toolStripLabelSort.Size = new System.Drawing.Size(35, 24);
-            this.toolStripLabelSort.Text = "排序";
+            toolStripLabelSort.Name = "toolStripLabelSort";
+            toolStripLabelSort.Size = new Size(32, 22);
+            toolStripLabelSort.Text = "排序";
             // 
             // toolStripComboBoxSort
             // 
-            this.toolStripComboBoxSort.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.toolStripComboBoxSort.Name = "toolStripComboBoxSort";
-            this.toolStripComboBoxSort.Size = new System.Drawing.Size(121, 27);
-            this.toolStripComboBoxSort.SelectedIndexChanged += new System.EventHandler(this.toolStripComboBoxSort_SelectedIndexChanged);
+            toolStripComboBoxSort.DropDownStyle = ComboBoxStyle.DropDownList;
+            toolStripComboBoxSort.Name = "toolStripComboBoxSort";
+            toolStripComboBoxSort.Size = new Size(106, 25);
+            toolStripComboBoxSort.SelectedIndexChanged += toolStripComboBoxSort_SelectedIndexChanged;
             // 
             // toolStripLabel4
             // 
-            this.toolStripLabel4.Name = "toolStripLabel4";
-            this.toolStripLabel4.Size = new System.Drawing.Size(35, 24);
-            this.toolStripLabel4.Text = "页数";
+            toolStripLabel4.Name = "toolStripLabel4";
+            toolStripLabel4.Size = new Size(32, 22);
+            toolStripLabel4.Text = "页数";
             // 
             // toolStripTextBoxPage
             // 
-            this.toolStripTextBoxPage.Name = "toolStripTextBoxPage";
-            this.toolStripTextBoxPage.Size = new System.Drawing.Size(30, 27);
-            this.toolStripTextBoxPage.Text = "1";
-            this.toolStripTextBoxPage.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.toolStripTextBoxPage_KeyPress);
-            this.toolStripTextBoxPage.MouseLeave += new System.EventHandler(this.toolStripTextBoxPage_MouseLeave);
-            this.toolStripTextBoxPage.TextChanged += new System.EventHandler(this.toolStripTextBoxPage_TextChanged);
+            toolStripTextBoxPage.Name = "toolStripTextBoxPage";
+            toolStripTextBoxPage.Size = new Size(27, 25);
+            toolStripTextBoxPage.Text = "1";
+            toolStripTextBoxPage.KeyPress += toolStripTextBoxPage_KeyPress;
+            toolStripTextBoxPage.MouseLeave += toolStripTextBoxPage_MouseLeave;
+            toolStripTextBoxPage.TextChanged += toolStripTextBoxPage_TextChanged;
             // 
             // toolStripLabel3
             // 
-            this.toolStripLabel3.Name = "toolStripLabel3";
-            this.toolStripLabel3.Size = new System.Drawing.Size(51, 24);
-            this.toolStripLabel3.Text = "每页24";
+            toolStripLabel3.Name = "toolStripLabel3";
+            toolStripLabel3.Size = new Size(46, 22);
+            toolStripLabel3.Text = "每页24";
             // 
             // toolStripSeparator1
             // 
-            this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 27);
+            toolStripSeparator1.Name = "toolStripSeparator1";
+            toolStripSeparator1.Size = new Size(6, 25);
             // 
             // toolStripButtonGet
             // 
-            this.toolStripButtonGet.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.toolStripButtonGet.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButtonGet.Image")));
-            this.toolStripButtonGet.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButtonGet.Name = "toolStripButtonGet";
-            this.toolStripButtonGet.Size = new System.Drawing.Size(39, 24);
-            this.toolStripButtonGet.Text = "搜索";
-            this.toolStripButtonGet.Click += new System.EventHandler(this.toolStripButtonGet_Click);
+            toolStripButtonGet.DisplayStyle = ToolStripItemDisplayStyle.Text;
+            toolStripButtonGet.Image = (Image)resources.GetObject("toolStripButtonGet.Image");
+            toolStripButtonGet.ImageTransparentColor = Color.Magenta;
+            toolStripButtonGet.Name = "toolStripButtonGet";
+            toolStripButtonGet.Size = new Size(36, 22);
+            toolStripButtonGet.Text = "搜索";
+            toolStripButtonGet.Click += toolStripButtonGet_Click;
             // 
             // toolStripButtonDownload
             // 
-            this.toolStripButtonDownload.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.toolStripButtonDownload.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButtonDownload.Image")));
-            this.toolStripButtonDownload.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButtonDownload.Name = "toolStripButtonDownload";
-            this.toolStripButtonDownload.Size = new System.Drawing.Size(39, 24);
-            this.toolStripButtonDownload.Text = "下载";
-            this.toolStripButtonDownload.Click += new System.EventHandler(this.toolStripButtonDownload_Click);
+            toolStripButtonDownload.DisplayStyle = ToolStripItemDisplayStyle.Text;
+            toolStripButtonDownload.DropDownItems.AddRange(new ToolStripItem[] { toolStripMenuItemCancel, 打开下载目录ToolStripMenuItem });
+            toolStripButtonDownload.Image = (Image)resources.GetObject("toolStripButtonDownload.Image");
+            toolStripButtonDownload.ImageTransparentColor = Color.Magenta;
+            toolStripButtonDownload.Name = "toolStripButtonDownload";
+            toolStripButtonDownload.Size = new Size(48, 22);
+            toolStripButtonDownload.Text = "下载";
+            toolStripButtonDownload.ButtonClick += toolStripButtonDownload_Click;
             // 
-            // toolStripButton1
+            // toolStripMenuItemCancel
             // 
-            this.toolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.toolStripButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton1.Image")));
-            this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton1.Name = "toolStripButton1";
-            this.toolStripButton1.Size = new System.Drawing.Size(65, 24);
-            this.toolStripButton1.Text = "下载全部";
-            this.toolStripButton1.Click += new System.EventHandler(this.toolStripButton1_Click);
+            toolStripMenuItemCancel.Name = "toolStripMenuItemCancel";
+            toolStripMenuItemCancel.Size = new Size(148, 22);
+            toolStripMenuItemCancel.Text = "取消下载";
+            toolStripMenuItemCancel.Visible = false;
+            toolStripMenuItemCancel.Click += toolStripMenuItemCancel_Click;
             // 
-            // toolStripButton2
+            // 打开下载目录ToolStripMenuItem
             // 
-            this.toolStripButton2.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.toolStripButton2.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton2.Image")));
-            this.toolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton2.Name = "toolStripButton2";
-            this.toolStripButton2.Size = new System.Drawing.Size(91, 24);
-            this.toolStripButton2.Text = "打开下载目录";
-            this.toolStripButton2.Click += new System.EventHandler(this.toolStripButton2_Click);
+            打开下载目录ToolStripMenuItem.Name = "打开下载目录ToolStripMenuItem";
+            打开下载目录ToolStripMenuItem.Size = new Size(148, 22);
+            打开下载目录ToolStripMenuItem.Text = "打开下载目录";
+            打开下载目录ToolStripMenuItem.Click += toolStripButton2_Click;
             // 
             // panel1
             // 
-            this.panel1.Controls.Add(this.imageListView1);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel1.Location = new System.Drawing.Point(0, 86);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1100, 466);
-            this.panel1.TabIndex = 4;
+            panel1.Controls.Add(imageListView1);
+            panel1.Dock = DockStyle.Fill;
+            panel1.Location = new Point(0, 81);
+            panel1.Name = "panel1";
+            panel1.Size = new Size(1279, 554);
+            panel1.TabIndex = 4;
             // 
             // imageListView1
             // 
-            this.imageListView1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.imageListView1.Location = new System.Drawing.Point(0, 0);
-            this.imageListView1.Name = "imageListView1";
-            this.imageListView1.PersistentCacheDirectory = "";
-            this.imageListView1.PersistentCacheSize = ((long)(100));
-            this.imageListView1.Size = new System.Drawing.Size(1100, 466);
-            this.imageListView1.TabIndex = 4;
-            this.imageListView1.UseWIC = true;
-            this.imageListView1.ItemDoubleClick += new Manina.Windows.Forms.ItemDoubleClickEventHandler(this.imageListView1_ItemDoubleClick);
+            imageListView1.Dock = DockStyle.Fill;
+            imageListView1.Location = new Point(0, 0);
+            imageListView1.Name = "imageListView1";
+            imageListView1.PersistentCacheDirectory = "";
+            imageListView1.PersistentCacheSize = 100L;
+            imageListView1.Size = new Size(1279, 554);
+            imageListView1.TabIndex = 4;
+            imageListView1.UseWIC = true;
+            imageListView1.ItemDoubleClick += imageListView1_ItemDoubleClick;
+            imageListView1.KeyDown += imageListView1_KeyDown;
             // 
             // FrmMain
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 19F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1100, 574);
-            this.Controls.Add(this.panel1);
-            this.Controls.Add(this.toolStripToolBar);
-            this.Controls.Add(this.toolStrip1);
-            this.Controls.Add(this.statusStrip1);
-            this.Controls.Add(this.menuStrip1);
-            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.MainMenuStrip = this.menuStrip1;
-            this.Name = "FrmMain";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "WallHaven";
-            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
-            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FrmMain_FormClosed);
-            this.Load += new System.EventHandler(this.FrmMain_Load);
-            this.menuStrip1.ResumeLayout(false);
-            this.menuStrip1.PerformLayout();
-            this.statusStrip1.ResumeLayout(false);
-            this.statusStrip1.PerformLayout();
-            this.toolStrip1.ResumeLayout(false);
-            this.toolStrip1.PerformLayout();
-            this.toolStripToolBar.ResumeLayout(false);
-            this.toolStripToolBar.PerformLayout();
-            this.panel1.ResumeLayout(false);
-            this.ResumeLayout(false);
-            this.PerformLayout();
-
+            AutoScaleDimensions = new SizeF(7F, 17F);
+            AutoScaleMode = AutoScaleMode.Font;
+            ClientSize = new Size(1279, 657);
+            Controls.Add(panel1);
+            Controls.Add(toolStripToolBar);
+            Controls.Add(toolStrip1);
+            Controls.Add(statusStrip1);
+            Controls.Add(menuStrip1);
+            Icon = (Icon)resources.GetObject("$this.Icon");
+            MainMenuStrip = menuStrip1;
+            Name = "FrmMain";
+            StartPosition = FormStartPosition.CenterScreen;
+            Text = "WallHaven";
+            WindowState = FormWindowState.Maximized;
+            FormClosed += FrmMain_FormClosed;
+            Load += FrmMain_Load;
+            menuStrip1.ResumeLayout(false);
+            menuStrip1.PerformLayout();
+            statusStrip1.ResumeLayout(false);
+            statusStrip1.PerformLayout();
+            toolStrip1.ResumeLayout(false);
+            toolStrip1.PerformLayout();
+            toolStripToolBar.ResumeLayout(false);
+            toolStripToolBar.PerformLayout();
+            panel1.ResumeLayout(false);
+            ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
@@ -451,9 +427,6 @@
         private Panel panel1;
         private ToolStripStatusLabel tsLoadStatus;
         private ToolStripProgressBar tsPBarLoadStatus;
-        private ToolStripButton toolStripButtonDownload;
-        private ToolStripButton toolStripButton1;
-        private ToolStripButton toolStripButton2;
         private ToolStripMenuItem toolItemSet;
         private ToolStripMenuItem toolItemCache;
         private ToolStripMenuItem toolItemAbout;
@@ -472,5 +445,9 @@
         private ToolStripMenuItem sFWToolStripMenuItem;
         private ToolStripMenuItem sketToolStripMenuItem;
         private ToolStripMenuItem nSFWToolStripMenuItem;
+        private ToolStripSplitButton toolStripButtonDownload;
+        private ToolStripMenuItem 打开下载目录ToolStripMenuItem;
+        private ToolStripMenuItem toolStripMenuItemCancel;
+        private ToolStripMenuItem toolStripMenuItemLog;
     }
 }

@@ -58,7 +58,7 @@ namespace WallHavenGetter.Forms
         public string GetDirSize(string dir)
         {
             long size = 0;
-            FileHelper.GetDirSizeByPath(dir,ref  size);
+            FileHelper.GetDirSizeByPath(dir, ref size);
             if (size >= 0 && size < 1024)
             {
                 return $"{size}B";

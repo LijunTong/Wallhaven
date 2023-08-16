@@ -28,115 +28,110 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.btnCleanSmallImg = new System.Windows.Forms.Button();
-            this.lblSmallImg = new System.Windows.Forms.Label();
-            this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.btnCleanFullImg = new System.Windows.Forms.Button();
-            this.lblFullimg = new System.Windows.Forms.Label();
-            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
-            this.groupBox2.SuspendLayout();
-            this.groupBox3.SuspendLayout();
-            this.flowLayoutPanel1.SuspendLayout();
-            this.SuspendLayout();
+            groupBox2 = new GroupBox();
+            btnCleanSmallImg = new Button();
+            lblSmallImg = new Label();
+            groupBox3 = new GroupBox();
+            btnCleanFullImg = new Button();
+            lblFullimg = new Label();
+            flowLayoutPanel1 = new FlowLayoutPanel();
+            groupBox2.SuspendLayout();
+            groupBox3.SuspendLayout();
+            flowLayoutPanel1.SuspendLayout();
+            SuspendLayout();
             // 
             // groupBox2
             // 
-            this.groupBox2.Controls.Add(this.btnCleanSmallImg);
-            this.groupBox2.Controls.Add(this.lblSmallImg);
-            this.groupBox2.Location = new System.Drawing.Point(3, 3);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(222, 100);
-            this.groupBox2.TabIndex = 1;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "缩略图";
+            groupBox2.Controls.Add(btnCleanSmallImg);
+            groupBox2.Controls.Add(lblSmallImg);
+            groupBox2.Location = new Point(3, 3);
+            groupBox2.Name = "groupBox2";
+            groupBox2.Size = new Size(194, 89);
+            groupBox2.TabIndex = 1;
+            groupBox2.TabStop = false;
+            groupBox2.Text = "缩略图";
             // 
             // btnCleanSmallImg
             // 
-            this.btnCleanSmallImg.Location = new System.Drawing.Point(156, 0);
-            this.btnCleanSmallImg.Name = "btnCleanSmallImg";
-            this.btnCleanSmallImg.Size = new System.Drawing.Size(45, 29);
-            this.btnCleanSmallImg.TabIndex = 3;
-            this.btnCleanSmallImg.Text = "清除";
-            this.btnCleanSmallImg.UseVisualStyleBackColor = true;
-            this.btnCleanSmallImg.Click += new System.EventHandler(this.btnCleanSmallImg_Click);
+            btnCleanSmallImg.Location = new Point(136, 0);
+            btnCleanSmallImg.Name = "btnCleanSmallImg";
+            btnCleanSmallImg.Size = new Size(42, 26);
+            btnCleanSmallImg.TabIndex = 3;
+            btnCleanSmallImg.Text = "清除";
+            btnCleanSmallImg.UseVisualStyleBackColor = true;
+            btnCleanSmallImg.Click += btnCleanSmallImg_Click;
             // 
             // lblSmallImg
             // 
-            this.lblSmallImg.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblSmallImg.AutoSize = true;
-            this.lblSmallImg.Font = new System.Drawing.Font("Microsoft YaHei UI", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.lblSmallImg.Location = new System.Drawing.Point(68, 39);
-            this.lblSmallImg.Name = "lblSmallImg";
-            this.lblSmallImg.Size = new System.Drawing.Size(70, 28);
-            this.lblSmallImg.TabIndex = 2;
-            this.lblSmallImg.Text = "50Mb";
+            lblSmallImg.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            lblSmallImg.AutoSize = true;
+            lblSmallImg.Font = new Font("Microsoft YaHei UI", 15.75F, FontStyle.Regular, GraphicsUnit.Point);
+            lblSmallImg.Location = new Point(60, 35);
+            lblSmallImg.Name = "lblSmallImg";
+            lblSmallImg.Size = new Size(70, 28);
+            lblSmallImg.TabIndex = 2;
+            lblSmallImg.Text = "50Mb";
             // 
             // groupBox3
             // 
-            this.groupBox3.Controls.Add(this.btnCleanFullImg);
-            this.groupBox3.Controls.Add(this.lblFullimg);
-            this.groupBox3.Location = new System.Drawing.Point(231, 3);
-            this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(222, 100);
-            this.groupBox3.TabIndex = 2;
-            this.groupBox3.TabStop = false;
-            this.groupBox3.Text = "下载文件";
+            groupBox3.Controls.Add(btnCleanFullImg);
+            groupBox3.Controls.Add(lblFullimg);
+            groupBox3.Location = new Point(203, 3);
+            groupBox3.Name = "groupBox3";
+            groupBox3.Size = new Size(194, 89);
+            groupBox3.TabIndex = 2;
+            groupBox3.TabStop = false;
+            groupBox3.Text = "下载文件";
             // 
             // btnCleanFullImg
             // 
-            this.btnCleanFullImg.Location = new System.Drawing.Point(155, 0);
-            this.btnCleanFullImg.Name = "btnCleanFullImg";
-            this.btnCleanFullImg.Size = new System.Drawing.Size(45, 29);
-            this.btnCleanFullImg.TabIndex = 3;
-            this.btnCleanFullImg.Text = "清除";
-            this.btnCleanFullImg.UseVisualStyleBackColor = true;
-            this.btnCleanFullImg.Click += new System.EventHandler(this.btnCleanFullImg_Click);
+            btnCleanFullImg.Location = new Point(136, 0);
+            btnCleanFullImg.Name = "btnCleanFullImg";
+            btnCleanFullImg.Size = new Size(41, 26);
+            btnCleanFullImg.TabIndex = 3;
+            btnCleanFullImg.Text = "清除";
+            btnCleanFullImg.UseVisualStyleBackColor = true;
+            btnCleanFullImg.Click += btnCleanFullImg_Click;
             // 
             // lblFullimg
             // 
-            this.lblFullimg.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblFullimg.AutoSize = true;
-            this.lblFullimg.Font = new System.Drawing.Font("Microsoft YaHei UI", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.lblFullimg.Location = new System.Drawing.Point(67, 39);
-            this.lblFullimg.Name = "lblFullimg";
-            this.lblFullimg.Size = new System.Drawing.Size(70, 28);
-            this.lblFullimg.TabIndex = 2;
-            this.lblFullimg.Text = "50Mb";
+            lblFullimg.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            lblFullimg.AutoSize = true;
+            lblFullimg.Font = new Font("Microsoft YaHei UI", 15.75F, FontStyle.Regular, GraphicsUnit.Point);
+            lblFullimg.Location = new Point(59, 35);
+            lblFullimg.Name = "lblFullimg";
+            lblFullimg.Size = new Size(70, 28);
+            lblFullimg.TabIndex = 2;
+            lblFullimg.Text = "50Mb";
             // 
             // flowLayoutPanel1
             // 
-            this.flowLayoutPanel1.Controls.Add(this.groupBox2);
-            this.flowLayoutPanel1.Controls.Add(this.groupBox3);
-            this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 0);
-            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(461, 213);
-            this.flowLayoutPanel1.TabIndex = 3;
+            flowLayoutPanel1.Controls.Add(groupBox2);
+            flowLayoutPanel1.Controls.Add(groupBox3);
+            flowLayoutPanel1.Dock = DockStyle.Fill;
+            flowLayoutPanel1.Location = new Point(0, 0);
+            flowLayoutPanel1.Name = "flowLayoutPanel1";
+            flowLayoutPanel1.Size = new Size(403, 191);
+            flowLayoutPanel1.TabIndex = 3;
             // 
             // FrmCache
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 19F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(461, 213);
-            this.Controls.Add(this.flowLayoutPanel1);
-            this.MaximizeBox = false;
-            this.Name = "FrmCache";
-            this.ShowIcon = false;
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "缓存";
-            this.Load += new System.EventHandler(this.FrmCache_Load);
-            this.groupBox2.ResumeLayout(false);
-            this.groupBox2.PerformLayout();
-            this.groupBox3.ResumeLayout(false);
-            this.groupBox3.PerformLayout();
-            this.flowLayoutPanel1.ResumeLayout(false);
-            this.ResumeLayout(false);
-
+            AutoScaleDimensions = new SizeF(7F, 17F);
+            AutoScaleMode = AutoScaleMode.Font;
+            ClientSize = new Size(403, 191);
+            Controls.Add(flowLayoutPanel1);
+            MaximizeBox = false;
+            Name = "FrmCache";
+            ShowIcon = false;
+            StartPosition = FormStartPosition.CenterScreen;
+            Text = "缓存";
+            Load += FrmCache_Load;
+            groupBox2.ResumeLayout(false);
+            groupBox2.PerformLayout();
+            groupBox3.ResumeLayout(false);
+            groupBox3.PerformLayout();
+            flowLayoutPanel1.ResumeLayout(false);
+            ResumeLayout(false);
         }
 
         #endregion
