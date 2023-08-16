@@ -311,6 +311,8 @@ namespace WallHavenGetter
                     this.imageListView1.Enabled = true;
                     DisPBar();
                     SetStatus($"下载成功：{downloadOkCnt}/{wallhavenImgs.Count}", Color.Green);
+                    toolStripMenuItemCancel.Visible = false;
+                    toolStripButtonDownload.Text = "下载";
                 });
         }
 
@@ -372,7 +374,7 @@ namespace WallHavenGetter
                 toolStripButtonDownload.Text = "停止";
                 toolStripMenuItemCancel.Visible = true;
                 var selectImginfos = _imgInfos.Where(x => this.imageListView1.SelectedItems.Any(o => o.Text.StartsWith(x.ImageName))).ToList();
-                Downlad(selectImginfos);
+                Task.Run(() => Downlad(selectImginfos));
             }
             else if (toolStripButtonDownload.Text == "停止")
             {
@@ -492,6 +494,9 @@ namespace WallHavenGetter
         {
             _downloadCancelResetTask.Reset();
             toolStripButtonDownload.Text = "下载";
+            toolStripMenuItemCancel.Visible = false;
+            DisPBar();
+            SetStatus($"取消下载", Color.Red);
         }
 
         private void imageListView1_KeyDown(object sender, KeyEventArgs e)
@@ -499,7 +504,19 @@ namespace WallHavenGetter
             if (e.KeyCode == Keys.A && e.Control)
             {
                 // 全选
+                foreach (var item in this.imageListView1.Items)
+                {
+                    item.Selected = true;
+                }
+
+                this.imageListView1.Update();
             }
+        }
+
+        private void toolStripMenuItemLog_Click(object sender, EventArgs e)
+        {
+            var frm = AppContext.GetService<FrmLog>();
+            frm.Show();
         }
     }
 }

@@ -32,6 +32,7 @@
             menuStrip1 = new MenuStrip();
             toolItemSet = new ToolStripMenuItem();
             toolItemCache = new ToolStripMenuItem();
+            toolStripMenuItemLog = new ToolStripMenuItem();
             toolItemAbout = new ToolStripMenuItem();
             statusStrip1 = new StatusStrip();
             tsLoadStatus = new ToolStripStatusLabel();
@@ -75,7 +76,7 @@
             // menuStrip1
             // 
             menuStrip1.ImageScalingSize = new Size(20, 20);
-            menuStrip1.Items.AddRange(new ToolStripItem[] { toolItemSet, toolItemCache, toolItemAbout });
+            menuStrip1.Items.AddRange(new ToolStripItem[] { toolItemSet, toolItemCache, toolStripMenuItemLog, toolItemAbout });
             menuStrip1.Location = new Point(0, 0);
             menuStrip1.Name = "menuStrip1";
             menuStrip1.Padding = new Padding(5, 2, 0, 2);
@@ -96,6 +97,13 @@
             toolItemCache.Size = new Size(44, 21);
             toolItemCache.Text = "缓存";
             toolItemCache.Click += toolItemCache_Click;
+            // 
+            // toolStripMenuItemLog
+            // 
+            toolStripMenuItemLog.Name = "toolStripMenuItemLog";
+            toolStripMenuItemLog.Size = new Size(44, 21);
+            toolStripMenuItemLog.Text = "日志";
+            toolStripMenuItemLog.Click += toolStripMenuItemLog_Click;
             // 
             // toolItemAbout
             // 
@@ -440,5 +448,6 @@
         private ToolStripSplitButton toolStripButtonDownload;
         private ToolStripMenuItem 打开下载目录ToolStripMenuItem;
         private ToolStripMenuItem toolStripMenuItemCancel;
+        private ToolStripMenuItem toolStripMenuItemLog;
     }
 }

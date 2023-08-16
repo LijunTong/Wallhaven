@@ -68,6 +68,7 @@ namespace WallHavenGetter
             services.AddTransient<FrmOptions>();
             services.AddTransient<FrmCache>();
             services.AddTransient<FrmAbout>();
+            services.AddTransient<FrmLog>();
 
             //×¢²áÒµÎñÀà
             services.AddSingleton<FrmImageShowParams>();
